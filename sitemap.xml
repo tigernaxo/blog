@@ -23,62 +23,6 @@
   </url>
   
   <url>
-    <loc>https://tigernaxo.github.io/blog/post/</loc>
-    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/tags/preview/</loc>
-    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/</loc>
-    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/tags/tag-1/</loc>
-    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/tags/</loc>
-    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/</loc>
-    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/tags/%E4%B8%AD%E6%96%87/</loc>
-    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/categories/%E4%B8%AD%E6%96%87/</loc>
-    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://tigernaxo.github.io/blog/categories/category-2/</loc>
     <lastmod>2018-07-10T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -93,8 +37,36 @@
   </url>
   
   <url>
+    <loc>https://tigernaxo.github.io/blog/post/</loc>
+    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/preview/</loc>
+    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tigernaxo.github.io/blog/tags/tag-3/</loc>
     <lastmod>2018-07-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/</loc>
+    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/</loc>
+    <lastmod>2018-11-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -178,6 +150,27 @@
   
   <url>
     <loc>https://tigernaxo.github.io/blog/post/chinese-preview/</loc>
+    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/tag-1/</loc>
+    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2017-08-30T01:37:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/categories/%E4%B8%AD%E6%96%87/</loc>
     <lastmod>2017-08-30T01:37:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

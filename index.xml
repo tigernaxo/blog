@@ -6,7 +6,7 @@
     <description>Recent content on Test Title</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 30 Oct 2020 01:37:56 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Theme preview</title>
       <link>https://tigernaxo.github.io/blog/post/even-preview/</link>
@@ -25,15 +25,6 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
-    </item>
-    
-    <item>
-      <title>SignalR</title>
-      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/</link>
-      <pubDate>Fri, 30 Oct 2020 01:37:56 +0800</pubDate>
-      
-      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/</guid>
-      <description>SignalR 1 2 public void main(){ }</description>
     </item>
     
     <item>
