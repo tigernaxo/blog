@@ -14,7 +14,7 @@ echo "public" >> .gitignore
 echo "#!/bin/bash" >>  run-commit-gh-pages.sh
 echo "rm -rf public/" >> run-commit-gh-pages.sh
 echo "hugo" >> run-commit-gh-pages.sh
-echo "cd public && git add --all && git commit -m "Publishing to gh-pages" && cd .." >> run-commit-gh-pages.sh
+echo "cd public && git add --all && git commit -m \"Publishing to gh-pages\" && cd .." >> run-commit-gh-pages.sh
 
 echo "#!/bin/bash" >>  run-push-gh-pages.sh
 echo "git push origin gh-pages" >> run-push-gh-pages.sh
