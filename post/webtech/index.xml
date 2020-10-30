@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Test Title</title>
+    <link>https://tigernaxo.github.io/blog/post/webtech/</link>
+    <description>Recent content on Test Title</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language><atom:link href="https://tigernaxo.github.io/blog/post/webtech/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
