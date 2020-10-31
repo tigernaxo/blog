@@ -5,6 +5,34 @@
     <link>https://tigernaxo.github.io/blog/tags/</link>
     <description>Recent content in Tags on Test Title</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language><atom:link href="https://tigernaxo.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://tigernaxo.github.io/blog/tags/linux/</link>
+      <pubDate>Tue, 16 Jun 2020 09:37:18 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.4</title>
+      <link>https://tigernaxo.github.io/blog/tags/ubuntu-20.4/</link>
+      <pubDate>Tue, 16 Jun 2020 09:37:18 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/tags/ubuntu-20.4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS 8</title>
+      <link>https://tigernaxo.github.io/blog/tags/centos-8/</link>
+      <pubDate>Sat, 13 Jun 2020 09:37:18 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/tags/centos-8/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Test Title</title>
-    <link>https://tigernaxo.github.io/blog/</link>
-    <description>Recent content on Test Title</description>
+    <title>Posts on Test Title</title>
+    <link>https://tigernaxo.github.io/blog/post/</link>
+    <description>Recent content in Posts on Test Title</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://tigernaxo.github.io/blog/about/</link>
-      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
-      
-      <guid>https://tigernaxo.github.io/blog/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
-    </item>
-    
+    <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Linux] CentOS 8 設置靜態 IP</title>
       <link>https://tigernaxo.github.io/blog/post/linux/centos8/static_ip/</link>

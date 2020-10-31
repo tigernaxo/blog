@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP - Test Title</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~ 檢查網路介面 以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡 1 2 3" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
+
+
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/linux/ubuntu204/static_ip/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP" />
+<meta property="og:description" content="Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~ 檢查網路介面 以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡 1 2 3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/linux/ubuntu204/static_ip/" />
+<meta property="article:published_time" content="2020-06-13T09:37:18+08:00" />
+<meta property="article:modified_time" content="2020-06-13T09:37:18+08:00" />
+<meta itemprop="name" content="[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP">
+<meta itemprop="description" content="Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~ 檢查網路介面 以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡 1 2 3">
+<meta itemprop="datePublished" content="2020-06-13T09:37:18+08:00" />
+<meta itemprop="dateModified" content="2020-06-13T09:37:18+08:00" />
+<meta itemprop="wordCount" content="689">
+
+
+
+<meta itemprop="keywords" content="Linux,CentOS 8," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP"/>
+<meta name="twitter:description" content="Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~ 檢查網路介面 以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡 1 2 3"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-06-13 </span>
+        <div class="post-category">
+            <a href="/blog/categories/linux/"> Linux </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#檢查網路介面">檢查網路介面</a></li>
+    <li><a href="#檢查設定檔">檢查設定檔</a></li>
+    <li><a href="#手動配置設定檔">手動配置設定檔</a></li>
+    <li><a href="#測試設定檔">測試設定檔</a></li>
+    <li><a href="#應用設定檔">應用設定檔</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~</p>
+<h1 id="檢查網路介面">檢查網路介面</h1>
+<p>以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:6a:7b:e3 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic enp0s3
+       valid_lft 86159sec preferred_lft 86159sec
+    inet6 fe80::a00:27ff:fe6a:7be3/64 scope link 
+       valid_lft forever preferred_lft forever
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="檢查設定檔">檢查設定檔</h1>
+<p>所有放置於 /etc/netplan 底下的 yaml 檔都會影響 netplan 的設置，檢查設定檔看到只有一個 00-installer-config.yaml，內容空空如也，一般來說在安裝系統時有設定過網路就會有，如果沒有的話就自己新增囉：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 查看設定檔
+$ ls /etc/netplan/
+00-installer-config.yaml
+$ cat 00-installer-config.yaml 
+# This is the network config written by &#39;subiquity&#39;
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: true
+  version: 2
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="手動配置設定檔">手動配置設定檔</h1>
+<p>配置特定網卡的方法就是在 YAML 內將配置寫入，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># This is the network config written by &#39;subiquity&#39;
+network:
+  ethernets:
+    enp0s3:  # 網卡名稱
+      addresses: [10.0.2.15/24]  # 靜態IP、遮罩
+      gateway4: 10.0.2.1  # IPV4 Getway ip
+      nameservers:
+        addresses: [8.8.8.8,8.8.4.4] # DNS server ip，若有多個就以逗號分隔
+      dhcp4: no # 關閉 dhcp 自動取得 IP
+version: 2
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="測試設定檔">測試設定檔</h1>
+<p>遠端工作時如果套用了錯誤的網路設定檔就 GG 了，因此在套用之前可以先用 netplan try 測試測定檔是否設置正確，如果沒有在120秒之內進行確認（例如套用了錯誤的網路設定導致使用者斷線）就會回復至先前有效的設定，讓使用者可以再次連上機器修正配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo netplan try
+Warning: Stopping systemd-networkd.service, but it can still be activated by:
+systemd-networkd.socket
+Do you want to keep these settings?
+Press ENTER before the timeout to accept the new configuration
+Changes will revert in 120 seconds
+Configuration accepted.
+$
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="應用設定檔">應用設定檔</h1>
+<p>測試無誤後就可以直接讓設定檔生效了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo netplan apply
+</code></pre></td></tr></table>
+</div>
+</div><p>現在 ip 已經被固定為 14 囉</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ip a 
+1: lo: mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+valid_lft forever preferred_lft forever
+inet6 ::1/128 scope host
+valid_lft forever preferred_lft forever
+2: enp0s3: mtu 1500 qdisc fq_codel state UP group default qlen 1000
+link/ether 08:00:27:6a:7b:e3 brd ff:ff:ff:ff:ff:ff
+inet 10.0.2.14/24 brd 10.0.2.255 scope global enp0s3
+valid_lft forever preferred_lft forever
+inet6 fe80::a00:27ff:fe6a:7be3/64 scope link
+valid_lft forever preferred_lft forever
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-06-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/linux/">Linux</a>
+          <a href="/blog/tags/centos-8/">CentOS 8</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/blog/post/linux/centos8/static_ip/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[Linux] CentOS 8 設置靜態 IP</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+  <a href="https://tigernaxo.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 強力驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
