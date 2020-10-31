@@ -36,5 +36,14 @@ It makes use of a variety of open source projects including:
       <description>Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~ 檢查網路介面 以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡 1 2 3</description>
     </item>
     
+    <item>
+      <title>JavaScript 原型繼承模型</title>
+      <link>https://tigernaxo.github.io/blog/post/javascript/prototype/</link>
+      <pubDate>Sat, 13 Jun 2020 09:37:18 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/javascript/prototype/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
