@@ -6,14 +6,14 @@
     <description>Recent content in Javascript on Test Title</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 13 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 May 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JavaScript 原型繼承模型</title>
       <link>https://tigernaxo.github.io/blog/post/javascript/prototype/</link>
-      <pubDate>Sat, 13 Jun 2020 09:37:18 +0800</pubDate>
+      <pubDate>Wed, 20 May 2020 09:37:18 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/post/javascript/prototype/</guid>
-      <description></description>
+      <description>基於原型 (Prototype-Based) 的 JavaScript 一般物件導向式(OOP; Object Oriented Programming) 程式語言 (如：java、c++、c#) 當中的物件是由類別模板 (class) 產生實體物件 (instance)，</description>
     </item>
     
   </channel>
