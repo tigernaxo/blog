@@ -1,21 +1,21 @@
 ---
 title: "About"
-date: 2017-08-20T21:38:52+08:00
-lastmod: 2017-08-28T21:41:52+08:00
+date: 2020-10-31T22:55:00+08:00
+lastmod: 2020-10-31T22:55:00+08:00
 menu: "main"
 weight: 50
 
 ---
+# 信箱
+tigernaxo.co.cc@gmail.com
 
-Hugo is a static site engine written in Go.
+# 學歷：
+- 國立中興大學 生命科學系
+- 國立陽明大學 生化所
 
-
-It makes use of a variety of open source projects including:
-
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
-
+# 經歷：
+- 2019-至今 展輝科技 Web工程師
+- 2017 - 2019 國立中興大學 研究助理
+- 2015 - 2017 宣捷生物科技 助理研究員
+- 2013 - 2015 冷泉港生物科技 研發人員
+- 2011 - 2013 國立陽明大學 研究助理
