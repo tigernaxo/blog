@@ -1,7 +1,7 @@
 ---
 title: "[JavaScript] Object 常用方法"
-date: 2020-04-29T23:31:18+08:00
-lastmod: 2020-04-29T23:31:18+08:00
+date: 2020-05-20T23:31:18+08:00
+lastmod: 2020-05-20T23:31:18+08:00
 draft: false
 tags: ["Javascript"]
 categories: ["JavaScript"]
