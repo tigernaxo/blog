@@ -43,5 +43,14 @@
       <description>基於原型 (Prototype-Based) 的 JavaScript 一般物件導向式(OOP; Object Oriented Programming) 程式語言 (如：java、c++、c#) 當中的物件是由類別模板 (class) 產生實體物件 (instance)，</description>
     </item>
     
+    <item>
+      <title>[JavaScript] Object 常用方法</title>
+      <link>https://tigernaxo.github.io/blog/post/javascript/object_functions/</link>
+      <pubDate>Wed, 29 Apr 2020 23:31:18 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/javascript/object_functions/</guid>
+      <description>紀錄常用的 Object 方法，細節可以到MDN看 Object.create Object.create(proto, [propertiesObject]) 以傳入的參數作為prototype建立一個新物件，這個方法只能複製只帶有 primitive type 無法 deep copy，建立的</description>
+    </item>
+    
   </channel>
 </rss>
