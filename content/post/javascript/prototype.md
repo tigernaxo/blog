@@ -1,5 +1,5 @@
 ---
-title: "JavaScript 原型繼承模型"
+title: "[JavaScript] JavaScript 當中的原型繼承模型"
 date: 2020-05-20T09:37:18+08:00
 lastmod: 2020-05-20T09:37:18+08:00
 draft: false
