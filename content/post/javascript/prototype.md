@@ -6,6 +6,8 @@ draft: false
 tags: ["Javascript"]
 categories: ["JavaScript"]
 author: "tigernaxo"
+
+autoCollapseToc: true
 ---
 
 # 基於原型 (Prototype-Based) 的 JavaScript
