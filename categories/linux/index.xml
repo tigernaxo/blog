@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Test Title</title>
+    <title>Linux on 世情如紙</title>
     <link>https://tigernaxo.github.io/blog/categories/linux/</link>
-    <description>Recent content in Linux on Test Title</description>
+    <description>Recent content in Linux on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Test Title</title>
+    <title>世情如紙</title>
     <link>https://tigernaxo.github.io/blog/</link>
-    <description>Recent content on Test Title</description>
+    <description>Recent content on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://tigernaxo.github.io/blog/about/</link>
-      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      <pubDate>Sat, 31 Oct 2020 22:55:00 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+      <description>信箱 tigernaxo.co.cc@gmail.com 學歷： 國立中興大學 生命科學系 國立陽明大學 生化所 經歷： 2019-至今 展輝科技 Web工程師 2017 - 2019 國立中興大學 研究助理 2015 - 2017 宣捷生物科技 助理</description>
     </item>
     
     <item>

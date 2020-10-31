@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CentOS 8 on Test Title</title>
+    <title>CentOS 8 on 世情如紙</title>
     <link>https://tigernaxo.github.io/blog/tags/centos-8/</link>
-    <description>Recent content in CentOS 8 on Test Title</description>
+    <description>Recent content in CentOS 8 on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Sat, 13 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/centos-8/index.xml" rel="self" type="application/rss+xml" />
