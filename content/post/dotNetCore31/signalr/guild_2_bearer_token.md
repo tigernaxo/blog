@@ -1,5 +1,5 @@
 ---
-title: "[SignalR] 建立一個基於 SignalR 的 Websocket 應用程式(二) - 利用 Bearer Token 授權與驗證"
+title: "[SignalR] SignalR Websocket 應用程式(二) - 授權與驗證"
 date: 2020-10-31T02:09:45+08:00
 lastmod: 2020-10-31T02:09:45+08:00
 draft: true
