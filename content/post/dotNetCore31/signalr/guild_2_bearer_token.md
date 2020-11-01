@@ -1,12 +1,13 @@
 ---
-title: "[SignalR] 利用 Bearer Token 授權與驗證"
+title: "[SignalR] 建立一個基於 SignalR 的 Websocket 應用程式(二) - 利用 Bearer Token 授權與驗證"
 date: 2020-10-31T02:09:45+08:00
 lastmod: 2020-10-31T02:09:45+08:00
 draft: true
-tags: ["SignalR", ".NetCore", "Authentication", "Autherization"]
-categories: ["中文"]
+tags: ["SignalR", ".NetCore", "Authentication", "Autherization", "Bearor Token"]
+categories: [".NET Core 3.1"]
 author: "tigernaxo"
 
+autoCollapseToc: true
 #contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 
 ---
