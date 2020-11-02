@@ -6,7 +6,7 @@
     <description>Recent content on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 Oct 2020 02:09:45 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://tigernaxo.github.io/blog/about/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://tigernaxo.github.io/blog/about/</guid>
       <description>信箱 tigernaxo.co.cc@gmail.com 學歷： 國立中興大學 生命科學系 國立陽明大學 生化所 經歷： 2019-至今 展輝科技 Web工程師 2017 - 2019 國立中興大學 研究助理 2015 - 2017 宣捷生物科技 助理</description>
+    </item>
+    
+    <item>
+      <title>[SignalR] SignalR Websocket 應用程式(一) - 建立專案</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</link>
+      <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</guid>
+      <description>這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET</description>
     </item>
     
     <item>

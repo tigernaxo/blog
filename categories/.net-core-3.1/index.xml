@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>.NET Core 3.1 on 世情如紙</title>
+    <link>https://tigernaxo.github.io/blog/categories/.net-core-3.1/</link>
+    <description>Recent content in .NET Core 3.1 on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sat, 31 Oct 2020 02:09:45 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/categories/.net-core-3.1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SignalR] SignalR Websocket 應用程式(一) - 建立專案</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</link>
+      <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</guid>
+      <description>這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET</description>
+    </item>
+    
+  </channel>
+</rss>

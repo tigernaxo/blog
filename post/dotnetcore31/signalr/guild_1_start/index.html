@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[SignalR] SignalR Websocket 應用程式(一) - 建立專案 - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
+
+
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[SignalR] SignalR Websocket 應用程式(一) - 建立專案" />
+<meta property="og:description" content="這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/" />
+<meta property="article:published_time" content="2020-10-31T02:09:45+08:00" />
+<meta property="article:modified_time" content="2020-11-03T05:46:45+08:00" />
+<meta itemprop="name" content="[SignalR] SignalR Websocket 應用程式(一) - 建立專案">
+<meta itemprop="description" content="這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET">
+<meta itemprop="datePublished" content="2020-10-31T02:09:45+08:00" />
+<meta itemprop="dateModified" content="2020-11-03T05:46:45+08:00" />
+<meta itemprop="wordCount" content="1586">
+
+
+
+<meta itemprop="keywords" content="SignalR,.NetCore,Websocket," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[SignalR] SignalR Websocket 應用程式(一) - 建立專案"/>
+<meta name="twitter:description" content="這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[SignalR] SignalR Websocket 應用程式(一) - 建立專案</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-31 </span>
+        <div class="post-category">
+            <a href="/blog/categories/.net-core-3.1/"> .NET Core 3.1 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#建立-signalr-專案">建立 SignalR 專案</a></li>
+    <li><a href="#建立-signalr-中樞">建立 SignalR 中樞</a></li>
+    <li><a href="#設定-startupcs">設定 Startup.cs</a></li>
+    <li><a href="#安裝前端相依性">安裝前端相依性</a>
+      <ul>
+        <li><a href="#libman">LibMan</a></li>
+        <li><a href="#microsoftsignalr">@microsoft/signalr</a></li>
+      </ul>
+    </li>
+    <li><a href="#前端程式碼">前端程式碼</a>
+      <ul>
+        <li><a href="#html">HTML</a></li>
+        <li><a href="#javascript">JavaScript</a></li>
+      </ul>
+    </li>
+    <li><a href="#測試">測試</a></li>
+    <li><a href="#錯誤處理">錯誤處理</a>
+      <ul>
+        <li><a href="#chatjs-404-not-found">Chat.js 404 not found&hellip;</a></li>
+        <li><a href="#err_spdy_inadequate_transport_security">ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>這個系列會以<a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&amp;tabs=visual-studio">官方文件</a>為主，保留必要的部分，並修改部份程式、添加說明文字。</p>
+<p>以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令</p>
+<p>在.NET Core 3.1 當中伺服器端不再需要安裝額外的套件，直接將 SignalR 注入服務容器就能使用，因此只需要安裝前端需要的 JavaScript 函式庫。</p>
+<h1 id="建立-signalr-專案">建立 SignalR 專案</h1>
+<p>官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razor Pages 的 webapp 專案：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 建立專案</span>
+dotnet new webapp -o signalr
+<span class="c1"># 以 VS Code 打開專案</span>
+code -r signalr
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="建立-signalr-中樞">建立 SignalR 中樞</h1>
+<p>SignalR 的 Hub 中文名稱就叫做中樞，在專案中新增資料夾 Hubs 用來專門存放 Hub 實作類別，並在 Hubs 中新增檔案 ChatHub.cs，內容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.SignalR</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">SignalRChat.Hubs</span>
+<span class="p">{</span>
+    <span class="c1">// 這就是所謂的 SignalR 中樞
+</span><span class="c1"></span>    <span class="k">public</span> <span class="k">class</span> <span class="nc">ChatHub</span> <span class="p">:</span> <span class="n">Hub</span>
+    <span class="p">{</span>
+        <span class="c1">// 這是提供 Client (js)端呼叫的方法，後面是這個方法接受的參數
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">SendMessage</span><span class="p">(</span><span class="kt">string</span> <span class="n">user</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 針對每個以連線的客戶端呼叫 ReceiceMassage 方法，並傳送參數 user、message
+</span><span class="c1"></span>            <span class="k">await</span> <span class="n">Clients</span><span class="p">.</span><span class="n">All</span><span class="p">.</span><span class="n">SendAsync</span><span class="p">(</span><span class="s">&#34;ReceiveMessage&#34;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="設定-startupcs">設定 Startup.cs</h1>
+<p>依照官網的設定，在 Startup.cs 當中新增第11, 28, 55 行：</p>
+<ul>
+<li><code>using SignalRChat.Hubs;</code>:新增對 Hub 的引用。</li>
+<li><code>service.AddSignalR()</code>:將 SignalR 相關對應註冊在 service container 中。</li>
+<li><code>endpoints.MapHub&lt;ChatHub&gt;(&quot;/chathub&quot;);</code>:將 ChatHub 中樞綁定到站台的 /chathub 端點。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="hl"><span class="lnt">11
+</span></span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="hl"><span class="lnt">28
+</span></span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="hl"><span class="lnt">55
+</span></span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Builder</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Hosting</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.HttpsPolicy</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Configuration</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.DependencyInjection</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Hosting</span><span class="p">;</span>
+<span class="hl"><span class="k">using</span> <span class="nn">SignalRChat.Hubs</span><span class="p">;</span>
+</span>
+<span class="k">namespace</span> <span class="nn">SignalRChat</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="n">Startup</span><span class="p">(</span><span class="n">IConfiguration</span> <span class="n">configuration</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Configuration</span> <span class="p">=</span> <span class="n">configuration</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">IConfiguration</span> <span class="n">Configuration</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="c1">// This method gets called by the runtime. Use this method to add services to the container.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">services</span><span class="p">.</span><span class="n">AddRazorPages</span><span class="p">();</span>
+<span class="hl">            <span class="n">services</span><span class="p">.</span><span class="n">AddSignalR</span><span class="p">();</span>
+</span>        <span class="p">}</span>
+
+        <span class="c1">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">void</span> <span class="n">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">IWebHostEnvironment</span> <span class="n">env</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">IsDevelopment</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="n">app</span><span class="p">.</span><span class="n">UseDeveloperExceptionPage</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">app</span><span class="p">.</span><span class="n">UseExceptionHandler</span><span class="p">(</span><span class="s">&#34;/Error&#34;</span><span class="p">);</span>
+                <span class="c1">// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+</span><span class="c1"></span>                <span class="n">app</span><span class="p">.</span><span class="n">UseHsts</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="n">app</span><span class="p">.</span><span class="n">UseHttpsRedirection</span><span class="p">();</span>
+            <span class="n">app</span><span class="p">.</span><span class="n">UseStaticFiles</span><span class="p">();</span>
+
+            <span class="n">app</span><span class="p">.</span><span class="n">UseRouting</span><span class="p">();</span>
+
+            <span class="n">app</span><span class="p">.</span><span class="n">UseAuthorization</span><span class="p">();</span>
+
+            <span class="n">app</span><span class="p">.</span><span class="n">UseEndpoints</span><span class="p">(</span><span class="n">endpoints</span> <span class="p">=&gt;</span>
+            <span class="p">{</span>
+                <span class="n">endpoints</span><span class="p">.</span><span class="n">MapRazorPages</span><span class="p">();</span>
+<span class="hl">                <span class="n">endpoints</span><span class="p">.</span><span class="n">MapHub</span><span class="p">&lt;</span><span class="n">ChatHub</span><span class="p">&gt;(</span><span class="s">&#34;/chathub&#34;</span><span class="p">);</span>
+</span>            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="安裝前端相依性">安裝前端相依性</h1>
+<h2 id="libman">LibMan</h2>
+<p>LibMan 程式庫管理員可從獲取前端所需要的相依性，來源包含檔案系統(File System)或<a href="https://cdnjs.com/">CDNJS</a>、<a href="https://www.jsdelivr.com/">jsDelivr</a>、<a href="https://unpkg.com/#/">unpkg</a> 等等<a href="https://en.wikipedia.org/wiki/Content_delivery_network">內容傳遞網路(CDN)</a>，如果前端以其他框架(ex: Angular、React、Vue)開發時就需要用其他方式，這裡先用微軟提供的方便工具安裝需要的套件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="microsoftsignalr">@microsoft/signalr</h2>
+<p>以下指令 LibMan 會從<a href="https://unpkg.com/">unpkg</a>將套件 @microsoft/signalr@latest 安裝到專案下的路徑 wwwroot/js/signalr 當中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">libman install @microsoft/signalr@latest <span class="se">\
+</span><span class="se"></span>  -p unpkg <span class="se">\
+</span><span class="se"></span>  -d wwwroot/js/signalr <span class="se">\
+</span><span class="se"></span>  --files dist/browser/signalr.js <span class="se">\
+</span><span class="se"></span>  --files dist/browser/signalr.min.js
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="前端程式碼">前端程式碼</h1>
+<h2 id="html">HTML</h2>
+<p>新增檔案 Pages\Index.cshtml，內容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">@page
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-2&#34;</span><span class="p">&gt;</span>User<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="c">&lt;!-- 使用者名稱輸入框 --&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-4&#34;</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;userInput&#34;</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-2&#34;</span><span class="p">&gt;</span>Message<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="c">&lt;!-- 訊息輸入框 --&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-4&#34;</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;messageInput&#34;</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-6&#34;</span><span class="p">&gt;</span>
+                <span class="c">&lt;!-- 送出按鈕 --&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;sendButton&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Send Message&#34;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-12&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">hr</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-6&#34;</span><span class="p">&gt;</span>
+            <span class="c">&lt;!-- 顯示訊息的ul --&gt;</span>
+            <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;messagesList&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;~/js/signalr/dist/browser/signalr.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;~/js/chat.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="javascript">JavaScript</h2>
+<p>新增一個檔案 wwwRoot/js/Chat.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
+<span class="c1">// 起始一個 SignalR 連線，連線到 /chatHub 端點
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">signalR</span><span class="p">.</span><span class="nx">HubConnectionBuilder</span><span class="p">().</span><span class="nx">withUrl</span><span class="p">(</span><span class="s2">&#34;/chatHub&#34;</span><span class="p">).</span><span class="nx">build</span><span class="p">();</span>
+<span class="c1">// 從 Dom tree 當中取得送出按鈕、使用者名稱輸入、訊息輸入元件
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">btnSend</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;sendButton&#34;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">userInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;userInput&#34;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">messageInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;messageInput&#34;</span><span class="p">);</span>
+
+<span class="c1">// 使送出按鈕無法點選，直到 SignalR 連線建立
+</span><span class="c1"></span><span class="nx">btnSend</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="c1">// 註冊連線接收到 ReceiveMessage 時的行為
+</span><span class="c1">// 這個行為會呼叫帶有參數 user, message 的回呼函數
+</span><span class="c1"></span><span class="nx">connection</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;ReceiveMessage&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 將&amp;、&lt;、&gt;取代為相對應的 html code
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span> <span class="s2">&#34;&amp;amp;&#34;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span> <span class="s2">&#34;&amp;lt;&#34;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span> <span class="s2">&#34;&amp;gt;&#34;</span><span class="p">);</span>
+    <span class="c1">// 設定顯示文字、新增一個顯示對話的 li dom 插入至 messagesList
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">encodedMsg</span> <span class="o">=</span> <span class="s2">&#34;[&#34;</span> <span class="o">+</span> <span class="nx">user</span> <span class="o">+</span> <span class="s2">&#34;] &#34;</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;li&#34;</span><span class="p">);</span>
+    <span class="nx">li</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">encodedMsg</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;messagesList&#34;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 設定連線建立時的行為，將送出按鈕啟用
+</span><span class="c1"></span><span class="nx">connection</span><span class="p">.</span><span class="nx">start</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">btnSend</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="c1">// 設定按下送出訊息的行為
+</span><span class="c1"></span><span class="nx">btnSend</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 以參數 userInput、messageInput 的值作為參數呼叫 server 端的 SendMessage
+</span><span class="c1"></span>    <span class="nx">connection</span>
+      <span class="p">.</span><span class="nx">invoke</span><span class="p">(</span><span class="s2">&#34;SendMessage&#34;</span><span class="p">,</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="nx">messageInput</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+      <span class="p">});</span>
+    <span class="c1">// 取消 html 按鈕執行預設行為
+</span><span class="c1"></span>    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="測試">測試</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">dotnet watch run -p signalr.csproj
+</code></pre></td></tr></table>
+</div>
+</div><div class='align-center'>
+<p><img src="signalr_test.jpg" alt="測試結果"></p>
+</div>
+<h1 id="錯誤處理">錯誤處理</h1>
+<p>附錄一下實際上沒有遇到，但官方有提到兩個錯誤的處理方法，按 F12 打開開發人員工具後檢查錯誤：</p>
+<h2 id="chatjs-404-not-found">Chat.js 404 not found&hellip;</h2>
+<p>單純就是 Chat.js 放錯路徑了&hellip;</p>
+<h2 id="err_spdy_inadequate_transport_security">ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY</h2>
+<p>用以下指令清除、重新生成開發期的 https 憑證(dotnet 版本 3.1.403 實際測試官方給的指令 <code>dotnet dev-certs https --trust</code> 沒有作用，是因為沒有 &ndash;trust 選項可以用)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">dotnet dev-certs https --clean
+dotnet dev-certs https
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&amp;tabs=visual-studio">https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&amp;tabs=visual-studio</a></li>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/libman/?view=aspnetcore-3.1">https://docs.microsoft.com/en-us/aspnet/core/client-side/libman/?view=aspnetcore-3.1</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/signalr/">SignalR</a>
+          <a href="/blog/tags/.netcore/">.NetCore</a>
+          <a href="/blog/tags/websocket/">Websocket</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/linux/centos8/static_ip/">
+            <span class="next-text nav-default">[Linux] CentOS 8 設置靜態 IP</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://tigernaxo.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
