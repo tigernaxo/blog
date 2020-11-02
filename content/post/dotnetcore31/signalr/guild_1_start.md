@@ -1,8 +1,8 @@
 ---
 title: "[SignalR] SignalR Websocket 應用程式(一) - 建立專案"
 date: 2020-10-31T02:09:45+08:00
-lastmod: 2020-10-31T02:09:45+08:00
-draft: true
+lastmod: 2020-11-03T05:46:45+08:00
+draft: false
 tags: ["SignalR", ".NetCore", "Websocket"]
 categories: [".NET Core 3.1"]
 author: "tigernaxo"
@@ -10,7 +10,11 @@ author: "tigernaxo"
 autoCollapseToc: true
 #contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-本篇會以[官方文件](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)為主，保留必要的部分，並添加一些說明文字，並以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令。
+這個系列會以[官方文件](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)為主，保留必要的部分，並修改部份程式、添加說明文字。
+
+以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令
+
+在.NET Core 3.1 當中伺服器端不再需要安裝額外的套件，直接將 SignalR 注入服務容器就能使用，因此只需要安裝前端需要的 JavaScript 函式庫。
 
 # 建立 SignalR 專案
 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razor Pages 的 webapp 專案：
@@ -45,7 +49,7 @@ namespace SignalRChat.Hubs
 # 設定 Startup.cs
 依照官網的設定，在 Startup.cs 當中新增第11, 28, 55 行：
 - `using SignalRChat.Hubs;`:新增對 Hub 的引用。
-- `service.AddSignalR()`:將 SignalR 相關的對應註冊在 service container 中。
+- `service.AddSignalR()`:將 SignalR 相關對應註冊在 service container 中。
 - `endpoints.MapHub<ChatHub>("/chathub");`:將 ChatHub 中樞綁定到站台的 /chathub 端點。
 
 {{< highlight csharp "hl_lines=11 28 55" >}}
@@ -112,7 +116,7 @@ namespace SignalRChat
 
 # 安裝前端相依性
 ## LibMan 
-LibMan 程式庫管理員可從獲取前端所需要的相依性，來源包含檔案系統(File System)或是[CDNJS](https://cdnjs.com/)、[jsDelivr](https://www.jsdelivr.com/)、[unpkg](https://unpkg.com/#/) 等等[內容傳遞網路(CDN)](https://en.wikipedia.org/wiki/Content_delivery_network)，如果前端以其他框架(ex: Angular、React、Vue)開發時就需要用其他方式，這裡先用微軟提供的方便工具安裝需要的套件。
+LibMan 程式庫管理員可從獲取前端所需要的相依性，來源包含檔案系統(File System)或[CDNJS](https://cdnjs.com/)、[jsDelivr](https://www.jsdelivr.com/)、[unpkg](https://unpkg.com/#/) 等等[內容傳遞網路(CDN)](https://en.wikipedia.org/wiki/Content_delivery_network)，如果前端以其他框架(ex: Angular、React、Vue)開發時就需要用其他方式，這裡先用微軟提供的方便工具安裝需要的套件。
 ```shell
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
@@ -168,36 +172,68 @@ libman install @microsoft/signalr@latest \
 ```
 
 ## JavaScript
+新增一個檔案 wwwRoot/js/Chat.js
 ```js
 "use strict";
+// 起始一個 SignalR 連線，連線到 /chatHub 端點
+let connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+// 從 Dom tree 當中取得送出按鈕、使用者名稱輸入、訊息輸入元件
+let btnSend = document.getElementById("sendButton");
+let userInput = document.getElementById("userInput");
+let messageInput = document.getElementById("messageInput");
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+// 使送出按鈕無法點選，直到 SignalR 連線建立
+btnSend.disabled = true;
 
-//Disable send button until connection is established
-document.getElementById("sendButton").disabled = true;
-
+// 註冊連線接收到 ReceiveMessage 時的行為
+// 這個行為會呼叫帶有參數 user, message 的回呼函數
 connection.on("ReceiveMessage", function (user, message) {
+    // 將&、<、>取代為相對應的 html code
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
+    // 設定顯示文字、新增一個顯示對話的 li dom 插入至 messagesList
+    var encodedMsg = "[" + user + "] " + msg;
     var li = document.createElement("li");
     li.textContent = encodedMsg;
     document.getElementById("messagesList").appendChild(li);
 });
 
+// 設定連線建立時的行為，將送出按鈕啟用
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;
+    btnSend.disabled = false;
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+// 設定按下送出訊息的行為
+btnSend.addEventListener("click", function (event) {
+    // 以參數 userInput、messageInput 的值作為參數呼叫 server 端的 SendMessage
+    connection
+      .invoke("SendMessage", userInput.value, messageInput.value)
+      .catch(function (err) {
         return console.error(err.toString());
-    });
+      });
+    // 取消 html 按鈕執行預設行為
     event.preventDefault();
 });
+```
+
+# 測試
+```bash
+dotnet watch run -p signalr.csproj
+```
+{{% center %}}
+![測試結果](signalr_test.jpg)
+{{% /center %}}
+
+# 錯誤處理
+附錄一下實際上沒有遇到，但官方有提到兩個錯誤的處理方法，按 F12 打開開發人員工具後檢查錯誤：
+## Chat.js 404 not found... 
+單純就是 Chat.js 放錯路徑了...
+## ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY
+用以下指令清除、重新生成開發期的 https 憑證(dotnet 版本 3.1.403 實際測試官方給的指令 `dotnet dev-certs https --trust` 沒有作用，是因為沒有 --trust 選項可以用)
+```bash
+dotnet dev-certs https --clean
+dotnet dev-certs https
 ```
 
 # Reference
