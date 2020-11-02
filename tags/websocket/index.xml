@@ -8,7 +8,7 @@
     <language>zh-tw</language>
     <lastBuildDate>Sat, 31 Oct 2020 02:09:45 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/websocket/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[SignalR] SignalR Websocket 應用程式(一) - 建立專案</title>
+      <title>[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</link>
       <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
       
