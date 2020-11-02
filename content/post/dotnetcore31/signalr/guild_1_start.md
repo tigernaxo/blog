@@ -1,5 +1,5 @@
 ---
-title: "[SignalR] SignalR Websocket 應用程式(一) - 建立專案"
+title: "[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案"
 date: 2020-10-31T02:09:45+08:00
 lastmod: 2020-11-03T05:46:45+08:00
 draft: false
