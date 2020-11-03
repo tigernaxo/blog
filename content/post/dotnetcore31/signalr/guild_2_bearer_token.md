@@ -36,7 +36,7 @@ libman install axios@latest \
 ```js
 // Connect, using the token we got.
 this.connection = new signalR.HubConnectionBuilder()
-    .withUrl("/hubs/chat", { accessTokenFactory: () => this.loginToken })
+    .withUrl("/hubs/chat", { accessTokenFactory: () => loginToken })
     .build();
 ```
 
