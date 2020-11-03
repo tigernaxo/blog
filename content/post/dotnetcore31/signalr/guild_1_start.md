@@ -10,11 +10,7 @@ author: "tigernaxo"
 autoCollapseToc: true
 #contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-這個系列會以[官方文件](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)為主，保留必要的部分，並修改部份程式、添加說明文字。
-
-以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令
-
-在.NET Core 3.1 當中伺服器端不再需要安裝額外的套件，直接將 SignalR 注入服務容器就能使用，因此只需要安裝前端需要的 JavaScript 函式庫。
+這個系列會[官方文件](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令
 
 # 建立 SignalR 專案
 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razor Pages 的 webapp 專案：
@@ -26,7 +22,7 @@ code -r signalr
 ```
 
 # 建立 SignalR 中樞
-SignalR 的 Hub 中文名稱就叫做中樞，在專案中新增資料夾 Hubs 用來專門存放 Hub 實作類別，並在 Hubs 中新增檔案 ChatHub.cs，內容如下：
+在.NET Core 3.1 當中使用 SignalR 伺服器端不再需要安裝額外的套件，直接將 SignalR 注入服務容器就能使用， SignalR 的 Hub 中文名稱就叫做中樞，在專案中新增資料夾 Hubs 用來專門存放 Hub 實作類別，並在 Hubs 中新增檔案 ChatHub.cs，內容如下：
 ```c#
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
@@ -237,5 +233,5 @@ dotnet dev-certs https
 ```
 
 # Reference
-- https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio
-- https://docs.microsoft.com/en-us/aspnet/core/client-side/libman/?view=aspnetcore-3.1
+- [MSDN - Tutorial: Get started with ASP.NET Core SignalR](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)
+- [MSDN - Client-side library acquisition in ASP.NET Core with LibMan](https://docs.microsoft.com/en-us/aspnet/core/client-side/libman/?view=aspnetcore-3.1)
