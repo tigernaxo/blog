@@ -4,7 +4,7 @@ date: 2020-10-31T02:09:45+08:00
 lastmod: 2020-10-31T02:09:45+08:00
 draft: true
 tags: ["SignalR", ".NetCore", "Authentication", "Autherization", "Bearor Token"]
-categories: [".NET Core 3.1"]
+categories: ["NET Core 3.1"]
 author: "tigernaxo"
 
 autoCollapseToc: true
