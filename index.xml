@@ -13,7 +13,7 @@
       <pubDate>Sat, 31 Oct 2020 22:55:00 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/about/</guid>
-      <description>信箱 tigernaxo.co.cc@gmail.com 學歷： 國立中興大學 生命科學系 國立陽明大學 生化所 經歷： 2019-至今 展輝科技 Web工程師 2017 - 2019 國立中興大學 研究助理 2015 - 2017 宣捷生物科技 助理</description>
+      <description>自介 亂世中年轉職小碼農，RD屬性，被故鄉的感情趨使回台中尋覓工作，嘗試於業界尋找台中生技研究相關職缺兩年後，決定放棄尋找不存在的東西並踏進科</description>
     </item>
     
     <item>
@@ -22,7 +22,7 @@
       <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</guid>
-      <description>這個系列會以官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 以 Linux、VS Code 作為開發環境，如果未特地註明都是 bash 指令 在.NET</description>
+      <description>這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令 建立 SignalR</description>
     </item>
     
     <item>
