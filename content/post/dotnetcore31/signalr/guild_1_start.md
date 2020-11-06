@@ -10,7 +10,7 @@ author: "tigernaxo"
 autoCollapseToc: true
 #contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-這個系列會[官方文件](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令
+這個系列會[官方文件](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)為主，保留必要的部分，並修改部份程式、添加說明文字。
 
 # 建立 SignalR 專案
 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razor Pages 的 webapp 專案：
