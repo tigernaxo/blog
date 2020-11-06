@@ -1,5 +1,5 @@
 ---
-title: "[SignalR] SignalR Websocket 應用程式(四) - 前端登入頁面"
+title: "[SignalR] SignalR Websocket 即時聊天程式(四) - 前端登入頁面"
 date: 2021-10-31T02:09:45+08:00
 lastmod: 2021-10-31T02:09:45+08:00
 draft: true

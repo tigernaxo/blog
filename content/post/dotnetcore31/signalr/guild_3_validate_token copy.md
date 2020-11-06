@@ -1,5 +1,5 @@
 ---
-title: "[SignalR] SignalR Websocket 應用程式(三) - 後端 Token 驗證"
+title: "[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證"
 date: 2021-11-08T02:09:45+08:00
 lastmod: 2021-11-08T02:09:45+08:00
 draft: true
