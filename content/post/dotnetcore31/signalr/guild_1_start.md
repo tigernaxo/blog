@@ -16,7 +16,7 @@ autoCollapseToc: true
 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razor Pages 的 webapp 專案：
 ```shell
 # 建立專案
-dotnet new webapp -o signalr
+dotnet new webapi -o SignalR
 # 以 VS Code 打開專案
 code -r signalr
 ```
@@ -27,7 +27,7 @@ code -r signalr
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace SignalRChat.Hubs
+namespace SignalR.Hubs
 {
     // 這就是所謂的 SignalR 中樞
     public class ChatHub : Hub
@@ -43,12 +43,13 @@ namespace SignalRChat.Hubs
 ```
 
 # 設定 Startup.cs
-依照官網的設定，在 Startup.cs 當中新增第11, 28, 55 行：
+依照官網的設定，在 Startup.cs 當中新增第13, 30,42-43 ,52 行：
 - `using SignalRChat.Hubs;`:新增對 Hub 的引用。
 - `service.AddSignalR()`:將 SignalR 相關對應註冊在 service container 中。
+- `app.UseDefaultFiles()`:讓程式自動傳送路徑下的 index.html，必須要在 `app.UseStaticFiles()`之前設置。
+- `app.UseStaticFiles()`:讓程式自動傳送 wwwRoot 下的檔案。
 - `endpoints.MapHub<ChatHub>("/chathub");`:將 ChatHub 中樞綁定到站台的 /chathub 端點。
-
-{{< highlight csharp "hl_lines=11 28 55" >}}
+{{< highlight csharp "hl_lines=13 30 42-43 52" >}}
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,12 +57,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SignalRChat.Hubs;
+using Microsoft.Extensions.Logging;
+using SignalR.Hubs;
 
-namespace SignalRChat
+namespace SignalR
 {
     public class Startup
     {
@@ -75,7 +78,7 @@ namespace SignalRChat
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllers();
             services.AddSignalR();
         }
 
@@ -86,15 +89,10 @@ namespace SignalRChat
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseDefaultFiles(); // 使靜態檔案路徑預設指向 index.html
+            app.UseStaticFiles(); // 啟用靜態檔案
 
             app.UseRouting();
 
@@ -102,7 +100,7 @@ namespace SignalRChat
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/chathub");
             });
         }
@@ -128,10 +126,16 @@ libman install @microsoft/signalr@latest \
 
 # 前端程式碼
 ## HTML
-新增檔案 Pages\Index.cshtml，內容如下：
+新增檔案 wwwRoot\index.html，內容如下：
 
 ```html
-@page
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
     <div class="container">
         <div class="row">&nbsp;</div>
         <div class="row">
@@ -163,15 +167,17 @@ libman install @microsoft/signalr@latest \
             <ul id="messagesList"></ul>
         </div>
     </div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+    <script src="./js/signalr/dist/browser/signalr.js"></script>
+    <script src="./js/chat.js"></script>
+</body>
+</html>
 ```
 
 ## JavaScript
 新增一個檔案 wwwRoot/js/Chat.js
 ```js
 "use strict";
-// 起始一個 SignalR 連線，連線到 /chatHub 端點
+// 起始一個 SignalR 連線，連線到 /chathub 端點
 let connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 // 從 Dom tree 當中取得送出按鈕、使用者名稱輸入、訊息輸入元件
 let btnSend = document.getElementById("sendButton");
