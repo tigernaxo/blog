@@ -14,7 +14,7 @@ autoCollapseToc: true
 
 # Server Side
 # 驗證 Token
-修改 Configure ，在 ` app.UseAuthorization(); ` 之前加入 ` app.UseAuthorization(); `：
+修改 Configure ，在 ` app.UseAuthorization(); ` 之前加入 ` app.UseAuthorization(); `，順序必須要對，因為在授權不可在驗證之前：
 ```cs
 app.UseAuthentication();
 app.UseAuthorization();
