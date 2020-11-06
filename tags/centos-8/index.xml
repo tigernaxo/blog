@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CentOS 8 on 世情如紙</title>
+    <link>https://tigernaxo.github.io/blog/tags/centos-8/</link>
+    <description>Recent content in CentOS 8 on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sat, 13 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/centos-8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP</title>
+      <link>https://tigernaxo.github.io/blog/post/linux/ubuntu204/static_ip/</link>
+      <pubDate>Sat, 13 Jun 2020 09:37:18 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/linux/ubuntu204/static_ip/</guid>
+      <description>Ubuntu 自 17.10 以後就可以用 netplan 設置網卡~ 檢查網路介面 以 ip a 可以看到我的 ubuntu 有2個網路介面分別是 lo、enp0s3，對應到 loopback、有線網卡 1 2 3</description>
+    </item>
+    
+  </channel>
+</rss>
