@@ -2,7 +2,7 @@
 title: "[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權"
 date: 2020-11-06T21:09:45+08:00
 lastmod: 2020-11-07T01:35:45+08:00
-draft: true
+draft: false
 tags: ["SignalR", ".NetCore", "Authentication", "Autherization", "Bearor Token"]
 categories: ["NET Core 3.1"]
 author: "tigernaxo"
