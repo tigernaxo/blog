@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權 - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_2_issue_token/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權" />
+<meta property="og:description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_2_issue_token/" />
+<meta property="article:published_time" content="2020-11-06T21:09:45+08:00" />
+<meta property="article:modified_time" content="2020-11-07T01:35:45+08:00" />
+<meta itemprop="name" content="[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權">
+<meta itemprop="description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-">
+<meta itemprop="datePublished" content="2020-11-06T21:09:45+08:00" />
+<meta itemprop="dateModified" content="2020-11-07T01:35:45+08:00" />
+<meta itemprop="wordCount" content="1098">
+
+
+
+<meta itemprop="keywords" content="SignalR,.NetCore,Authentication,Autherization,Bearor Token," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權"/>
+<meta name="twitter:description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-06 </span>
+        <div class="post-category">
+            <a href="/blog/categories/net-core-3.1/"> NET Core 3.1 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#signalr驗證方式">SignalR驗證方式</a></li>
+    <li><a href="#以-option-pattern-取得-jwt-設定">以 Option pattern 取得 JWT 設定</a>
+      <ul>
+        <li><a href="#appsettingjson">appsetting.json</a></li>
+        <li><a href="#jwt-option-類別">JWT Option 類別</a></li>
+        <li><a href="#註冊服務容器">註冊服務容器</a></li>
+      </ul>
+    </li>
+    <li><a href="#簽發-token">簽發 Token</a>
+      <ul>
+        <li><a href="#安裝-token-套件">安裝 Token 套件</a></li>
+        <li><a href="#login-controller">Login Controller</a></li>
+      </ul>
+    </li>
+    <li><a href="#測試">測試</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="signalr驗證方式">SignalR驗證方式</h1>
+<p>SignalR 的授權可以選擇使用 Cookie 或 Bearer Token：</p>
+<ul>
+<li>Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-specific)。</li>
+<li>Bearer Token 可通用於網頁和 App (或提供任何應用程式)，使用 Token 做登入能夠讓應用程式更容易實作其他使用者端，如果有其他的伺服器簽發 Token，更容易整合至單一登入(Single Sign-On)，也是官方建議使用的方式，以下假設簽發 Token 與 SignalR 伺服器為同一台進行實作。</li>
+</ul>
+<p>將 Token 驗證實作至伺服器之前，讓我們先練習實作一支簽發 Token 的 API。</p>
+<h1 id="以-option-pattern-取得-jwt-設定">以 Option pattern 取得 JWT 設定</h1>
+<p>這裡練習 Option pattern，以獲取 appsetting.json 當中 JWT 相關設定的強型別支援：</p>
+<h2 id="appsettingjson">appsetting.json</h2>
+<p>將 JWT 相關的設定寫到 appsetting.json 當中：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="hl"><span class="lnt"> 9
+</span></span><span class="hl"><span class="lnt">10
+</span></span><span class="hl"><span class="lnt">11
+</span></span><span class="hl"><span class="lnt">12
+</span></span><span class="hl"><span class="lnt">13
+</span></span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;Logging&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;LogLevel&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;Default&#34;</span><span class="p">:</span> <span class="s2">&#34;Information&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Microsoft&#34;</span><span class="p">:</span> <span class="s2">&#34;Warning&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Microsoft.Hosting.Lifetime&#34;</span><span class="p">:</span> <span class="s2">&#34;Information&#34;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="hl">  <span class="nt">&#34;JWT&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hl">    <span class="nt">&#34;Issuer&#34;</span><span class="p">:</span> <span class="s2">&#34;Naxo&#34;</span><span class="p">,</span>
+</span><span class="hl">    <span class="nt">&#34;Expires&#34;</span><span class="p">:</span> <span class="s2">&#34;1440&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">憑證有效分鐘數</span>
+</span><span class="hl">    <span class="nt">&#34;SignKey&#34;</span><span class="p">:</span> <span class="s2">&#34;dalsfkjSLDFJjf;LKJ;lkjdEb&#34;</span> <span class="err">//</span> <span class="err">設定簽發/解密憑證的對稱式加密金鑰</span>
+</span><span class="hl">  <span class="p">},</span>
+</span>  <span class="nt">&#34;AllowedHosts&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<h2 id="jwt-option-類別">JWT Option 類別</h2>
+<p>建立 Options.cs ，並在當中新增一個 Option 類別以對應 JWT 設定：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">namespace</span> <span class="nn">SignalR</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">JWTOption</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">JWT</span> <span class="p">=</span> <span class="s">&#34;JWT&#34;</span><span class="p">;</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">Issuer</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">SignKey</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">Expires</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<h2 id="註冊服務容器">註冊服務容器</h2>
+<p>在 Startup.cs 的 ConfigureServices 將 JWTOption 註冊到 service container 當中，之後可以直接注入 Controller 使用；
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="hl"><span class="lnt">6
+</span></span><span class="hl"><span class="lnt">7
+</span></span><span class="hl"><span class="lnt">8
+</span></span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">();</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddSignalR</span><span class="p">();</span>
+
+<span class="hl">    <span class="c1">// 在 service container 當中註冊 JWT Option
+</span></span><span class="hl"><span class="c1"></span>    <span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;()</span>
+</span><span class="hl">        <span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="n">JWTOption</span><span class="p">.</span><span class="n">JWT</span><span class="p">));</span>
+</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<h1 id="簽發-token">簽發 Token</h1>
+<h2 id="安裝-token-套件">安裝 Token 套件</h2>
+<p>筆者在 ASP .NET Core 3.1 的 Web API 專案後，無法直接使用 JWT 相關功能，所以必須先安裝套件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet add package System.IdentityModel.Tokens.Jwt --version 6.8.0
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="login-controller">Login Controller</h2>
+<p>建立 API 控制器 <code>Controllers/TokenController.cs</code>，並注入 <code>IOptions&lt;JWTOption&gt;</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IdentityModel.Tokens.Jwt</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Security.Claims</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Authorization</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Http</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Configuration</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Configuration.UserSecrets</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Options</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.IdentityModel.Tokens</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">SignalR.Controllers</span>
+<span class="p">{</span>
+<span class="na">    [Route(&#34;api/[controller]</span><span class="s">&#34;)]
+</span><span class="s"></span><span class="na">    [ApiController]</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">TokenController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="n">JWTOption</span> <span class="n">_jwtOpt</span><span class="p">;</span> 
+        <span class="c1">// 等待服務容器注入 IOptions&lt;JWTOption&gt;
+</span><span class="c1"></span>        <span class="k">public</span> <span class="n">TokenController</span><span class="p">(</span><span class="n">IOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;</span> <span class="n">jwtOpt</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="k">this</span><span class="p">.</span><span class="n">_jwtOpt</span> <span class="p">=</span> <span class="n">jwtOpt</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="na">
+</span><span class="na">        [AllowAnonymous]</span>
+<span class="na">        [HttpPost(&#34;signin&#34;)]</span>
+        <span class="k">public</span> <span class="n">IActionResult</span> <span class="n">SignIn</span><span class="p">(</span><span class="n">LoginModel</span> <span class="n">loginModel</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">canLogin</span> <span class="p">=</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span> <span class="p">==</span> <span class="s">&#34;naxo&#34;</span> <span class="p">&amp;&amp;</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">password</span> <span class="p">==</span> <span class="s">&#34;pass&#34;</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">canLogin</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">string</span> <span class="n">issuer</span> <span class="p">=</span> <span class="n">_jwtOpt</span><span class="p">.</span><span class="n">Issuer</span><span class="p">;</span>
+                <span class="kt">string</span> <span class="n">signKey</span> <span class="p">=</span> <span class="n">_jwtOpt</span><span class="p">.</span><span class="n">SignKey</span><span class="p">;</span>
+
+                <span class="c1">// 設定要加入到 JWT Token 中的聲明資訊(Claims)
+</span><span class="c1"></span>                <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;();</span>
+
+                <span class="c1">// 將 Sub claim 存入 userId
+</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="n">JwtRegisteredClaimNames</span><span class="p">.</span><span class="n">Sub</span><span class="p">,</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span><span class="p">));</span> 
+                <span class="c1">// 為 JWT 產生一個 ID
+</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="n">JwtRegisteredClaimNames</span><span class="p">.</span><span class="n">Jti</span><span class="p">,</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">()));</span> 
+
+                <span class="c1">// 擴充 &#34;roles&#34; 加入使用者者角色
+</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="s">&#34;Admin&#34;</span><span class="p">));</span>
+                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="s">&#34;Users&#34;</span><span class="p">));</span>
+
+                <span class="c1">// 建立一組對稱式加密金鑰，主要用於 JWT 簽章之用
+</span><span class="c1"></span>                <span class="n">SymmetricSecurityKey</span> <span class="n">securityKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SymmetricSecurityKey</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">signKey</span><span class="p">));</span>
+                <span class="c1">// 定義加密金鑰、演算法、數位簽章摘要
+</span><span class="c1"></span>                <span class="c1">// HmacSha256 必須大於 128 bits，亦即 key 長度至少要 16 字元
+</span><span class="c1"></span>                <span class="n">SigningCredentials</span> <span class="n">signingCredentials</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SigningCredentials</span><span class="p">(</span><span class="n">securityKey</span><span class="p">,</span> <span class="n">SecurityAlgorithms</span><span class="p">.</span><span class="n">HmacSha256Signature</span><span class="p">);</span>
+
+                <span class="c1">// 產生一個 JwtSecurityToken
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">token</span> <span class="p">=</span> <span class="k">new</span> <span class="n">JwtSecurityToken</span><span class="p">(</span>
+                        <span class="n">issuer</span><span class="p">,</span>  <span class="c1">// Issuer    
+</span><span class="c1"></span>                        <span class="n">issuer</span><span class="p">,</span>  <span class="c1">// Audience    
+</span><span class="c1"></span>                        <span class="n">claims</span><span class="p">,</span>  <span class="c1">// claims
+</span><span class="c1"></span>                        <span class="n">expires</span><span class="p">:</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">AddMinutes</span><span class="p">(</span><span class="n">_jwtOpt</span><span class="p">.</span><span class="n">Expires</span><span class="p">),</span> <span class="c1">// token 生效至過期的分鐘數
+</span><span class="c1"></span>                        <span class="n">signingCredentials</span><span class="p">:</span> <span class="n">signingCredentials</span>  
+                        <span class="p">);</span>
+                <span class="c1">// 序列化 JwtSecurityToken
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">jwt_token</span> <span class="p">=</span> <span class="k">new</span> <span class="n">JwtSecurityTokenHandler</span><span class="p">().</span><span class="n">WriteToken</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+
+                <span class="c1">// 回傳 token
+</span><span class="c1"></span>                <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="k">new</span>
+                <span class="p">{</span>
+                    <span class="n">token</span> <span class="p">=</span> <span class="n">jwt_token</span><span class="p">,</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+            <span class="c1">// 驗證失敗
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">BadRequest</span><span class="p">(</span><span class="k">new</span>
+            <span class="p">{</span>
+                <span class="n">err</span> <span class="p">=</span> <span class="s">&#34;登入失敗&#34;</span><span class="p">,</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">LoginModel</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">userId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">password</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="測試">測試</h1>
+<p>至此我們已完成了一個簡易的 Token SignIn API，以 Postman 進行測試：
+<img src="test_ok.jpg" alt="測試結果"></p>
+<h1 id="備註">備註</h1>
+<ul>
+<li>驗證使用者帳號/密碼的區段需自行代換成應用程式需要的程式碼。</li>
+<li>Token 當中的 Claim 可視情況自行新增</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/signalr/">SignalR</a>
+          <a href="/blog/tags/.netcore/">.NetCore</a>
+          <a href="/blog/tags/authentication/">Authentication</a>
+          <a href="/blog/tags/autherization/">Autherization</a>
+          <a href="/blog/tags/bearor-token/">Bearor Token</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/dotnetcore31/signalr/guild_1_start/">
+            <span class="next-text nav-default">[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://tigernaxo.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 31 Oct 2020 02:09:45 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2020 21:09:45 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SignalR] SignalR Websocket 應用程式(二) - 後端 Token 授權</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_2_issue_token/</link>
+      <pubDate>Fri, 06 Nov 2020 21:09:45 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_2_issue_token/</guid>
+      <description>SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-</description>
+    </item>
+    
     <item>
       <title>[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</link>
