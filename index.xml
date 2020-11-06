@@ -22,7 +22,7 @@
       <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</guid>
-      <description>這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 建立 SignalR 專案 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razo</description>
+      <description>這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更</description>
     </item>
     
     <item>
