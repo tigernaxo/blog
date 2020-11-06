@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="tigernaxo" /><meta name="description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令 建立 SignalR" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="tigernaxo" /><meta name="description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 建立 SignalR 專案 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razo" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,23 +40,23 @@
 
 
 <meta property="og:title" content="[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案" />
-<meta property="og:description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令 建立 SignalR" />
+<meta property="og:description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 建立 SignalR 專案 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razo" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/" />
 <meta property="article:published_time" content="2020-10-31T02:09:45+08:00" />
 <meta property="article:modified_time" content="2020-11-03T05:46:45+08:00" />
 <meta itemprop="name" content="[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案">
-<meta itemprop="description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令 建立 SignalR">
+<meta itemprop="description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 建立 SignalR 專案 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razo">
 <meta itemprop="datePublished" content="2020-10-31T02:09:45+08:00" />
 <meta itemprop="dateModified" content="2020-11-03T05:46:45+08:00" />
-<meta itemprop="wordCount" content="1591">
+<meta itemprop="wordCount" content="1559">
 
 
 
 <meta itemprop="keywords" content="SignalR,.NetCore,Websocket," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案"/>
-<meta name="twitter:description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令 建立 SignalR"/>
+<meta name="twitter:description" content="這個系列會官方文件為主，保留必要的部分，並修改部份程式、添加說明文字。 建立 SignalR 專案 官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razo"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -167,7 +167,7 @@
   </div>
 </div>
     <div class="post-content">
-      <p>這個系列會<a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&amp;tabs=visual-studio">官方文件</a>為主，保留必要的部分，並修改部份程式、添加說明文字。開發環境為 Linux、VS Code，因此如果未特地註明都是 bash 指令</p>
+      <p>這個系列會<a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&amp;tabs=visual-studio">官方文件</a>為主，保留必要的部分，並修改部份程式、添加說明文字。</p>
 <h1 id="建立-signalr-專案">建立 SignalR 專案</h1>
 <p>官方範例中使用到 Razor Pages 的語法，所以起始一個支援 MVC、Razor Pages 的 webapp 專案：</p>
 <div class="highlight"><div class="chroma">
