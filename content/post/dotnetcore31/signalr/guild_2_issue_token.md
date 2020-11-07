@@ -35,7 +35,7 @@ SignalR 的授權可以選擇使用 Cookie 或 Bearer Token：
   "JWT": {
     "Issuer": "Naxo",
     "Expires": "1440", // 憑證有效分鐘數
-    "SignKey": "dalsfkjSLDFJjf;LKJ;lkjdEb" // 設定簽發/解密憑證的對稱式加密金鑰
+    "SignKey": "myNameIsTigernaxo,ThisIsMyPersonalBlog" // 設定簽發/解密憑證的對稱式加密金鑰
   },
   "AllowedHosts": "*"
 }
@@ -100,9 +100,10 @@ namespace SignalR.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        private JWTOption _jwtOpt; 
+        private JWTOption _jwtOpt;
         // 等待服務容器注入 IOptions<JWTOption>
-        public TokenController(IOptions<JWTOption> jwtOpt) { 
+        public TokenController(IOptions<JWTOption> jwtOpt)
+        {
             this._jwtOpt = jwtOpt.Value;
         }
 
@@ -110,6 +111,7 @@ namespace SignalR.Controllers
         [HttpPost("signin")]
         public IActionResult SignIn(LoginModel loginModel)
         {
+            // 模擬驗證使用者帳號密碼
             var canLogin = loginModel.userId == "naxo" && loginModel.password == "pass";
             if (canLogin)
             {
@@ -119,12 +121,13 @@ namespace SignalR.Controllers
                 // 設定要加入到 JWT Token 中的聲明資訊(Claims)
                 List<Claim> claims = new List<Claim>();
 
-                // 將 Sub claim 存入 userId
-                claims.Add(new Claim(JwtRegisteredClaimNames.Sub, loginModel.userId)); 
-                // 為 JWT 產生一個 ID
-                claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())); 
+                // 加入Sub(用戶)
+                claims.Add(new Claim(JwtRegisteredClaimNames.Sub, loginModel.userId));
+                // 加入jti(JWT ID) 用於一次性 token
+                //claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
 
-                // 擴充 "roles" 加入使用者者角色
+                // 聲明使用者 userId、roles 的 claim，這裡會用來判斷使用者識別碼、使用者群組
+                claims.Add(new Claim("userId", loginModel.userId));
                 claims.Add(new Claim("roles", "Admin"));
                 claims.Add(new Claim("roles", "Users"));
 
@@ -140,7 +143,7 @@ namespace SignalR.Controllers
                         issuer,  // Audience    
                         claims,  // claims
                         expires: DateTime.Now.AddMinutes(_jwtOpt.Expires), // token 生效至過期的分鐘數
-                        signingCredentials: signingCredentials  
+                        signingCredentials: signingCredentials
                         );
                 // 序列化 JwtSecurityToken
                 var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
@@ -172,4 +175,4 @@ namespace SignalR.Controllers
 
 # 備註
 - 驗證使用者帳號/密碼的區段需自行代換成應用程式需要的程式碼。
-- Token 當中的 Claim 可視情況自行新增
+- Token 當中的 Claim 可視情況自行增減
