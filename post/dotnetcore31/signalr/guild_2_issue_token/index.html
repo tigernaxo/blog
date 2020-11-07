@@ -49,7 +49,7 @@
 <meta itemprop="description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-">
 <meta itemprop="datePublished" content="2020-11-06T21:09:45+08:00" />
 <meta itemprop="dateModified" content="2020-11-07T01:35:45+08:00" />
-<meta itemprop="wordCount" content="1098">
+<meta itemprop="wordCount" content="1160">
 
 
 
@@ -201,7 +201,7 @@
 <span class="hl">  <span class="nt">&#34;JWT&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span><span class="hl">    <span class="nt">&#34;Issuer&#34;</span><span class="p">:</span> <span class="s2">&#34;Naxo&#34;</span><span class="p">,</span>
 </span><span class="hl">    <span class="nt">&#34;Expires&#34;</span><span class="p">:</span> <span class="s2">&#34;1440&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">憑證有效分鐘數</span>
-</span><span class="hl">    <span class="nt">&#34;SignKey&#34;</span><span class="p">:</span> <span class="s2">&#34;dalsfkjSLDFJjf;LKJ;lkjdEb&#34;</span> <span class="err">//</span> <span class="err">設定簽發/解密憑證的對稱式加密金鑰</span>
+</span><span class="hl">    <span class="nt">&#34;SignKey&#34;</span><span class="p">:</span> <span class="s2">&#34;myNameIsTigernaxo,ThisIsMyPersonalBlog&#34;</span> <span class="err">//</span> <span class="err">設定簽發/解密憑證的對稱式加密金鑰</span>
 </span><span class="hl">  <span class="p">},</span>
 </span>  <span class="nt">&#34;AllowedHosts&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
 <span class="p">}</span></code></pre></td></tr></table>
@@ -363,6 +363,9 @@
 </span><span class="lnt">83
 </span><span class="lnt">84
 </span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
@@ -386,9 +389,10 @@
 </span><span class="s"></span><span class="na">    [ApiController]</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">TokenController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
     <span class="p">{</span>
-        <span class="k">private</span> <span class="n">JWTOption</span> <span class="n">_jwtOpt</span><span class="p">;</span> 
+        <span class="k">private</span> <span class="n">JWTOption</span> <span class="n">_jwtOpt</span><span class="p">;</span>
         <span class="c1">// 等待服務容器注入 IOptions&lt;JWTOption&gt;
-</span><span class="c1"></span>        <span class="k">public</span> <span class="n">TokenController</span><span class="p">(</span><span class="n">IOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;</span> <span class="n">jwtOpt</span><span class="p">)</span> <span class="p">{</span> 
+</span><span class="c1"></span>        <span class="k">public</span> <span class="n">TokenController</span><span class="p">(</span><span class="n">IOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;</span> <span class="n">jwtOpt</span><span class="p">)</span>
+        <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="n">_jwtOpt</span> <span class="p">=</span> <span class="n">jwtOpt</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
         <span class="p">}</span>
 <span class="na">
@@ -396,7 +400,8 @@
 <span class="na">        [HttpPost(&#34;signin&#34;)]</span>
         <span class="k">public</span> <span class="n">IActionResult</span> <span class="n">SignIn</span><span class="p">(</span><span class="n">LoginModel</span> <span class="n">loginModel</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">canLogin</span> <span class="p">=</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span> <span class="p">==</span> <span class="s">&#34;naxo&#34;</span> <span class="p">&amp;&amp;</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">password</span> <span class="p">==</span> <span class="s">&#34;pass&#34;</span><span class="p">;</span>
+            <span class="c1">// 模擬驗證使用者帳號密碼
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">canLogin</span> <span class="p">=</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span> <span class="p">==</span> <span class="s">&#34;naxo&#34;</span> <span class="p">&amp;&amp;</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">password</span> <span class="p">==</span> <span class="s">&#34;pass&#34;</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">canLogin</span><span class="p">)</span>
             <span class="p">{</span>
                 <span class="kt">string</span> <span class="n">issuer</span> <span class="p">=</span> <span class="n">_jwtOpt</span><span class="p">.</span><span class="n">Issuer</span><span class="p">;</span>
@@ -405,13 +410,14 @@
                 <span class="c1">// 設定要加入到 JWT Token 中的聲明資訊(Claims)
 </span><span class="c1"></span>                <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;();</span>
 
-                <span class="c1">// 將 Sub claim 存入 userId
-</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="n">JwtRegisteredClaimNames</span><span class="p">.</span><span class="n">Sub</span><span class="p">,</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span><span class="p">));</span> 
-                <span class="c1">// 為 JWT 產生一個 ID
-</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="n">JwtRegisteredClaimNames</span><span class="p">.</span><span class="n">Jti</span><span class="p">,</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">()));</span> 
-
-                <span class="c1">// 擴充 &#34;roles&#34; 加入使用者者角色
-</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="s">&#34;Admin&#34;</span><span class="p">));</span>
+                <span class="c1">// 加入Sub(用戶)
+</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="n">JwtRegisteredClaimNames</span><span class="p">.</span><span class="n">Sub</span><span class="p">,</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span><span class="p">));</span>
+                <span class="c1">// 加入jti(JWT ID) 用於一次性 token
+</span><span class="c1"></span>                <span class="c1">//claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+</span><span class="c1"></span>
+                <span class="c1">// 聲明使用者 userId、roles 的 claim，這裡會用來判斷使用者識別碼、使用者群組
+</span><span class="c1"></span>                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;userId&#34;</span><span class="p">,</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span><span class="p">));</span>
+                <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="s">&#34;Admin&#34;</span><span class="p">));</span>
                 <span class="n">claims</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="s">&#34;Users&#34;</span><span class="p">));</span>
 
                 <span class="c1">// 建立一組對稱式加密金鑰，主要用於 JWT 簽章之用
@@ -426,7 +432,7 @@
 </span><span class="c1"></span>                        <span class="n">issuer</span><span class="p">,</span>  <span class="c1">// Audience    
 </span><span class="c1"></span>                        <span class="n">claims</span><span class="p">,</span>  <span class="c1">// claims
 </span><span class="c1"></span>                        <span class="n">expires</span><span class="p">:</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">AddMinutes</span><span class="p">(</span><span class="n">_jwtOpt</span><span class="p">.</span><span class="n">Expires</span><span class="p">),</span> <span class="c1">// token 生效至過期的分鐘數
-</span><span class="c1"></span>                        <span class="n">signingCredentials</span><span class="p">:</span> <span class="n">signingCredentials</span>  
+</span><span class="c1"></span>                        <span class="n">signingCredentials</span><span class="p">:</span> <span class="n">signingCredentials</span>
                         <span class="p">);</span>
                 <span class="c1">// 序列化 JwtSecurityToken
 </span><span class="c1"></span>                <span class="kt">var</span> <span class="n">jwt_token</span> <span class="p">=</span> <span class="k">new</span> <span class="n">JwtSecurityTokenHandler</span><span class="p">().</span><span class="n">WriteToken</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
@@ -458,7 +464,7 @@
 <h1 id="備註">備註</h1>
 <ul>
 <li>驗證使用者帳號/密碼的區段需自行代換成應用程式需要的程式碼。</li>
-<li>Token 當中的 Claim 可視情況自行新增</li>
+<li>Token 當中的 Claim 可視情況自行增減</li>
 </ul>
 
     </div>
@@ -487,7 +493,11 @@
           <a href="/blog/tags/bearor-token/">Bearor Token</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/blog/post/dotnetcore31/signalr/guild_3_validate_token/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/blog/post/dotnetcore31/signalr/guild_1_start/">
             <span class="next-text nav-default">[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案</span>
             <span class="next-text nav-mobile">下一篇</span>

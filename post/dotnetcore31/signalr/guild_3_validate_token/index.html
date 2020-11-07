@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證 - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="安裝套件 要進行 Token 的驗證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件： 1 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 註冊驗證服務 首先在 Startup.cs 的 Startup 類別中新增一個方法 ConfigureAutH，在裡面設置 Token 的驗證" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_3_validate_token/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證" />
+<meta property="og:description" content="安裝套件 要進行 Token 的驗證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件： 1 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 註冊驗證服務 首先在 Startup.cs 的 Startup 類別中新增一個方法 ConfigureAutH，在裡面設置 Token 的驗證" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_3_validate_token/" />
+<meta property="article:published_time" content="2020-11-07T15:09:45+08:00" />
+<meta property="article:modified_time" content="2020-11-08T01:52:00+08:00" />
+<meta itemprop="name" content="[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證">
+<meta itemprop="description" content="安裝套件 要進行 Token 的驗證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件： 1 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 註冊驗證服務 首先在 Startup.cs 的 Startup 類別中新增一個方法 ConfigureAutH，在裡面設置 Token 的驗證">
+<meta itemprop="datePublished" content="2020-11-07T15:09:45+08:00" />
+<meta itemprop="dateModified" content="2020-11-08T01:52:00+08:00" />
+<meta itemprop="wordCount" content="980">
+
+
+
+<meta itemprop="keywords" content="SignalR,.NetCore,Authentication,Autherization,Bearor Token," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證"/>
+<meta name="twitter:description" content="安裝套件 要進行 Token 的驗證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件： 1 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 註冊驗證服務 首先在 Startup.cs 的 Startup 類別中新增一個方法 ConfigureAutH，在裡面設置 Token 的驗證"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-07 </span>
+        <div class="post-category">
+            <a href="/blog/categories/net-core-3.1/"> NET Core 3.1 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安裝套件">安裝套件</a></li>
+    <li><a href="#註冊驗證服務">註冊驗證服務</a></li>
+    <li><a href="#設置驗證中間件">設置驗證中間件</a></li>
+    <li><a href="#添加-hub-驗證屬性">添加 Hub 驗證屬性</a></li>
+    <li><a href="#在-hub-中解析-claim">在 Hub 中解析 Claim</a></li>
+    <li><a href="#測試">測試</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="安裝套件">安裝套件</h1>
+<p>要進行 Token 的驗證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="註冊驗證服務">註冊驗證服務</h1>
+<p>首先在 Startup.cs 的 Startup 類別中新增一個方法 ConfigureAutH，在裡面設置 Token 的驗證規則、使用者識別碼對應、使用者群駔對應：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">private</span> <span class="k">void</span> <span class="n">ConfigureAuth</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="c1">// Identity 預設是使用 Cookie authentication，必須手動設置為 JWT Bearer Auth:
+</span><span class="c1"></span>        <span class="n">options</span><span class="p">.</span><span class="n">DefaultAuthenticateScheme</span> <span class="p">=</span> <span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">;</span>
+        <span class="n">options</span><span class="p">.</span><span class="n">DefaultChallengeScheme</span> <span class="p">=</span> <span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">;</span>
+    <span class="p">}).</span><span class="n">AddJwtBearer</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="c1">// [注意]先解除 MapInboundClaims ，否則會因為套件中某些為向前相容而保留的 legacy code 使得 RoleClaimType 無法生效
+</span><span class="c1"></span>        <span class="c1">// https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1214
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="n">SecurityTokenValidators</span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">()</span> <span class="k">is</span> <span class="n">JwtSecurityTokenHandler</span> <span class="n">jwtSecurityTokenHandler</span><span class="p">)</span>
+            <span class="n">jwtSecurityTokenHandler</span><span class="p">.</span><span class="n">MapInboundClaims</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="c1">// 設置 Token 在授權後是否要儲存於 AuthenticationProperties 
+</span><span class="c1"></span>        <span class="n">options</span><span class="p">.</span><span class="n">SaveToken</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="c1">// 設置各驗證參數
+</span><span class="c1"></span>        <span class="n">options</span><span class="p">.</span><span class="n">TokenValidationParameters</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TokenValidationParameters</span>
+        <span class="p">{</span>
+            <span class="n">NameClaimType</span> <span class="p">=</span> <span class="s">&#34;userId&#34;</span><span class="p">,</span> <span class="c1">// 設置 Http 請求的 User.Identity.Name、Hub 中 UserIdentifier 取值的  Claim 是 userId
+</span><span class="c1"></span>            <span class="n">RoleClaimType</span> <span class="p">=</span> <span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="c1">// 設置使用者的腳色從 type=&#34;roles&#34; 的 claims 對應
+</span><span class="c1"></span>            <span class="n">ValidateLifetime</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 驗證 Token 有效期間
+</span><span class="c1"></span>            <span class="n">ValidateIssuerSigningKey</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 如果 Token 中包含 key 才需要驗證，一般只有簽章而已
+</span><span class="c1"></span>            <span class="n">IssuerSigningKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SymmetricSecurityKey</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetValue</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&#34;JWT:SignKey&#34;</span><span class="p">))),</span>  <span class="c1">// SignKey
+</span><span class="c1"></span>            <span class="n">ValidateIssuer</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span> <span class="c1">// 不驗證簽發者
+</span><span class="c1"></span>            <span class="n">ValidateAudience</span> <span class="p">=</span> <span class="k">false</span>  <span class="c1">// 不驗證 Audience (Token接收方)
+</span><span class="c1"></span>        <span class="p">};</span>
+
+        <span class="n">options</span><span class="p">.</span><span class="n">Events</span> <span class="p">=</span> <span class="k">new</span> <span class="n">JwtBearerEvents</span>
+        <span class="p">{</span>
+            <span class="c1">// 設定當 OnMessageReceived 事件被觸發時，進行驗證
+</span><span class="c1"></span>            <span class="n">OnMessageReceived</span> <span class="p">=</span> <span class="n">context</span> <span class="p">=&gt;</span>
+            <span class="p">{</span>
+                <span class="c1">// 不同於標準夾帶於 header 的 http token，signalr 會透過網址參數發送 access token 
+</span><span class="c1"></span>                <span class="c1">// ASP .NET Core 預設會將請求的 URL 皆做成 Log 紀錄，如果不想要網址列的 Token 被 Log 記錄下來必須參考
+</span><span class="c1"></span>                <span class="c1">//  https://docs.microsoft.com/aspnet/core/signalr/security#access-token-logging
+</span><span class="c1"></span>                <span class="kt">string</span> <span class="n">accessToken</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Query</span><span class="p">[</span><span class="s">&#34;access_token&#34;</span><span class="p">];</span>
+
+                <span class="c1">// 檢查請求路徑是否為 chathub
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">path</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Path</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">accessToken</span><span class="p">)</span> <span class="p">&amp;&amp;</span>
+                    <span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">StartsWithSegments</span><span class="p">(</span><span class="s">&#34;/chathub&#34;</span><span class="p">)))</span>
+                <span class="p">{</span>
+                    <span class="c1">// 把 token 丟進 MessageReceiveContext 當中
+</span><span class="c1"></span>                    <span class="n">context</span><span class="p">.</span><span class="n">Token</span> <span class="p">=</span> <span class="n">accessToken</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">CompletedTask</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">});</span>
+
+    <span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="p">&lt;</span><span class="n">IUserIdProvider</span><span class="p">,</span> <span class="n">NameUserIdProvider</span><span class="p">&gt;();</span>
+    <span class="c1">// 如果是使用 email claim 作為 user identifier 用下面這行並實作 EmailBasedUserIdProvider
+</span><span class="c1"></span>    <span class="c1">// services.AddSingleton&lt;IUserIdProvider, EmailBasedUserIdProvider&gt;();
+</span><span class="c1"></span>    <span class="c1">// NameUserIdProvider 和 EmailBasedUserIdProvider 無法同時使用!!
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>SignalR 抓取使用者識別碼 (UserIdentifier) 的方法是 IUserIdProvider.GetUserId
+因此我們在 Startup.cs 當中新增一個實作 IUserProvider 的類別
+// 提供服務容器注入給 SignalR 使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">NameUserIdProvider</span> <span class="p">:</span> <span class="n">IUserIdProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">GetUserId</span><span class="p">(</span><span class="n">HubConnectionContext</span> <span class="n">connection</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 驗證時之前已設置 NameClaimType，所以直接回傳 User.Identity.Name 即可
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">connection</span><span class="p">.</span><span class="n">User</span><span class="p">?.</span><span class="n">Identity</span><span class="p">?.</span><span class="n">Name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在 ConfigureServices 當中將 service 套用 ConfigureAuth
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="hl"><span class="lnt"> 6
+</span></span><span class="hl"><span class="lnt"> 7
+</span></span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">();</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddSignalR</span><span class="p">();</span>
+
+<span class="hl">    <span class="c1">// 設定 JWT Bearer Auth
+</span></span><span class="hl"><span class="c1"></span>    <span class="n">ConfigureAuth</span><span class="p">(</span><span class="n">services</span><span class="p">);</span>
+</span>
+    <span class="c1">// 在 service container 當中註冊 JWT Option
+</span><span class="c1"></span>    <span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;()</span>
+        <span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="n">JWTOption</span><span class="p">.</span><span class="n">JWT</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<h1 id="設置驗證中間件">設置驗證中間件</h1>
+<p>修改 Configure ，在 <code>app.UseAuthorization();</code> 之前加入 <code>app.UseAuthorization();</code>，順序必須要對，先驗證再授權：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="hl"><span class="lnt">1
+</span></span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="hl"><span class="n">app</span><span class="p">.</span><span class="n">UseAuthentication</span><span class="p">();</span>
+</span><span class="n">app</span><span class="p">.</span><span class="n">UseAuthorization</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<h1 id="添加-hub-驗證屬性">添加 Hub 驗證屬性</h1>
+<p>現在不僅可成功添加授權屬性，經上面的設置將 roles claim 對應到使用者腳色，已經可以自動識別使用者群組，方便我們進行 RBAC
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="hl"><span class="lnt">1
+</span></span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="hl"><span class="na">[Authorize(Roles =&#34;Admin&#34;)]</span>
+</span><span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="n">SendMessage</span><span class="p">(</span><span class="kt">string</span> <span class="n">user</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">await</span> <span class="n">Clients</span><span class="p">.</span><span class="n">All</span><span class="p">.</span><span class="n">SendAsync</span><span class="p">(</span><span class="s">&#34;ReceiveMessage&#34;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<h1 id="在-hub-中解析-claim">在 Hub 中解析 Claim</h1>
+<p>在 Hub 的方法內可以這樣取得 Token 相關資訊：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="c1">// 解析
+</span><span class="c1"></span><span class="kt">var</span> <span class="n">userId</span> <span class="p">=</span> <span class="n">Context</span><span class="p">.</span><span class="n">UserIdentifier</span><span class="p">;</span>
+<span class="c1">// 解析 Claims
+</span><span class="c1"></span><span class="kt">var</span> <span class="n">claims</span> <span class="p">=</span> <span class="p">((</span><span class="n">ClaimsIdentity</span><span class="p">)</span><span class="n">Context</span><span class="p">.</span><span class="n">User</span><span class="p">.</span><span class="n">Identity</span><span class="p">).</span><span class="n">Claims</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="測試">測試</h1>
+<p>&hellip;待補</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-3.1">MSDN - Authentication and authorization in ASP.NET Core SignalR</a></li>
+<li><a href="https://blog.miniasp.com/post/2019/12/16/How-to-use-JWT-token-based-auth-in-aspnet-core-31">如何在 ASP.NET Core 3 使用 Token-based 身分驗證與授權 (JWT)</a></li>
+<li><a href="https://www.cnblogs.com/RainingNight/p/jwtbearer-authentication-in-asp-net-core.html">ASP.NET Core 认证与授权[4]:JwtBearer认证</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters?view=azure-dotnet">TokenValidationParameters Class</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/signalr/">SignalR</a>
+          <a href="/blog/tags/.netcore/">.NetCore</a>
+          <a href="/blog/tags/authentication/">Authentication</a>
+          <a href="/blog/tags/autherization/">Autherization</a>
+          <a href="/blog/tags/bearor-token/">Bearor Token</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/dotnetcore31/signalr/guild_2_issue_token/">
+            <span class="next-text nav-default">[SignalR] SignalR Websocket 即時聊天程式(二) - 後端 Token 授權</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://tigernaxo.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
