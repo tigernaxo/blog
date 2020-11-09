@@ -13,7 +13,7 @@ autoCollapseToc: true
 ---
 
 # 安裝 axios
-SignalR 連線驗證的方式是將 token 夾帶於網址參數中發送到伺服器，因此進行 websocket 連線前我們透過 ajax 向伺服器發送帳號密碼索取登入的 Token，我們先安裝方便使用 ajax 的 axios 函式庫：
+SignalR 連線驗證的方式是將 token 夾帶於網址參數中發送到伺服器，因此進行 websocket 連線前我們透過 ajax 向伺服器發送帳號密碼索取登入的 Token，我們安裝方便使用 ajax 的 axios 函式庫：
 
 axios 一樣可以透過 LibMan 安裝~
 ```shell
