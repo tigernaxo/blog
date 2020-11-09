@@ -2,7 +2,7 @@
 title: "[SignalR] SignalR Websocket 即時聊天程式(四) - 前端登入頁面"
 date: 2020-11-10T02:45:45+08:00
 lastmod: 2020-11-10T05:05:45+08:00
-draft: true
+draft: false
 tags: ["SignalR", ".NetCore", "Authentication", "Autherization", "Bearor Token"]
 categories: ["NET Core 3.1"]
 author: "tigernaxo"
