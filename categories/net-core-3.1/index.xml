@@ -13,7 +13,7 @@
       <pubDate>Tue, 10 Nov 2020 02:45:45 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_4_front_end_login/</guid>
-      <description>安裝 axios SignalR 連線驗證的方式是將 token 夾帶於網址參數中發送到伺服器，因此進行 websocket 連線前我們透過 ajax 向伺服器發送帳號密碼索取登入的 Token，我們先安裝方便</description>
+      <description>安裝 axios SignalR 連線驗證的方式是將 token 夾帶於網址參數中發送到伺服器，因此進行 websocket 連線前我們透過 ajax 向伺服器發送帳號密碼索取登入的 Token，我們安裝方便使</description>
     </item>
     
     <item>
