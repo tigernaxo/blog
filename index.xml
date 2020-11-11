@@ -17,7 +17,7 @@
     </item>
     
     <item>
-      <title>[SignalR] SignalR Websocket 即時聊天程式(四) - 前端登入頁面</title>
+      <title>[SignalR] Websocket 即時聊天程式(四) - 前端登入頁面</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_4_front_end_login/</link>
       <pubDate>Tue, 10 Nov 2020 02:45:45 +0800</pubDate>
       
@@ -26,7 +26,7 @@
     </item>
     
     <item>
-      <title>[SignalR] SignalR Websocket 即時聊天程式(三) - 後端 Token 驗證</title>
+      <title>[SignalR] Websocket 即時聊天程式(三) - 後端 Token 驗證</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_3_validate_token/</link>
       <pubDate>Sat, 07 Nov 2020 15:09:45 +0800</pubDate>
       
@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>[SignalR] SignalR Websocket 即時聊天程式(二) - 後端 Token 授權</title>
+      <title>[SignalR] Websocket 即時聊天程式(二) - 後端 Token 授權</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_2_issue_token/</link>
       <pubDate>Fri, 06 Nov 2020 21:09:45 +0800</pubDate>
       
@@ -44,7 +44,7 @@
     </item>
     
     <item>
-      <title>[SignalR] SignalR Websocket 即時聊天程式(一) - 建立專案</title>
+      <title>[SignalR] Websocket 即時聊天程式(一) - 建立專案</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/signalr/guild_1_start/</link>
       <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
       
