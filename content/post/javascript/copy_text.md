@@ -75,5 +75,5 @@ function copyText(text) {
 | 複製原理        	| 值->剪貼簿    	| 值->隱藏元素->剪貼簿         	|
 
 # Reference
-[StackOverflow - How do I copy to the clipboard in JavaScript?](https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript?page=1&tab=votes)
-[MDN - Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
+- [StackOverflow - How do I copy to the clipboard in JavaScript?](https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript?page=1&tab=votes)
+- [MDN - Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
