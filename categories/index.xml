@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 10 Nov 2020 02:45:45 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 05:41:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript</title>
+      <link>https://tigernaxo.github.io/blog/categories/javascript/</link>
+      <pubDate>Thu, 12 Nov 2020 05:41:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>NET Core 3.1</title>
       <link>https://tigernaxo.github.io/blog/categories/net-core-3.1/</link>
@@ -22,15 +31,6 @@
       <pubDate>Tue, 16 Jun 2020 09:37:18 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/categories/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>https://tigernaxo.github.io/blog/categories/javascript/</link>
-      <pubDate>Wed, 20 May 2020 23:31:18 +0800</pubDate>
-      
-      <guid>https://tigernaxo.github.io/blog/categories/javascript/</guid>
       <description></description>
     </item>
     
