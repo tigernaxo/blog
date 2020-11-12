@@ -1,15 +1,15 @@
 ---
 title: "[JavaScript] 複製元件內的文字"
 date: 2020-11-12T05:41:00+08:00
-lastmod: 2020-11-12T05:42:00+08:00
-draft: true
+lastmod: 2020-11-13T06:26:00+08:00
+draft: false
 tags: ["Javascript"]
 categories: ["JavaScript"]
 author: "tigernaxo"
 
 autoCollapseToc: true
 ---
-有幾種姿勢：
+要在前端用 JavaScript 將 DOM 的內容複製到剪貼簿有幾種姿勢：
 # Clipboard API
 基本上目前(2020年底)，主流瀏覽器近期版本都支援了，如果不考慮 IE 的話倒是可以使用，語法精簡而且能非同步操作。
 - 不支援 IE
@@ -45,6 +45,8 @@ function copyText(text) {
 - 只有 IE 會彈出提示視窗
 -  可在 colsole 以指令測試。
 ```js
+// 這個 function 接收要複製的文字，從 dom 取值出來丟進去複製即可
+// 同理可製作接收 dom 為參數直接取值複製的版本，但不太符合單一職責原則
 function copyText(text) {
     // 設置一個剪貼用的隱藏 textarea
     var el = document.createElement("textarea");
@@ -63,7 +65,15 @@ function copyText(text) {
     document.body.removeChild(el);
 }
 ```
+# 整理
+|                 	| Clipboard API 	| document.execCommand('copy') 	|
+|-----------------	|---------------	|------------------------------	|
+| 在 colsole 測試 	| 不可          	| 可                           	|
+| IE 支援性       	| 不支援        	| 支援                         	|
+| HTTP可用        	| 不可(HTTPS only) | 可                           	|
+| 同步/非同步     	| 非同步        	| 同步                         	|
+| 複製原理        	| 值->剪貼簿    	| 值->隱藏元素->剪貼簿         	|
 
 # Reference
 [StackOverflow - How do I copy to the clipboard in JavaScript?](https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript?page=1&tab=votes)
-[Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
+[MDN - Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
