@@ -56,7 +56,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 ## Policy
 
 
-# 登入 API
+# 登入 API 實作
 ## Identity Objects
 User.Identity.Name 來自何處？
 ## Principal Objects
