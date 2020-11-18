@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 12 Nov 2020 05:41:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Nov 2020 23:14:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Ubuntu 20.04 中設置 vim plugin YouCompleteMe</title>
+      <link>https://tigernaxo.github.io/blog/post/tools/vim/plugin_ycm/</link>
+      <pubDate>Wed, 18 Nov 2020 23:14:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/tools/vim/plugin_ycm/</guid>
+      <description>安裝 junegunn/vim-plug 管理套件 以指令安裝 junegunn/vim-plug 1 2 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 在 ~/.vimrc 加入 Plug &amp;lsquo;ycm-core/YouCompleteMe&amp;rsquo; 1 2 3 4 5 6 7 &amp;#34; Specify a directory for plugins call plug#begin(&amp;#39;~/.vim/plugged&amp;#39;) Plug &amp;#39;ycm-core/YouCompleteMe&amp;#39; &amp;#34; Initialize plugin system call plug#end() 打開 vim，在 vim 命令列輸入安裝 Plugin 的指令下</description>
+    </item>
+    
     <item>
       <title>[JavaScript] 複製元件內的文字</title>
       <link>https://tigernaxo.github.io/blog/post/javascript/copy_text/</link>
