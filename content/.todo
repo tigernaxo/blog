@@ -10,3 +10,5 @@
 - [] Https/SSL
 - [] Load balancer
 - [] Owaspt top 10
+- [] 單元測試、整合測試
+- [] CI/CD 
