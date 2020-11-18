@@ -1,5 +1,5 @@
 ---
-title: "在 Ubuntu 20.04 中設置 vim plugin YouCompleteMe"
+title: "[Linux] 在 Ubuntu 20.04 中設置 vim plugin YouCompleteMe"
 date: 2020-11-18T23:14:00+08:00
 lastmod: 2020-11-18T23:14:00+08:00
 draft: false
