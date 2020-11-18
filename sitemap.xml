@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://tigernaxo.github.io/blog/post/tools/vim/plugin_ycm/</loc>
+    <lastmod>2020-11-18T23:14:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tigernaxo.github.io/blog/categories/</loc>
     <lastmod>2020-11-18T23:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -59,13 +66,6 @@
   
   <url>
     <loc>https://tigernaxo.github.io/blog/</loc>
-    <lastmod>2020-11-18T23:14:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/post/tools/vim/plugin_ycm/</loc>
     <lastmod>2020-11-18T23:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
