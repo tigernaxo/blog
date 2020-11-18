@@ -3,7 +3,7 @@ title: "[SignalR] Websocket 即時聊天程式(一) - 建立專案"
 date: 2020-10-31T02:09:45+08:00
 lastmod: 2020-11-03T05:46:45+08:00
 draft: false
-tags: ["SignalR", ".NetCore", "Websocket"]
+tags: ["SignalR", "dotNetCore", "Websocket"]
 categories: ["NET Core 3.1"]
 author: "tigernaxo"
 
