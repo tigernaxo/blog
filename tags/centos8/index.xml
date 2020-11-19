@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ubuntu 20.4 on 世情如紙</title>
-    <link>https://tigernaxo.github.io/blog/tags/ubuntu-20.4/</link>
-    <description>Recent content in Ubuntu 20.4 on 世情如紙</description>
+    <title>CentOS8 on 世情如紙</title>
+    <link>https://tigernaxo.github.io/blog/tags/centos8/</link>
+    <description>Recent content in CentOS8 on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/ubuntu-20.4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Jun 2020 09:37:18 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/centos8/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Linux] CentOS 8 設置靜態 IP</title>
+      <title>[Linux] CentOS 8 設定網路靜態IP</title>
       <link>https://tigernaxo.github.io/blog/post/linux/centos8/static_ip/</link>
       <pubDate>Tue, 16 Jun 2020 09:37:18 +0800</pubDate>
       

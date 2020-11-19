@@ -62,7 +62,7 @@
     </item>
     
     <item>
-      <title>[Linux] CentOS 8 設置靜態 IP</title>
+      <title>[Linux] CentOS 8 設定網路靜態IP</title>
       <link>https://tigernaxo.github.io/blog/post/linux/centos8/static_ip/</link>
       <pubDate>Tue, 16 Jun 2020 09:37:18 +0800</pubDate>
       
@@ -71,7 +71,7 @@
     </item>
     
     <item>
-      <title>[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP</title>
+      <title>[Linux] Ubuntu 20.4 以 netplan 設定網路靜態IP</title>
       <link>https://tigernaxo.github.io/blog/post/linux/ubuntu204/static_ip/</link>
       <pubDate>Sat, 13 Jun 2020 09:37:18 +0800</pubDate>
       
@@ -89,7 +89,7 @@
     </item>
     
     <item>
-      <title>[JavaScript] JavaScript 當中的原型繼承模型</title>
+      <title>[JavaScript] JavaScript 當中的原型繼承鏈模型</title>
       <link>https://tigernaxo.github.io/blog/post/javascript/prototype/</link>
       <pubDate>Wed, 20 May 2020 09:37:18 +0800</pubDate>
       
