@@ -1,9 +1,9 @@
 ---
-title: "[Linux] Ubuntu 20.4 以 netplan 設置靜態 IP"
+title: "[Linux] Ubuntu 20.4 以 netplan 設定網路靜態IP"
 date: 2020-06-13T09:37:18+08:00
 lastmod: 2020-06-13T09:37:18+08:00
 draft: false
-tags: ["Linux", "CentOS 8"]
+tags: ["Linux", "Ubuntu20.04"]
 categories: ["Linux"]
 author: "tigernaxo"
 ---

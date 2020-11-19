@@ -1,9 +1,9 @@
 ---
-title: "[Linux] CentOS 8 設置靜態 IP"
+title: "[Linux] CentOS 8 設定網路靜態IP"
 date: 2020-06-16T09:37:18+08:00
 lastmod: 2020-06-16T09:37:18+08:00
 draft: false
-tags: ["Linux", "Ubuntu 20.4"]
+tags: ["Linux", "CentOS8"]
 categories: ["Linux"]
 author: "tigernaxo"
 ---
