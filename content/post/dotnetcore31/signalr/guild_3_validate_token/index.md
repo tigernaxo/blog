@@ -1,7 +1,7 @@
 ---
 title: "[SignalR] Websocket 即時聊天程式(三) - 後端 Token 認證"
 date: 2020-11-07T15:09:45+08:00
-lastmod: 2020-11-08T01:52:00+08:00
+lastmod: 2020-11-20T22:44:00+08:00
 draft: false
 tags: ["SignalR", "dotNetCore", "Authentication", "Autherization", "Bearor Token"]
 categories: ["NET Core 3.1"]
