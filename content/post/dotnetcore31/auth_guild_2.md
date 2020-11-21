@@ -1,5 +1,5 @@
 ---
-title: "[.NET Core] ASP .NET Core 3.1 當中的認證與授權"
+title: "[.NET Core] ASP .NET Core 3.1 認證與授權(二)-認證設定"
 date: 2020-11-16T06:19:00+08:00
 lastmod: 2020-11-16T06:19:00+08:00
 draft: true
@@ -8,13 +8,8 @@ categories: ["NET Core 3.1"]
 author: "tigernaxo"
 
 autoCollapseToc: true
-#contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
- ASP.NET Core 使用 dependency injection (DI) 注入 user identity 的提供者。
-
-# 認證(Authentication)
-認證(Authentication) 是確認用戶 Identity 的程序，通過認證的用戶可具有一或多個 User Identity。  
-
+設定
 ## 認證方案(Authentication Scheme)
 認證方案包含兩個部分：
 - 認證處理函式(Authentication handler)，負責:

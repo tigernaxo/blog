@@ -1,0 +1,59 @@
+---
+title: "[.NET Core] ASP .NET Core 3.1 認證與授權(一)-認證與授權"
+date: 2020-11-16T06:19:00+08:00
+lastmod: 2020-11-16T06:19:00+08:00
+draft: true
+tags: ["Authentication", "dotNetCore", "Authorization"]
+categories: ["NET Core 3.1"]
+author: "tigernaxo"
+
+autoCollapseToc: true
+---
+在進入 ASP .NET Core 3.1 中認證(Authentication)與授權(Authorization)的作用流程前，應當對兩者有抽象概念上的認識，以及了解兩者的差異。
+
+# 認證(Authentication)
+認證是確認用戶識別碼(User Identity)的程序，通過認證的用戶可具有一或多個用戶識別碼，
+因此認證服務本身就是使用者識別碼提供者 (User Identity Provider)，
+ASP.NET Core 3.1 當中以依賴注入(DI; Dependency Injection)將認證服務注入服務容器 (Service Container)，
+使應用程式認證簽發時能夠取用。
+
+# 授權(Authorization)
+授權的作用是界定用戶可存取資源範圍，作用描述如下：
+- 限制所存取的資源是否需要認證。
+- 已獲得認證的特定用戶、特定腳色方能存取特定資源。
+- 所存取的資源需要以何種授權政策(Authorizaton Policy)、即認證方案(Authencation Scheme)。
+
+# 名詞術語
+## Challenge
+## Forbid
+
+# 順序
+按照邏輯來說必須先進行認證(身分)、再授權(資源)，因此在 Startup.Configure 當中 middleware 應設定如下：
+```cs
+// 路由對應(route mapping)，必須在授權之前
+app.UseRouting();
+
+// 認證中間件，以服務容器註冊的認證服務檢查是否有認證
+app.UseAuthentication();
+// 授權中間件，從認證資訊、路由對應、授權設定判斷是否能夠存取所要求的資源
+app.UseAuthorization();
+
+// 進入實際資源存取端點
+app.UseEndpoints(endpoints =>
+{
+    // configure endpoints
+});
+```
+
+
+
+# Reference
+- [MSDN - Principal and Identity Objects](https://docs.microsoft.com/en-us/dotnet/standard/security/principal-and-identity-objects)
+- [MSDN - IAuthenticationService Interface](https://docs.microsoft.com/zh-tw/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice?view=aspnetcore-3.1)
+- [MSDN - AuthenticationService Class](https://docs.microsoft.com/zh-tw/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice?view=aspnetcore-3.1)
+- [MSDN - Overview of ASP.NET Core Security](https://docs.microsoft.com/zh-tw/aspnet/core/security/?view=aspnetcore-3.1)
+- [MSDN - Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
+- [MSDN - Policy-based authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1)
+- [MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-5.0)
+- [MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0)
+- [[ASP.NET Core] 加上簡單的Cookie登入驗證](https://dotblogs.com.tw/Null/2020/04/09/162252)
