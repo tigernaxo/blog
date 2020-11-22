@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>ubuntu · 世情如紙</title>
+  <title>[JavaScript] 各種模組(module) - 世情如紙</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="tigernaxo" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="tigernaxo" /><meta name="description" content="JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module Reference JS模組規範：AMD、UMD、CMD、commonJS、ES6 module" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
-<link rel="canonical" href="https://tigernaxo.github.io/blog/tags/ubuntu/" />
-  <link href="https://tigernaxo.github.io/blog/tags/ubuntu/index.xml" rel="alternate" type="application/rss+xml" title="世情如紙" />
-  <link href="https://tigernaxo.github.io/blog/tags/ubuntu/index.xml" rel="feed" type="application/rss+xml" title="世情如紙" />
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/javascript/module/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
@@ -41,16 +39,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="ubuntu" />
-<meta property="og:description" content="Hugo theme even example site." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://tigernaxo.github.io/blog/tags/ubuntu/" />
-<meta property="og:updated_time" content="2020-11-18T23:14:00+08:00" />
-<meta itemprop="name" content="ubuntu">
-<meta itemprop="description" content="Hugo theme even example site.">
+<meta property="og:title" content="[JavaScript] 各種模組(module)" />
+<meta property="og:description" content="JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module Reference JS模組規範：AMD、UMD、CMD、commonJS、ES6 module" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/javascript/module/" />
+<meta property="article:published_time" content="2020-11-12T05:41:00+08:00" />
+<meta property="article:modified_time" content="2020-11-13T06:26:00+08:00" />
+<meta itemprop="name" content="[JavaScript] 各種模組(module)">
+<meta itemprop="description" content="JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module Reference JS模組規範：AMD、UMD、CMD、commonJS、ES6 module">
+<meta itemprop="datePublished" content="2020-11-12T05:41:00+08:00" />
+<meta itemprop="dateModified" content="2020-11-13T06:26:00+08:00" />
+<meta itemprop="wordCount" content="68">
+
+
+
+<meta itemprop="keywords" content="Javascript,module," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ubuntu"/>
-<meta name="twitter:description" content="Hugo theme even example site."/>
+<meta name="twitter:title" content="[JavaScript] 各種模組(module)"/>
+<meta name="twitter:description" content="JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module Reference JS模組規範：AMD、UMD、CMD、commonJS、ES6 module"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -114,29 +120,79 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="archive" class="archive">
-  <div class="archive-title tag">
-        <h2 class="archive-name">ubuntu</h2>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[JavaScript] 各種模組(module)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-12 </span>
+        <div class="post-category">
+            <a href="/blog/categories/javascript/"> JavaScript </a>
+            </div>
+        
       </div>
+    </header>
 
-  <div class="archive-post">
-      <span class="archive-post-time">
-        2020-11-18
-      </span>
-      <span class="archive-post-title">
-        <a href="/blog/post/tools/vim/plugin_ycm/" class="archive-post-link">
-          [Linux] 在 Ubuntu 20.04 中設置 vim plugin YouCompleteMe
-        </a>
-      </span>
-    </div>
-</section>
-
-<nav class="pagination">
-  
-  
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
 </nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/150248/">JS模組規範：AMD、UMD、CMD、commonJS、ES6 module</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/javascript/">Javascript</a>
+          <a href="/blog/tags/module/">module</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/blog/post/tools/vim/plugin_ycm/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[Linux] 在 Ubuntu 20.04 中設置 vim plugin YouCompleteMe</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/blog/post/javascript/copy_text/">
+            <span class="next-text nav-default">[JavaScript] 複製元件內的文字</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

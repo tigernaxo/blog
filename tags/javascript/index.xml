@@ -8,6 +8,15 @@
     <language>zh-tw</language>
     <lastBuildDate>Thu, 12 Nov 2020 05:41:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>[JavaScript] 各種模組(module)</title>
+      <link>https://tigernaxo.github.io/blog/post/javascript/module/</link>
+      <pubDate>Thu, 12 Nov 2020 05:41:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/javascript/module/</guid>
+      <description>JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module Reference JS模組規範：AMD、UMD、CMD、commonJS、ES6 module</description>
+    </item>
+    
+    <item>
       <title>[JavaScript] 複製元件內的文字</title>
       <link>https://tigernaxo.github.io/blog/post/javascript/copy_text/</link>
       <pubDate>Thu, 12 Nov 2020 05:41:00 +0800</pubDate>
