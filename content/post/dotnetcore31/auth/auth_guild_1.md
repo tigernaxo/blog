@@ -24,8 +24,18 @@ ASP.NET Core 3.1 當中以依賴注入(DI; Dependency Injection)將認證服務�
 - 所存取的資源需要以何種授權政策(Authorizaton Policy)、即認證方案(Authencation Scheme)。
 
 # 名詞術語
-## Challenge
-## Forbid
+有些名詞需要先解釋：
+驗證方案(Authentication Scheme)當中設置了挑戰(Chellange)與禁止(Forbid)應該進行的動作。
+## 挑戰(Challenge)
+未驗證使用者要存取需驗證才能存取的資源時，授權服務會叫用 ChallengeAsync 發起驗證挑戰
+，驗證挑戰一般以 HTTP 回應使用者，且要讓使用者知道應該以哪一種驗證機制取得授權，
+驗證挑戰執行的動作常見的具體範例有：
+- cookie 驗證方案將使用者轉址到登入頁面。
+- JWT 回傳 401 Unauthorized 狀態碼，並在 Header 帶入 `www-authenticate: bearer`。
+
+## 禁止(Forbid)
+使用者要存取授權之外的資源。
+叫用 ForbidAsync 發起禁止
 
 # 順序
 按照邏輯來說必須先進行認證(身分)、再授權(資源)，因此在 Startup.Configure 當中 middleware 應設定如下：
