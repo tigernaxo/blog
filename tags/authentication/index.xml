@@ -13,7 +13,7 @@
       <pubDate>Mon, 23 Nov 2020 15:46:00 +0800</pubDate>
       
       <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_2/</guid>
-      <description>驗證方案(Authentication Scheme) 概觀 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，負責: 驗證使用</description>
+      <description>驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作</description>
     </item>
     
     <item>
