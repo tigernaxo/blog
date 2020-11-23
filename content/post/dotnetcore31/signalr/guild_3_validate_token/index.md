@@ -63,7 +63,7 @@ namespace SignalR.Extensions.DependencyInjection
                     NameClaimType = "userId", // 設置 Http 請求的 User.Identity.Name、Hub 中 UserIdentifier 取值的  Claim 是 userId
                     RoleClaimType = "roles", // 設置使用者的腳色從 type="roles" 的 claims 對應
                     ValidateLifetime = true, // 認證 Token 有效期間
-                    ValidateIssuerSigningKey = true, // 如果 Token 中包含 key 才需要認證，一般只有簽章而已
+                    ValidateIssuerSigningKey = true, //驗證 token 中的 key
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(config.GetValue<string>("JWT:SignKey"))),  // SignKey
                     ValidateIssuer = false, // 不驗證簽發者
                     ValidateAudience = false  // 不驗證 Audience (Token接收方)
