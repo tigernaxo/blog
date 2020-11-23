@@ -1,5 +1,5 @@
 ---
-title: "[.NET Core] ASP .NET Core 3.1 認證與授權(三)-認證簽發"
+title: "[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-驗證簽發"
 date: 2020-11-16T06:19:00+08:00
 lastmod: 2020-11-16T06:19:00+08:00
 draft: true
@@ -30,10 +30,10 @@ ASP .NET Core 的授權以政策 Policy 進行設定
 Name 記載使用者識別名稱(User Identity)
 userData 記載以 `|` 分隔的使用者角色 Role
 
-# 認證與授權
+# 驗證與授權
 ## Challenge、Forbid
 ## 中間件順序
-先認證、再授權
+先驗證、再授權
 The Order of UseAuthentication、UseAuthorization
 
 
