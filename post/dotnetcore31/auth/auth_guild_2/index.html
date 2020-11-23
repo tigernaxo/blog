@@ -49,7 +49,7 @@
 <meta itemprop="description" content="驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作">
 <meta itemprop="datePublished" content="2020-11-23T15:46:00+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T15:46:00+08:00" />
-<meta itemprop="wordCount" content="955">
+<meta itemprop="wordCount" content="1304">
 
 
 
@@ -215,7 +215,9 @@ dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
 </div>
 </div><h2 id="註冊驗證服務">註冊驗證服務</h2>
 <p>在 Startup.ConfigureServices 加入下面程式碼，AddAuthentication 會將 IAuthenticationService 驗證服務注入服務容器，
-AddJwtBearer、AddCookie 分別為驗證服務添加兩種可用的 JWT、Cookie 驗證方案，
+<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer?view=aspnetcore-5.0&amp;viewFallbackFrom=aspnetcore-3.1">AddJwtBearer</a>、
+<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.cookieextensions.addcookie?view=aspnetcore-3.1">AddCookie</a>
+分別為驗證服務添加兩種可用的 JWT、Cookie 驗證方案，
 並透過 Action (就是那個 options =&gt; &hellip; )設定相關的處理函式與設定選項。<br>
 若 Authorization Attribute 或 Policy 沒有指定 Scheme，預設會使用 AddAuthentication() 方法中傳入作為參數的 Scheme，同理若是服務容器中提供多種驗證服務，可在 Controller 的授權屬性指定套用的 Scheme 或 Policy：</p>
 <div class="highlight"><div class="chroma">
@@ -232,6 +234,29 @@ AddJwtBearer、AddCookie 分別為驗證服務添加兩種可用的 JWT、Cookie
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 若沒有指定 Scheme 作 Authorization ，預設使用 JwtBearerDefaults.AuthenticationScheme
@@ -239,13 +264,36 @@ AddJwtBearer、AddCookie 分別為驗證服務添加兩種可用的 JWT、Cookie
     <span class="c1">// 讓 AP 可使用 JwtBearerDefaults.AuthenticationScheme 作為驗證方法
 </span><span class="c1"></span>    <span class="p">.</span><span class="n">AddJwtBearer</span><span class="p">(</span>
         <span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">,</span>
-        <span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="s">&#34;JwtSettings&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="n">options</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// [注意]先解除 MapInboundClaims，否則會因為套件中某些為向前相容而保留的 legacy code 使得 RoleClaimType 無法生效
+</span><span class="c1"></span>            <span class="c1">// https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1214
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="n">SecurityTokenValidators</span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">()</span> <span class="k">is</span> <span class="n">JwtSecurityTokenHandler</span> <span class="n">jwtSecurityTokenHandler</span><span class="p">)</span>
+                <span class="n">jwtSecurityTokenHandler</span><span class="p">.</span><span class="n">MapInboundClaims</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="c1">// 設置 Token 在授權後是否要儲存於 AuthenticationProperties 
+</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">SaveToken</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="c1">// 設置各Token驗證參數
+</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">TokenValidationParameters</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TokenValidationParameters</span>
+            <span class="p">{</span>
+                <span class="n">NameClaimType</span> <span class="p">=</span> <span class="s">&#34;userId&#34;</span><span class="p">,</span> <span class="c1">// 設置 Http 請求的 User.Identity.Name、Hub 中 UserIdentifier 取值的  Claim 是 userId
+</span><span class="c1"></span>                <span class="n">RoleClaimType</span> <span class="p">=</span> <span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="c1">// 設置使用者的腳色從 type=&#34;roles&#34; 的 claims 對應
+</span><span class="c1"></span>                <span class="n">ValidateLifetime</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 驗證 Token 有效期間
+</span><span class="c1"></span>                <span class="n">ValidateIssuerSigningKey</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 驗證 token 中的 key
+</span><span class="c1"></span>                <span class="n">IssuerSigningKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SymmetricSecurityKey</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">GetValue</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&#34;JWT:SignKey&#34;</span><span class="p">))),</span>  <span class="c1">// 從 appsettings.json 拿 SignKey
+</span><span class="c1"></span>                <span class="n">ValidateIssuer</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 驗證簽發者
+</span><span class="c1"></span>                <span class="n">ValidateAudience</span> <span class="p">=</span> <span class="k">false</span>  <span class="c1">// 不驗證 Audience (Token接收方)
+</span><span class="c1"></span>            <span class="p">};</span>
+            <span class="c1">// 預設是從 Header 拿 token，如果客戶端用其他方式攜帶 token 例如網址列
+</span><span class="c1"></span>            <span class="c1">// 就要設置 options.Event 拿取 token 後設置到 MessageReceiveContext 才能抓得到
+</span><span class="c1"></span>        <span class="p">})</span>
     <span class="c1">// 讓 AP 可使用 CookieAuthenticationDefaults.AuthenticationScheme 作為驗證方法
 </span><span class="c1"></span>    <span class="p">.</span><span class="n">AddCookie</span><span class="p">(</span>
         <span class="n">CookieAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">,</span>
-        <span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="s">&#34;CookieSettings&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="p">);</span>
+        <span class="n">options</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// 自訂 Cookie 名稱
+</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">CookiePrefix</span> <span class="p">=</span> <span class="s">&#34;.CookieName&#34;</span><span class="p">;</span> 
+            <span class="c1">// 設置未驗證進入點，預設是 /Account/Login
+</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">LoginPath</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PathString</span><span class="p">(</span><span class="s">&#34;/...&#34;</span><span class="p">);</span> 
+        <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="reference">Reference</h1>
@@ -255,6 +303,8 @@ AddJwtBearer、AddCookie 分別為驗證服務添加兩種可用的 JWT、Cookie
 <li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0">MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace</a></li>
 <li><a href="https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1">MSDN - polycy schemes</a></li>
 <li><a href="https://dotnetcorecentral.com/blog/authentication-handler-in-asp-net-core/">Authentication handler in ASP.Net Core (JWT and Custom)</a></li>
+<li><a href="https://blog.miniasp.com/post/2019/12/16/How-to-use-JWT-token-based-auth-in-aspnet-core-31">The Will Will Web - 如何在 ASP.NET Core 3 使用 Token-based 身分驗證與授權 (JWT)</a></li>
+<li><a href="https://blog.miniasp.com/post/2019/12/25/asp-net-core-3-cookie-based-authentication">The Will Will Web - 如何實作沒有 ASP.NET Core Identity 的 Cookie-based 身分驗證機制</a></li>
 </ul>
 
     </div>

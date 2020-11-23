@@ -49,7 +49,7 @@
 <meta itemprop="description" content="安裝套件 要進行 Token 的認證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件： 1 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 註冊認證服務 新增一個檔案 DependencyInjection.cs，在當中製作 IServiceCollection 的擴充">
 <meta itemprop="datePublished" content="2020-11-07T15:09:45+08:00" />
 <meta itemprop="dateModified" content="2020-11-20T22:44:00+08:00" />
-<meta itemprop="wordCount" content="1157">
+<meta itemprop="wordCount" content="1143">
 
 
 
@@ -296,7 +296,7 @@
                     <span class="n">NameClaimType</span> <span class="p">=</span> <span class="s">&#34;userId&#34;</span><span class="p">,</span> <span class="c1">// 設置 Http 請求的 User.Identity.Name、Hub 中 UserIdentifier 取值的  Claim 是 userId
 </span><span class="c1"></span>                    <span class="n">RoleClaimType</span> <span class="p">=</span> <span class="s">&#34;roles&#34;</span><span class="p">,</span> <span class="c1">// 設置使用者的腳色從 type=&#34;roles&#34; 的 claims 對應
 </span><span class="c1"></span>                    <span class="n">ValidateLifetime</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 認證 Token 有效期間
-</span><span class="c1"></span>                    <span class="n">ValidateIssuerSigningKey</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// 如果 Token 中包含 key 才需要認證，一般只有簽章而已
+</span><span class="c1"></span>                    <span class="n">ValidateIssuerSigningKey</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">//驗證 token 中的 key
 </span><span class="c1"></span>                    <span class="n">IssuerSigningKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SymmetricSecurityKey</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">GetValue</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&#34;JWT:SignKey&#34;</span><span class="p">))),</span>  <span class="c1">// SignKey
 </span><span class="c1"></span>                    <span class="n">ValidateIssuer</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span> <span class="c1">// 不驗證簽發者
 </span><span class="c1"></span>                    <span class="n">ValidateAudience</span> <span class="p">=</span> <span class="k">false</span>  <span class="c1">// 不驗證 Audience (Token接收方)
