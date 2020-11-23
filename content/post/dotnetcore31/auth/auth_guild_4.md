@@ -1,7 +1,7 @@
 ---
 title: "[.NET Core] ASP .NET Core 3.1 驗證與授權(四)-授權設定"
-date: 2020-11-16T06:19:00+08:00
-lastmod: 2020-11-16T06:19:00+08:00
+date: 2020-11-23T15:48:00+08:00
+lastmod: 2020-11-23T15:48:00+08:00
 draft: true
 tags: ["Authentication", "dotNetCore", "Authorization"]
 categories: ["NET Core 3.1"]

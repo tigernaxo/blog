@@ -10,12 +10,23 @@ author: "tigernaxo"
 autoCollapseToc: true
 ---
 # 驗證方案(Authentication Scheme)
-## 概觀
+
 驗證方案包含兩個部分：
-- 驗證處理函式(Authentication handler)，負責:
-    - 驗證使用者。
-    - 當未經驗證的用戶嘗試訪問需驗證資源時作出回應，也就是上一篇提到的 challenge action。
-- 驗證處理函式的設定選項(Opitons of Authentication handler)
+- 驗證處理函式(Authentication handler)，可能是
+[IAuthenticationHandler](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler?view=aspnetcore-3.1) 或 
+[AuthenticationHandler<TOptions>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1?view=aspnetcore-3.1)
+的實作，相當於驗證方案的**行為**，責任範圍涵蓋:
+    - 驗證使用者，
+    - 驗證成功時，建構呈現使用者識別(user identity)的 [AuthenticationTicket](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationticket?view=aspnetcore-3.1)。
+    - 驗證失敗時，回傳 'no result' 或 'failure'
+    - 負責從請求上下文(request context)中建構使用者識別 (user identity)。
+    - 定義了 challenge/forbid action。
+- 驗證處理函式的設定選項(Opitons of Authentication handler)。
+
+驗證方案當中的 authencate action 負責從請求上下文(request context)中建構使用者識別 (user identity)，
+常見的例子為：
+- **cookie authentication scheme** 從 cookie 資訊建構 user identity.
+- **JWT bearer scheme** 反序列化(deserialize)、驗證(validate) token，並從 token 所攜帶資訊建構 user identity
 
 ## 使用驗證方案
 在 Startup.ConfigureServices 以 AddAuthentication 註冊驗證服務時會回傳一個 AuthenticationBuilder，
