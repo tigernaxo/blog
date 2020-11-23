@@ -1,7 +1,7 @@
 ---
-title: "[.NET Core] ASP .NET Core 3.1 認證與授權(三)-認證簽發"
-date: 2020-11-16T06:19:00+08:00
-lastmod: 2020-11-16T06:19:00+08:00
+title: "[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-驗證簽發"
+date: 2020-11-23T15:47:00+08:00
+lastmod: 2020-11-23T15:47:00+08:00
 draft: true
 tags: ["Authentication", "dotNetCore", "Authorization", "Cookie", "Token"]
 categories: ["NET Core 3.1"]
@@ -29,21 +29,20 @@ SignInAsync 需要：
 2. AuthenticationScheme string (Optional)
 3. authProperties (Optional)
 ## Cookie 登入
+# 自訂登入 API 
+## Identity Objects
+## Principal Objects
+IPrincipal 物件帶有 IIdentity 物件的參考
+可指定 Authentication Scheme 獲得 Identity
+## IAuthenticationService
+SignOutAsync 清除 Cookie 的 Claims
 在 Cookie 寫入 Claims
 ## Token 登入
-
-
 
 
 # Reference
 - [MSDN - Principal and Identity Objects](https://docs.microsoft.com/en-us/dotnet/standard/security/principal-and-identity-objects)
 - [MSDN - IAuthenticationService Interface](https://docs.microsoft.com/zh-tw/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice?view=aspnetcore-3.1)
-- [MSDN - AuthenticationHttpContextExtensions Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions?view=aspnetcore-3.1)
-- [MSDN - AuthenticationService Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice?view=aspnetcore-3.1)
-- [MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-5.0)
-- [MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0)
-- [MSDN - Claim Class](https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=netcore-3.1)
-- [MSDN - ClaimsPrincipal Class](https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=netcore-3.1)
-- [MSDN - ClaimsIdentity Class](https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=netcore-3.1)
+- [MSDN - AuthenticationService Class](https://docs.microsoft.com/zh-tw/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice?view=aspnetcore-3.1)
 - [[ASP.NET Core] 加上簡單的Cookie登入驗證](https://dotblogs.com.tw/Null/2020/04/09/162252)
-- [ASP.NET Core [4]: Authentication(笔记）](https://www.shuzhiduo.com/A/xl56l1e1zr/)
+- [Authentication handler in ASP.Net Core (JWT and Custom)](https://dotnetcorecentral.com/blog/authentication-handler-in-asp-net-core/)
