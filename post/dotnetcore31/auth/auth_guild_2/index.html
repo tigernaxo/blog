@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定 - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="驗證方案(Authentication Scheme) 概觀 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，負責: 驗證使用" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
+
+
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定" />
+<meta property="og:description" content="驗證方案(Authentication Scheme) 概觀 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，負責: 驗證使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_2/" />
+<meta property="article:published_time" content="2020-11-23T15:46:00+08:00" />
+<meta property="article:modified_time" content="2020-11-23T15:46:00+08:00" />
+<meta itemprop="name" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定">
+<meta itemprop="description" content="驗證方案(Authentication Scheme) 概觀 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，負責: 驗證使用">
+<meta itemprop="datePublished" content="2020-11-23T15:46:00+08:00" />
+<meta itemprop="dateModified" content="2020-11-23T15:46:00+08:00" />
+<meta itemprop="wordCount" content="726">
+
+
+
+<meta itemprop="keywords" content="Authentication,dotNetCore," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定"/>
+<meta name="twitter:description" content="驗證方案(Authentication Scheme) 概觀 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，負責: 驗證使用"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-23 </span>
+        <div class="post-category">
+            <a href="/blog/categories/net-core-3.1/"> NET Core 3.1 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#驗證方案authentication-scheme">驗證方案(Authentication Scheme)</a>
+      <ul>
+        <li><a href="#概觀">概觀</a></li>
+        <li><a href="#使用驗證方案">使用驗證方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#範例">範例</a>
+      <ul>
+        <li><a href="#安裝-scheme-套件">安裝 scheme 套件</a></li>
+        <li><a href="#註冊驗證服務">註冊驗證服務</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="驗證方案authentication-scheme">驗證方案(Authentication Scheme)</h1>
+<h2 id="概觀">概觀</h2>
+<p>驗證方案包含兩個部分：</p>
+<ul>
+<li>驗證處理函式(Authentication handler)，負責:
+<ul>
+<li>驗證使用者。</li>
+<li>當未經驗證的用戶嘗試訪問需驗證資源時作出回應，也就是上一篇提到的 challenge action。</li>
+</ul>
+</li>
+<li>驗證處理函式的設定選項(Opitons of Authentication handler)</li>
+</ul>
+<h2 id="使用驗證方案">使用驗證方案</h2>
+<p>在 Startup.ConfigureServices 以 AddAuthentication 註冊驗證服務時會回傳一個 AuthenticationBuilder，
+AuthenticationBuilder 設定驗證方案的方式有：</p>
+<ul>
+<li>呼叫 <strong>scheme-specific 擴充方法</strong>，例如 AddJwtBearer、AddCookie，這些擴充方法會自動呼叫 AuthenticationBuilder.AddScheme 設定需要的驗證方式。</li>
+<li>以 AuthenticationBuilder <strong>內建方法 AddScheme</strong> 手動設定，一般來說較少使用。</li>
+</ul>
+<p>P.S.另外可使用 <a href="https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1">polycy schemes</a> 把多個 scheme 整合到一個使用。</p>
+<h1 id="範例">範例</h1>
+<p>以上 Scheme 的文字較抽象較難理解記憶，以下直接實作註冊 IAuthenticationService，
+並直接呼叫 scheme-specific 擴充方法添加 Cookie、JWT Scheme：</p>
+<h2 id="安裝-scheme-套件">安裝 scheme 套件</h2>
+<p>安裝 scheme 套件取得 Cookie、JWT 的 scheme-specific 擴充方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 3.1.10
+dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
+</code></pre></td></tr></table>
+</div>
+</div><p>在 Startup.cs 添加對 scheme 的引用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Authentication.JwtBearer</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Authentication.Cookies</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="註冊驗證服務">註冊驗證服務</h2>
+<p>在 Startup.ConfigureServices 加入下面程式碼，AddAuthentication 會將 IAuthenticationService 驗證服務注入服務容器，
+AddJwtBearer、AddCookie 分別為驗證服務添加兩種可用的 JWT、Cookie 驗證方案，
+並透過 Action (就是那個 options =&gt; &hellip; )設定相關的處理函式與設定選項。<br>
+若 Authorization Attribute 或 Policy 沒有指定 Scheme，預設會使用 AddAuthentication() 方法中傳入作為參數的 Scheme，同理若是服務容器中提供多種驗證服務，可在 Controller 的授權屬性指定套用的 Scheme 或 Policy：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 若沒有指定 Scheme 作 Authorization ，預設使用 JwtBearerDefaults.AuthenticationScheme
+</span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">)</span>
+    <span class="c1">// 讓 AP 可使用 JwtBearerDefaults.AuthenticationScheme 作為驗證方法
+</span><span class="c1"></span>    <span class="p">.</span><span class="n">AddJwtBearer</span><span class="p">(</span>
+        <span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">,</span>
+        <span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="s">&#34;JwtSettings&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="c1">// 讓 AP 可使用 CookieAuthenticationDefaults.AuthenticationScheme 作為驗證方法
+</span><span class="c1"></span>    <span class="p">.</span><span class="n">AddCookie</span><span class="p">(</span>
+        <span class="n">CookieAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">,</span>
+        <span class="n">options</span> <span class="p">=&gt;</span> <span class="n">Configuration</span><span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="s">&#34;CookieSettings&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1">MSDN - Overview of ASP.NET Core authentication</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-5.0">MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0">MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace</a></li>
+<li><a href="https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1">MSDN - polycy schemes</a></li>
+<li><a href="https://dotnetcorecentral.com/blog/authentication-handler-in-asp-net-core/">Authentication handler in ASP.Net Core (JWT and Custom)</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/authentication/">Authentication</a>
+          <a href="/blog/tags/dotnetcore/">dotNetCore</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/dotnetcore31/auth/auth_guild_1/">
+            <span class="next-text nav-default">[.NET Core] ASP .NET Core 3.1 驗證與授權(一)-驗證與授權</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://tigernaxo.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

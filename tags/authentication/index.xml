@@ -6,7 +6,16 @@
     <description>Recent content in Authentication on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 23 Nov 2020 08:39:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/authentication/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Nov 2020 15:46:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/authentication/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_2/</link>
+      <pubDate>Mon, 23 Nov 2020 15:46:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_2/</guid>
+      <description>驗證方案(Authentication Scheme) 概觀 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，負責: 驗證使用</description>
+    </item>
+    
     <item>
       <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(一)-驗證與授權</title>
       <link>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_1/</link>
