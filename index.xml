@@ -6,7 +6,7 @@
     <description>Recent content on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 18 Nov 2020 23:14:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Nov 2020 08:39:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://tigernaxo.github.io/blog/about/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://tigernaxo.github.io/blog/about/</guid>
       <description>自介 亂世中年轉職小碼農，RD屬性，被故鄉的感情趨使回台中尋覓工作，嘗試於業界尋找台中生技研究相關職缺兩年後，決定放棄尋找不存在的東西並踏進科</description>
+    </item>
+    
+    <item>
+      <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(一)-驗證與授權</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_1/</link>
+      <pubDate>Mon, 23 Nov 2020 08:39:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_1/</guid>
+      <description>在進入 ASP .NET Core 3.1 中驗證(Authentication)與授權(Authorization)的作用流程前，應當對兩者有抽象概念上的認識，以及了解</description>
     </item>
     
     <item>

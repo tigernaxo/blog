@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authorization on 世情如紙</title>
+    <link>https://tigernaxo.github.io/blog/tags/authorization/</link>
+    <description>Recent content in Authorization on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Mon, 23 Nov 2020 08:39:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/authorization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(一)-驗證與授權</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_1/</link>
+      <pubDate>Mon, 23 Nov 2020 08:39:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_1/</guid>
+      <description>在進入 ASP .NET Core 3.1 中驗證(Authentication)與授權(Authorization)的作用流程前，應當對兩者有抽象概念上的認識，以及了解</description>
+    </item>
+    
+  </channel>
+</rss>
