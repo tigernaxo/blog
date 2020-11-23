@@ -10,17 +10,6 @@ author: "tigernaxo"
 autoCollapseToc: true
 ---
 
-# 登入 API 實作
-## Identity Objects
-User.Identity.Name 來自何處？
-## Principal Objects
-??IPrinciple user 物件的屬性
-IPrincipal 物件帶有 IIdentity 物件的參考
-可以指定 Scheme
-## IAuthenticationService
-SignOutAsync 清除 Cookie 的 Claims
-在 Cookie 寫入 Claims
-
 # 授權(Authorization)
 - 授權(Authorization): 界定用戶可存取資源範圍的程序。
 ## Policy-based authorization

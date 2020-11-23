@@ -24,7 +24,8 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   name = "tigernaxo"
 
 [sitemap]                 # essential                     # 必需
-  changefreq = "weekly"
+  #changefreq = "weekly"
+  changefreq = "daily"
   priority = 0.5
   filename = "sitemap.xml"
 
