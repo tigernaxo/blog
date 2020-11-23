@@ -1,8 +1,8 @@
 ---
 title: "[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定"
-date: 2020-11-23T08:40:00+08:00
-lastmod: 2020-23-16T08:40:00+08:00
-draft: true
+date: 2020-11-23T15:46:00+08:00
+lastmod: 2020-23-16T15:46:00+08:00
+draft: false
 tags: ["Authentication", "dotNetCore"]
 categories: ["NET Core 3.1"]
 author: "tigernaxo"
@@ -21,7 +21,9 @@ autoCollapseToc: true
 在 Startup.ConfigureServices 以 AddAuthentication 註冊驗證服務時會回傳一個 AuthenticationBuilder，
 AuthenticationBuilder 設定驗證方案的方式有：
 - 呼叫 __scheme-specific 擴充方法__，例如 AddJwtBearer、AddCookie，這些擴充方法會自動呼叫 AuthenticationBuilder.AddScheme 設定需要的驗證方式。
-- 以 AuthenticationBuilder __內建方法 AddScheme__ 手動設定，一般來說較少使用。
+- 以 AuthenticationBuilder __內建方法 AddScheme__ 手動設定，一般來說較少使用。  
+
+P.S.另外可使用 [polycy schemes](https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1) 把多個 scheme 整合到一個使用。
 
 # 範例
 以上 Scheme 的文字較抽象較難理解記憶，以下直接實作註冊 IAuthenticationService，
@@ -62,6 +64,6 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 - [MSDN - Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
 - [MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-5.0)
 - [MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0)
+- [MSDN - polycy schemes](https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1)
 - [Authentication handler in ASP.Net Core (JWT and Custom)](https://dotnetcorecentral.com/blog/authentication-handler-in-asp-net-core/)
 
-https://blog.johnwu.cc/article/ironman-day11-asp-net-core-cookies-session.html
