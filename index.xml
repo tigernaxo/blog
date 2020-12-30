@@ -6,7 +6,7 @@
     <description>Recent content on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 23 Nov 2020 15:46:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Dec 2020 23:24:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://tigernaxo.github.io/blog/about/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://tigernaxo.github.io/blog/about/</guid>
       <description>自介 亂世中年轉職小碼農，RD屬性，被故鄉的感情趨使回台中尋覓工作，嘗試於業界尋找台中生技研究相關職缺兩年後，決定放棄尋找不存在的東西並踏進科</description>
+    </item>
+    
+    <item>
+      <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-Cookie 驗證實例</title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_3/</link>
+      <pubDate>Wed, 30 Dec 2020 23:24:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_3/</guid>
+      <description>前兩篇介紹了驗證、授權在 .NET Core 當中的基本的概念，本節實作 Cookie 驗證的設定、簽發、登出&amp;hellip; Configuration 在 Startup.ConfigureServices 方法中設置驗證方案， 並且可以在 AddCookie 當中設置</description>
     </item>
     
     <item>
@@ -149,6 +158,15 @@
       
       <guid>https://tigernaxo.github.io/blog/post/biotech/taiwania_login_oneclick/</guid>
       <description>台灣杉(Taiwania)是國網中心2018年啟用的超級電腦，登入時密碼必須附加OTP (One-time Password)，國網中心建議取得OTP的方式是從</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_memo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_memo/</guid>
+      <description>Identity Objects Principal Objects IPrincipal 物件帶有 IIdentity 物件的參考 可指定 Authentication Scheme 獲得 Identity IAuthenticationService SignOutAsync 清除 Cookie 的 Claims 在 Cookie 寫入 Claims Token 登入 登入 API 實作 宣告 ClaimsPrincipal 後，可利用服務容器已注入的認證服務(實作 IAuthencationService 的類別</description>
     </item>
     
   </channel>
