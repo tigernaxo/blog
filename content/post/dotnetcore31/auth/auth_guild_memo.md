@@ -1,3 +1,14 @@
+---
+title: "[.NET Core] ASP .NET Core 3.1 驗證與授權(X)-備註頁面"
+date: 2090-11-23T15:48:00+08:00
+lastmod: 2090-11-23T15:48:00+08:00
+draft: true
+tags: ["Authentication", "dotNetCore", "Authorization"]
+categories: ["NET Core 3.1"]
+author: "tigernaxo"
+
+autoCollapseToc: true
+---
 ## Identity Objects
 ## Principal Objects
 IPrincipal 物件帶有 IIdentity 物件的參考
