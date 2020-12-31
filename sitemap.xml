@@ -295,10 +295,4 @@
     <priority>0.5</priority>
   </url>
   
-  <url>
-    <loc>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_memo/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
 </urlset>
