@@ -8,7 +8,7 @@
     <language>zh-tw</language>
     <lastBuildDate>Sat, 09 Jan 2021 01:31:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/temporal-dead-zone/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone)</title>
+      <title>[JavaScritpt] 提升(Hoisting)與暫時性死區(Temporal Dead Zone)</title>
       <link>https://tigernaxo.github.io/blog/post/javascript/hoisting/</link>
       <pubDate>Sat, 09 Jan 2021 01:31:00 +0800</pubDate>
       
