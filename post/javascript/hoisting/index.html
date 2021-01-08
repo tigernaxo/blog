@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone) - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="網路上時常見到充滿 function 與 var 的 JavaScript 求值題目， 筆者在釐清 Hoisting 和 TDZ 的觀念前時常覺得答案出乎意料， 雖然現在撰寫程式碼都已經避免使用 var，但是維護 legacy code 還是" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://tigernaxo.github.io/blog/post/javascript/hoisting/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone)" />
+<meta property="og:description" content="網路上時常見到充滿 function 與 var 的 JavaScript 求值題目， 筆者在釐清 Hoisting 和 TDZ 的觀念前時常覺得答案出乎意料， 雖然現在撰寫程式碼都已經避免使用 var，但是維護 legacy code 還是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tigernaxo.github.io/blog/post/javascript/hoisting/" />
+<meta property="article:published_time" content="2021-01-09T01:31:00+08:00" />
+<meta property="article:modified_time" content="2021-01-09T01:31:00+08:00" />
+<meta itemprop="name" content="[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone)">
+<meta itemprop="description" content="網路上時常見到充滿 function 與 var 的 JavaScript 求值題目， 筆者在釐清 Hoisting 和 TDZ 的觀念前時常覺得答案出乎意料， 雖然現在撰寫程式碼都已經避免使用 var，但是維護 legacy code 還是">
+<meta itemprop="datePublished" content="2021-01-09T01:31:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-09T01:31:00+08:00" />
+<meta itemprop="wordCount" content="2473">
+
+
+
+<meta itemprop="keywords" content="hoisting,TDZ,let,const,var,暫時性死區,提升,Temporal Dead Zone," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone)"/>
+<meta name="twitter:description" content="網路上時常見到充滿 function 與 var 的 JavaScript 求值題目， 筆者在釐清 Hoisting 和 TDZ 的觀念前時常覺得答案出乎意料， 雖然現在撰寫程式碼都已經避免使用 var，但是維護 legacy code 還是"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-09 </span>
+        <div class="post-category">
+            <a href="/blog/categories/javascript/"> JavaScript </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hoisting">Hoisting</a></li>
+    <li><a href="#hoisting-有別">Hoisting 有別</a></li>
+    <li><a href="#執行環境-execution-context">執行環境 Execution Context</a></li>
+    <li><a href="#各時機取值">各時機取值</a></li>
+    <li><a href="#temporal-dead-zone">Temporal Dead Zone</a></li>
+    <li><a href="#note">Note</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>網路上時常見到充滿 function 與 var 的 JavaScript 求值題目，
+筆者在釐清 Hoisting 和 TDZ 的觀念前時常覺得答案出乎意料，
+雖然現在撰寫程式碼都已經避免使用 var，但是維護 legacy code 還是會用到，因此在這裡做個筆記。</p>
+<h1 id="hoisting">Hoisting</h1>
+<p>對學過伺服器端語言(C#、C/C++&hellip;)的人來說，預期試圖對未宣告的變數取值會出現 ReferenceError是很正常的事，
+在 JavaScript 中也是如此：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">// ReferenceError: x is not defined
+</span></code></pre></td></tr></table>
+</div>
+</div><p>但 JavaScript 把 var 宣告變數放在後面，x 前面對 x 取值就變成 undefine，
+在 JavaScript 當中對變數取值獲得 undefine 代表變數處於宣告後<strong>已分配記憶體空間(初始化、initiation)<strong>但</strong>尚未賦值</strong>的狀態，
+但是明明 JavaScript 在宣告前就取值，怎麼能夠認得 x、而且知道 x 被初始化為 undefined 呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">// undefined
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>原因在於 javascript 會先程式中的蒐集 var(let/const/function) 宣告並釐清對應的作用域，
+最後再執行程式碼，這個行為就如同宣告被提升(Hoisting)到前面行數的程式碼中一樣。</p>
+<p>JavaScript 跟傳統 OOP 語言一樣，在變數提升後、宣告初始化、賦值等等時機取用變數會獲得不同輸出結果，
+這篇文章(<a href="https://www.iteye.com/blog/rednaxelafx-492667">link</a>)中提到，
+稱 JavaScript 為直譯式(解釋型)語言實際上是通俗的說法，語言本身沒有規定實現的方式(編/直譯)，
+舉例來說 Chrome 瀏覽器所使用的 Google V8 JavaScript engine，
+所帶的解釋器 (interpreter) 會將程式編譯 (compile) 成字節碼 (bytecode)，
+最後再由編譯器 (compiler) 即時編譯 (JIT;just-in-time compilation) 編譯成機器碼執行，
+而 JavaScript 被編譯時宣告會被蒐集到最頂端進行定義並區分作用域(scope)，這個行為就是 Hoisting
+，記住重點在於<strong>JS編譯後會先定義變數及區分作用域</strong>，編譯後的程式看起來就像這樣：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">在 global scope 定義變數 xxx
+在 global scope 定義變數 xxx
+在 global scope 定義函式 xxx
+在 global scope 定義函式 xxx
+在 xxx scope 定義變數 xxx
+在 bbb scope 定義變數 xxx
+在 abc scope 定義函式 xxx
+開始執行程式碼：...
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="hoisting-有別">Hoisting 有別</h1>
+<p>用 var、let、const、function 宣告變數或函式都會獲得提升，
+但對於能否初始化、以及變數被歸類的作用域有所分別，
+var 宣告的變數<strong>會</strong>被初始化為 undefined，而 let 與 const 的宣告<strong>不會</strong>被初始化為 undefined，
+對比如下：</p>
+<table>
+<thead>
+<tr>
+<th>宣告方式</th>
+<th>作用域</th>
+<th>提升時初始化</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>var</td>
+<td>global</td>
+<td>有(undefined)</td>
+<td>初始化為 undefined</td>
+</tr>
+<tr>
+<td>let</td>
+<td>locale</td>
+<td>-</td>
+<td>只有 let 宣告的變數會發生沒有被初始化的情況</td>
+</tr>
+<tr>
+<td>const</td>
+<td>locale</td>
+<td>不需要</td>
+<td>合法的 const 宣告本身就必須包含初始化</td>
+</tr>
+<tr>
+<td>function</td>
+<td>locale</td>
+<td>不需要</td>
+<td>直接以宣告的函式作為初始值</td>
+</tr>
+</tbody>
+</table>
+<p>較常疏忽的一點：錯將 function expression 的賦值當成函式宣告(function declaration)，
+兩者的差異：</p>
+<ul>
+<li><strong>function declaration</strong>:
+受惠於函式宣告，第1行 x 同時會被提升且初始化為函式，因此第一行可得到結果&rsquo;x'；
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">())</span> <span class="c1">// &#39;x&#39;
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">x</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="s1">&#39;x&#39;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><strong>function expression</strong>:
+第2行以 function expression 得到的 function reference 作為右值賦值給 x，
+x 提升的行為就像一般以 var 宣告的變數一樣，提升時只會被初始化為是 undefine 直到第2行才獲得賦值，
+因此第2行後才能透過 x 呼叫所指涉的函示，下面第1行可看到時 x 是 undefined，第2行嘗試將 undefined 視為函式呼叫獲得錯誤：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">// undefined
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">())</span> <span class="c1">// Uncxught TypeError: x is not a function
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="s1">&#39;x&#39;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="執行環境-execution-context">執行環境 Execution Context</h1>
+<p>js 引擎開始執行程式碼時會建立一個<strong>全域執行環境(Global Execution Content)</strong>，內容包含：</p>
+<ul>
+<li>全域物件(global object)</li>
+<li>指向全域物件本身的指標 this</li>
+<li>指向上層外部環境的參考 outer environment reference，但全域環境已是最外層</li>
+<li>存放變數、函式的記憶體空間</li>
+</ul>
+<p>而在瀏覽器當中 globel object 就等於 window，所以若是宣告於全域的變數或函式，會成為 global object 的屬性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 瀏覽器中，window === global object:
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">);</span> <span class="c1">// true
+</span><span class="c1"></span>
+<span class="c1">// 宣告於全域的變數或函式，會成為 global object (window)的屬性：
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(){}</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">a</span>
+<span class="s2">&#34;a&#34;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">f</span>
+<span class="nx">ƒ</span> <span class="nx">f</span><span class="p">(){}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>當js引擎執行程式遇到<strong>函式呼叫</strong>時，會為函式建立函式所屬的執行環境，稱為<strong>作用域環境(lexical environment)</strong>，
+而作用域執行環境也有屬於自己的物件、外部環境參考等等&hellip;
+函式內的程式可以同時存取全域執行環境內的全域物件和作用域環境的物件，
+而內層的作用域環境優先權在外層執行環境(例如：全域執行環境)之上，
+這個現象稱為<strong>執行堆疊 (Execution stack)</strong>，
+而程式藉由外部環境參考向外搜尋可用資源的過程像鍊條一般環環相扣稱為<strong>範圍練 (Scope Chain)</strong>。</p>
+<p>在函式內宣告的 x 變數會作用範圍會被侷限在作用域環境內，
+當函式執行時存取權會優先於全域執行環境中的 x 變數：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 使用 a 執行環境當中定義的 x
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`a(): </span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">b</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// b 當中未定義 x 因此透過外部環境參考往外取得全域執行環境當中的 x
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`b(): </span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">();</span>
+<span class="c1">// a(): a
+</span><span class="c1">// b(): x
+</span></code></pre></td></tr></table>
+</div>
+</div><p>執行環境的所屬階層是以函式建立的位置為準，
+如果在最外層定義那麼外部環境參考就是指向 global object，
+如果是函式內再定義函式，那麼內層函式的外部環境就是外層函式所創造的作用域環境：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+    <span class="kd">function</span> <span class="nx">b</span><span class="p">(){</span>
+        <span class="c1">// b 在 a 當中被定義，因此外層環境為 a，取 x 會變成 &#39;a&#39;
+</span><span class="c1"></span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`b(): </span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`a(): </span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">b</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">()</span>
+<span class="c1">// a(): a
+</span><span class="c1">// b(): a
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="各時機取值">各時機取值</h1>
+<p>變數有生命週期，包含提升後(Hoisted)、宣告Declaration、初始化(分配記憶體空間)Initiation、賦值Assignment，
+而在編譯器進行這些行為的時間點前後取值的結果是可以預測的：</p>
+<p><img src="hoisting_stage_value.jpg" alt="hoisting stage value"></p>
+<p>附帶一提，對沒有宣告的變數取值會獲得 ReferenceError: x is not defined：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="c1">// ReferenceError: x is not defined
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="temporal-dead-zone">Temporal Dead Zone</h1>
+<p>let/const 會發生提升，但 let 的提升不會初始化(分配記憶體空間)為 undefined，
+剛剛提到 let 宣告會被提升到頂端但不會初始化，
+所以在<strong>提升位置</strong>到<strong>宣告語句</strong>(不是<del>賦值</del>喔)中間的區域如果對取值會發生錯誤，
+這個區域稱為<strong>暫時性死區(TDZ;Temporal Dead Zone)</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span>
+  <span class="c1">// a 被編譯器提升到這裡(作用域環境的頂端)，a 的 TDZ 從這裡開始...
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// TDZ 區域中，a只有被宣告而未被初始化，所以得到錯誤，可參考參照取值結果表
+</span><span class="c1"></span>  <span class="kd">let</span> <span class="nx">a</span>  <span class="c1">// a 的 TDZ 結束
+</span><span class="c1"></span>  <span class="nx">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">}</span>
+<span class="nx">a</span><span class="p">()</span>
+<span class="c1">// Uncaught ReferenceError: Cannot access &#39;a&#39; before initialization...
+</span></code></pre></td></tr></table>
+</div>
+</div><p>我們可以在宣告之後取值做測試，a 的確被初始化為 undefined：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span>
+  <span class="c1">// a 的 TDZ 從這裡開始...
+</span><span class="c1"></span>  <span class="kd">let</span> <span class="nx">a</span>  <span class="c1">// 這裡 a 初始化成為 undefined
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+  <span class="nx">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">}</span> 
+<span class="nx">a</span><span class="p">()</span>
+<span class="c1">// undefined
+</span></code></pre></td></tr></table>
+</div>
+</div><h1 id="note">Note</h1>
+<ul>
+<li><a href="https://medium.com/digital-dance/javascript%E5%9F%B7%E8%A1%8C%E7%92%B0%E5%A2%83-execution-context-%E7%B0%A1%E4%BB%8B-672185ed6bf4">Medium - Javascript執行環境 (Execution Context)簡介</a></li>
+<li><a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">TechBridge 技術共筆部落格 - 我知道你懂 hoisting，可是你了解到多深？</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">MSDN - Hoisting</a></li>
+<li><a href="https://www.iteye.com/blog/rednaxelafx-492667">虚拟机随谈（一）：解释器，树遍历解释器，基于栈与基于寄存器，大杂烩</a></li>
+<li><a href="https://john-dugan.com/hoisting-in-javascript/">Hoisting in JavaScript</a></li>
+<li><a href="https://softwareengineeringdaily.com/2018/10/03/javascript-and-the-inner-workings-of-your-browser/">JavaScript and the Inner Workings of your Browser</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-01-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/hoisting/">hoisting</a>
+          <a href="/blog/tags/tdz/">TDZ</a>
+          <a href="/blog/tags/let/">let</a>
+          <a href="/blog/tags/const/">const</a>
+          <a href="/blog/tags/var/">var</a>
+          <a href="/blog/tags/%E6%9A%AB%E6%99%82%E6%80%A7%E6%AD%BB%E5%8D%80/">暫時性死區</a>
+          <a href="/blog/tags/%E6%8F%90%E5%8D%87/">提升</a>
+          <a href="/blog/tags/temporal-dead-zone/">Temporal Dead Zone</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/dotnetcore31/auth/auth_guild_3/">
+            <span class="next-text nav-default">[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-Cookie 驗證實例</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://tigernaxo.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

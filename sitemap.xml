@@ -9,6 +9,104 @@
   </url>
   
   <url>
+    <loc>https://tigernaxo.github.io/blog/post/javascript/hoisting/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/categories/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/const/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/hoisting/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/categories/javascript/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/let/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/post/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/tdz/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/temporal-dead-zone/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/var/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/%E6%8F%90%E5%8D%87/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tigernaxo.github.io/blog/tags/%E6%9A%AB%E6%99%82%E6%80%A7%E6%AD%BB%E5%8D%80/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tigernaxo.github.io/blog/post/dotnetcore31/auth/auth_guild_3/</loc>
     <lastmod>2020-12-30T23:24:00+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -30,13 +128,6 @@
   </url>
   
   <url>
-    <loc>https://tigernaxo.github.io/blog/categories/</loc>
-    <lastmod>2020-12-30T23:24:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://tigernaxo.github.io/blog/tags/cookie/</loc>
     <lastmod>2020-12-30T23:24:00+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -52,27 +143,6 @@
   
   <url>
     <loc>https://tigernaxo.github.io/blog/categories/net-core-3.1/</loc>
-    <lastmod>2020-12-30T23:24:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/post/</loc>
-    <lastmod>2020-12-30T23:24:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/tags/</loc>
-    <lastmod>2020-12-30T23:24:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/</loc>
     <lastmod>2020-12-30T23:24:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -136,13 +206,6 @@
   
   <url>
     <loc>https://tigernaxo.github.io/blog/post/javascript/copy_text/</loc>
-    <lastmod>2020-11-13T06:26:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tigernaxo.github.io/blog/categories/javascript/</loc>
     <lastmod>2020-11-13T06:26:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
