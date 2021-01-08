@@ -1,5 +1,5 @@
 ---
-title: "[JavaScritpt] 提升(Hoisting)與暫時性死區(TDZ;Temporal Dead Zone)"
+title: "[JavaScritpt] 提升(Hoisting)與暫時性死區(Temporal Dead Zone)"
 date: 2021-01-09T01:31:00+08:00
 lastmod: 2021-01-09T01:31:00+08:00
 draft: false
