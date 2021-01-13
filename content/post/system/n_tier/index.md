@@ -1,14 +1,50 @@
 ---
-title: "[System] 多層式架構(N-Tier Architecture)"
+title: "[System] 多層式架構(Multitier Architecture)"
 date: 2021-01-10T23:21:00+08:00
 lastmod: 2021-01-10T23:21:00+08:00
 draft: true
-tags: ["N-Tier", "DAL", "BLL"]
+tags: ["N-Tier", "DAL", "BLL", "Multitier Architecture", "N-Tier Architecture"]
 categories: ["System"]
 author: "tigernaxo"
 
 autoCollapseToc: true
 ---
+多層式架構 Multitier Architecture 或稱 N-Tier Architecture，
+是 Client–server architecture 的一種，
+多層架構的層可以是 layer 或 tier，這兩者之間主要的差別在於 layer 指邏輯在應用程式的位置；
+而 tier 指 layer 在系統上實際部屬執行的位址，屬於物理層級的指涉。
+
+為何以 multi-layer 撰寫程式碼
+- 增加程式彈性和複用性:程式社設計人員透過分離表現層、應用程式層、資料存取層的程式，
+當程式需要變更時只需修改或抽換對應的程式層，而不需重寫整個應用程式。
+- 易於維護:多層式架構中程式碼各司其職，容易定位問題發生點。
+- 利於平行開發。
+- 易於擴展。
+
+為何部屬 multi-layer 至 multi-tier?
+下面有幾個優點，但無法同時滿足(會有衝突)所以需要在這些特性之間取捨 (尤其是可擴展性與效能)。
+- 提高可擴展性(scalability)
+- 提高效能(performance)
+- 提高容錯率(fault tolerance)。
+- 提高安全性(security)。
+
+# N-tier model
+N-tier model，層與層之間的邊界有 N-1 個，而程式跨邊界會造成巨大的效能損失，
+一說為光是跨越同一台機器上不同進程(process)邊界存取資源損失就大約1000倍，
+如果透過網路進行遠端呼叫勢必損失更多，
+因此每跨越一個邊界進行資源存取效能就會以幾何級數損失。
+且增加邊界在軟體設計上會增加複雜度，簡單的應用程式使用多層式架構很容易造成過度設計(over design)，
+因此軟體是否採用多層式架構必須以多層式架構的優缺點進行取捨。
+
+如何適當添加層級(tier)也是一門學問，添加層級時必需考量如何在應用程式所部屬的環境獲取最大的成本效益。
+## 1-tier model
+所有的 layer 都在同一機器、同一記憶體空間內運行。
+## 2-tier model
+layer 分配至兩個不同的記憶體空間運行，記憶體空間可能位於相同或兩台不同的機器上(通常是不同機器)。
+## 3-tier model
+多層式架構當中最常使用的就是三層架構(three-tier architecture)。
+
+
 應用程式的顆粒性(Granularity)
 
 BLL;Business Logic Layer 又稱為 Service Layer，命名習慣是 Service、Helper 結尾
@@ -17,11 +53,12 @@ DAL;Data Access Layer，命名習慣是 Repo 結尾
 - two-tier:抽離 BLL，BLL負責商業邏輯與資料存取
 - three-tier:從 BLL 抽離 DAL，BLL負責商業邏輯、DAL負責資料存取
 
-Service Layer(SL)為Presentation Layer(PL)與Business Layer(BL)
+# 分層
 - Presentation Layer(PL)
 - Business Logic Layer(BLL)
 - Service Layer(SL)
-Presentation Layer與Business Layer的中介層，使用的目的在於降低PL與BL之間的耦合，
+- Data Access Layer(DAL)
+Service Layer(SL) 是 Presentation Layer與Business Layer的中介層，使用的目的在於降低PL與BL之間的耦合，
 PL將商務邏輯功能委派給BL執行，
 Coarse-grained systemsfine-grained systems
 一個SL操作(coarse-grained operation)通常包含複數BL操作(fine-grained operation)
@@ -76,3 +113,6 @@ make the service(s) transaction aware (https://stackoverflow.com/questions/41301
 - [stackoverflow - Repository and query objects pattern. How to implement complex queries](https://stackoverflow.com/questions/29089102/repository-and-query-objects-pattern-how-to-implement-complex-queries)
 - [stackoverflow - NHibernate: At what scope I should use transaction?](https://stackoverflow.com/questions/41301400/nhibernate-at-what-scope-i-should-use-transaction)
 - [Pete's Dev Life - Data Transfer Object使用心得及時機](https://www.petekcchen.com/2010/12/how-to-use-data-transfer-object.html)
+- [SOFTWARE ENGINEERING - Business logic vs Service layer](https://softwareengineering.stackexchange.com/questions/343209/business-logic-vs-service-layer)
+- [wikipedia - Multitier architecture](https://en.wikipedia.org/wiki/Multitier_architecture)
+- [Rockford Lhotka - Should all apps be n-tier?](http://www.lhotka.net/weblog/ShouldAllAppsBeNtier.aspx)
