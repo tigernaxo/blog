@@ -6,7 +6,7 @@
     <description>Recent content on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 09 Jan 2021 01:31:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Jan 2021 23:46:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://tigernaxo.github.io/blog/about/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://tigernaxo.github.io/blog/about/</guid>
       <description>自介 亂世中年轉職小碼農，RD屬性，被故鄉的感情趨使回台中尋覓工作，嘗試於業界尋找台中生技研究相關職缺兩年後，決定放棄尋找不存在的東西並踏進科</description>
+    </item>
+    
+    <item>
+      <title>[Tools] 在 linux 中使用 google drive cli</title>
+      <link>https://tigernaxo.github.io/blog/post/tools/gdrive/</link>
+      <pubDate>Fri, 29 Jan 2021 23:46:00 +0800</pubDate>
+      
+      <guid>https://tigernaxo.github.io/blog/post/tools/gdrive/</guid>
+      <description>重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API，從這裡進去，找 drive，按啟用 啟用之後選擇左邊的&amp;quot;</description>
     </item>
     
     <item>
