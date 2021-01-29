@@ -1,4 +1,4 @@
-baseURL = "https://tigernaxo.github.io/blog/"
+baseURL = "https://blogger.tigernaxo.com/"
 languageCode = "zh-tw"
 defaultContentLanguage = "zh-tw"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "世情如紙"
