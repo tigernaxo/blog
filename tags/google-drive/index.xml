@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>google drive on 世情如紙</title>
-    <link>https://tigernaxo.github.io/blog/tags/google-drive/</link>
+    <link>https://blogger.tigernaxo.com/tags/google-drive/</link>
     <description>Recent content in google drive on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 29 Jan 2021 23:46:00 +0800</lastBuildDate><atom:link href="https://tigernaxo.github.io/blog/tags/google-drive/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Jan 2021 23:46:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/google-drive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Tools] 在 linux 中使用 google drive cli</title>
-      <link>https://tigernaxo.github.io/blog/post/tools/gdrive/</link>
+      <link>https://blogger.tigernaxo.com/post/tools/gdrive/</link>
       <pubDate>Fri, 29 Jan 2021 23:46:00 +0800</pubDate>
       
-      <guid>https://tigernaxo.github.io/blog/post/tools/gdrive/</guid>
+      <guid>https://blogger.tigernaxo.com/post/tools/gdrive/</guid>
       <description>重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API，從這裡進去，找 drive，按啟用 啟用之後選擇左邊的&amp;quot;</description>
     </item>
     
