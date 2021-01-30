@@ -9,3 +9,7 @@ author: "tigernaxo"
 
 autoCollapseToc: false
 ---
+
+# Reference
+- [GitHub Docs - Configuring a custom domain for your GitHub Pages site](https://docs.github.com/en/github/working-with-github-pages/configuring-a-custom-domain-for-your-github-pages-site)
+- [NameCheap - How do I link my domain to GitHub Pages](https://www.namecheap.com/support/knowledgebase/article.aspx/9645/2208/how-do-i-link-my-domain-to-github-pages/)

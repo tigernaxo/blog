@@ -14,7 +14,7 @@ autoCollapseToc: false
 ## 取得憑證
 - 首先到[Google API Console](https://console.developers.google.com/apis/dashboard)，
 - 建立專案
-- 啟動 Google Drive API，從這裡進去，找 drive，按啟用
+- 啟動 Google Drive API。
 - 啟用之後選擇左邊的"設定同意畫面"，填寫必要的欄位其他依照需求設置就好
 - 建立一組 OAth2 憑證，會有 Client ID 和 Secret
 
