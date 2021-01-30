@@ -8,12 +8,12 @@
     <language>zh-tw</language>
     <lastBuildDate>Fri, 29 Jan 2021 23:46:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/google-drive/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Tools] 在 linux 中使用 google drive cli</title>
-      <link>https://blogger.tigernaxo.com/post/tools/gdrive/</link>
+      <title>[Tools] 前端軍火庫</title>
+      <link>https://blogger.tigernaxo.com/post/tools/</link>
       <pubDate>Fri, 29 Jan 2021 23:46:00 +0800</pubDate>
       
-      <guid>https://blogger.tigernaxo.com/post/tools/gdrive/</guid>
-      <description>重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API，從這裡進去，找 drive，按啟用 啟用之後選擇左邊的&amp;quot;</description>
+      <guid>https://blogger.tigernaxo.com/post/tools/</guid>
+      <description>現役軍火庫 highlight.js axios bootstrap 5 退役軍火庫</description>
     </item>
     
   </channel>

@@ -9,7 +9,7 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/tools/gdrive/</loc>
+    <loc>https://blogger.tigernaxo.com/post/tools/</loc>
     <lastmod>2021-01-29T23:46:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -186,27 +186,6 @@
   <url>
     <loc>https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_1/</loc>
     <lastmod>2020-11-23T08:39:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/post/tools/vim/plugin_ycm/</loc>
-    <lastmod>2020-11-18T23:14:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/ubuntu/</loc>
-    <lastmod>2020-11-18T23:14:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/vim/</loc>
-    <lastmod>2020-11-18T23:14:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
