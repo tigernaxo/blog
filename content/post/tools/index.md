@@ -2,7 +2,7 @@
 title: "[Tools] 前端軍火庫"
 date: 2021-01-29T23:46:00+08:00
 lastmod: 2021-01-29T23:46:00+08:00
-draft: false
+draft: true
 tags: ["linux", "google drive"]
 categories: ["Tools"]
 author: "tigernaxo"
