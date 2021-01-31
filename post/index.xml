@@ -6,16 +6,7 @@
     <description>Recent content in Posts on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 29 Jan 2021 23:46:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Tools] 前端軍火庫</title>
-      <link>https://blogger.tigernaxo.com/post/tools/</link>
-      <pubDate>Fri, 29 Jan 2021 23:46:00 +0800</pubDate>
-      
-      <guid>https://blogger.tigernaxo.com/post/tools/</guid>
-      <description>現役軍火庫 highlight.js axios bootstrap 5 退役軍火庫</description>
-    </item>
-    
+    <lastBuildDate>Sat, 09 Jan 2021 01:31:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[JavaScritpt] 提升(Hoisting)與暫時性死區(Temporal Dead Zone)</title>
       <link>https://blogger.tigernaxo.com/post/javascript/hoisting/</link>

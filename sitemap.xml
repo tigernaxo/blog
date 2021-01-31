@@ -9,63 +9,14 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/tools/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
+    <loc>https://blogger.tigernaxo.com/post/javascript/hoisting/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blogger.tigernaxo.com/categories/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/google-drive/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/linux/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/post/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/categories/tools/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/post/javascript/hoisting/</loc>
     <lastmod>2021-01-09T01:31:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -100,6 +51,20 @@
   </url>
   
   <url>
+    <loc>https://blogger.tigernaxo.com/post/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://blogger.tigernaxo.com/tags/tdz/</loc>
     <lastmod>2021-01-09T01:31:00+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -115,6 +80,13 @@
   
   <url>
     <loc>https://blogger.tigernaxo.com/tags/var/</loc>
+    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/</loc>
     <lastmod>2021-01-09T01:31:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -283,6 +255,13 @@
   
   <url>
     <loc>https://blogger.tigernaxo.com/tags/centos8/</loc>
+    <lastmod>2020-06-16T09:37:18+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/linux/</loc>
     <lastmod>2020-06-16T09:37:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
