@@ -39,14 +39,13 @@
 
 <link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/index.css">
 
 
 <meta property="og:title" content="世情如紙" />
 <meta property="og:description" content="Hugo theme even example site." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blogger.tigernaxo.com/" />
-<meta property="og:updated_time" content="2021-01-09T01:31:00+08:00" />
+<meta property="og:updated_time" content="2021-01-29T23:46:00+08:00" />
 <meta itemprop="name" content="世情如紙">
 <meta itemprop="description" content="Hugo theme even example site.">
 <meta name="twitter:card" content="summary"/>
@@ -118,6 +117,48 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/tools/vim/plugin_ycm/">[Linux] 在 Ubuntu 20.04 中設置 vim plugin YouCompleteMe</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-11-18 </span>
+      <div class="post-category">
+          <a href="/categories/tools/"> Tools </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      安裝 junegunn/vim-plug 管理套件 以指令安裝 junegunn/vim-plug 1 2 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 在 ~/.vimrc 加入 Plug &lsquo;ycm-core/YouCompleteMe&rsquo; 1 2 3 4 5 6 7 &#34; Specify a directory for plugins call plug#begin(&#39;~/.vim/plugged&#39;) Plug &#39;ycm-core/YouCompleteMe&#39; &#34; Initialize plugin system call plug#end() 打開 vim，在 vim 命令列輸入安裝 Plugin 的指令下
+    </div>
+    <div class="read-more">
+      <a href="/post/tools/vim/plugin_ycm/" class="read-more-link">閱讀更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/javascript/module/">[JavaScript] 各種模組(module)</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-11-12 </span>
+      <div class="post-category">
+          <a href="/categories/javascript/"> JavaScript </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      JS模組規範有很多：AMD、UMD、CMD、commonJS、ES6 module Reference JS模組規範：AMD、UMD、CMD、commonJS、ES6 module
+    </div>
+    <div class="read-more">
+      <a href="/post/javascript/module/" class="read-more-link">閱讀更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/javascript/copy_text/">[JavaScript] 複製元件內的文字</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2020-11-12 </span>
@@ -175,48 +216,6 @@
     </div>
     <div class="read-more">
       <a href="/post/dotnetcore31/signalr/guild_3_validate_token/" class="read-more-link">閱讀更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/dotnetcore31/signalr/guild_2_issue_token/">[SignalR] Websocket 即時聊天程式(二) - 後端 Token 授權</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-11-06 </span>
-      <div class="post-category">
-          <a href="/categories/net-core-3.1/"> NET Core 3.1 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-
-    </div>
-    <div class="read-more">
-      <a href="/post/dotnetcore31/signalr/guild_2_issue_token/" class="read-more-link">閱讀更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/dotnetcore31/signalr/guild_1_start/">[SignalR] Websocket 即時聊天程式(一) - 建立專案</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-10-31 </span>
-      <div class="post-category">
-          <a href="/categories/net-core-3.1/"> NET Core 3.1 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更
-    </div>
-    <div class="read-more">
-      <a href="/post/dotnetcore31/signalr/guild_1_start/" class="read-more-link">閱讀更多</a>
     </div>
   </div>
 </article>
