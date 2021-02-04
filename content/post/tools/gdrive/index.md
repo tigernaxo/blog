@@ -2,7 +2,7 @@
 title: "[Tools] 在 linux 中使用 google drive cli"
 date: 2021-01-29T23:46:00+08:00
 lastmod: 2021-01-29T23:46:00+08:00
-draft: false
+draft: false 
 tags: ["linux", "google drive"]
 categories: ["Tools"]
 author: "tigernaxo"
