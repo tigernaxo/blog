@@ -1,2 +1,0 @@
-User-agent: *
-Sitemap: https://blogger.tigernaxo.com/sitemap.xml
