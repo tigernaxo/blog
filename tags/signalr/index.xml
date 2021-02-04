@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SignalR on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/tags/signalr/</link>
+    <description>Recent content in SignalR on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 10 Nov 2020 02:45:45 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/signalr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SignalR] Websocket 即時聊天程式(四) - 前端登入頁面</title>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_4_front_end_login/</link>
+      <pubDate>Tue, 10 Nov 2020 02:45:45 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_4_front_end_login/</guid>
+      <description>安裝 axios SignalR 連線驗證的方式是將 token 夾帶於網址參數中發送到伺服器，因此進行 websocket 連線前我們透過 ajax 向伺服器發送帳號密碼索取登入的 Token，我們安裝方便使</description>
+    </item>
+    
+    <item>
+      <title>[SignalR] Websocket 即時聊天程式(三) - 後端 Token 認證</title>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_3_validate_token/</link>
+      <pubDate>Sat, 07 Nov 2020 15:09:45 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_3_validate_token/</guid>
+      <description>安裝套件 要進行 Token 的認證，需要先安裝 Microsoft.AspNetCore.Authentication.JwtBearer 套件： 1 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 註冊認證服務 新增一個檔案 DependencyInjection.cs，在當中製作 IServiceCollection 的擴充</description>
+    </item>
+    
+    <item>
+      <title>[SignalR] Websocket 即時聊天程式(二) - 後端 Token 授權</title>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_2_issue_token/</link>
+      <pubDate>Fri, 06 Nov 2020 21:09:45 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_2_issue_token/</guid>
+      <description>SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-</description>
+    </item>
+    
+    <item>
+      <title>[SignalR] Websocket 即時聊天程式(一) - 建立專案</title>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_1_start/</link>
+      <pubDate>Sat, 31 Oct 2020 02:09:45 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_1_start/</guid>
+      <description>這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更</description>
+    </item>
+    
+  </channel>
+</rss>

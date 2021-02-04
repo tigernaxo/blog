@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/categories/</link>
+    <description>Recent content in Categories on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Fri, 29 Jan 2021 23:46:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tools</title>
+      <link>https://blogger.tigernaxo.com/categories/tools/</link>
+      <pubDate>Fri, 29 Jan 2021 23:46:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/categories/tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://blogger.tigernaxo.com/categories/javascript/</link>
+      <pubDate>Sat, 09 Jan 2021 01:31:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NET Core 3.1</title>
+      <link>https://blogger.tigernaxo.com/categories/net-core-3.1/</link>
+      <pubDate>Wed, 30 Dec 2020 23:24:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/categories/net-core-3.1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://blogger.tigernaxo.com/categories/linux/</link>
+      <pubDate>Tue, 16 Jun 2020 09:37:18 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Biotech</title>
+      <link>https://blogger.tigernaxo.com/categories/biotech/</link>
+      <pubDate>Wed, 23 Jan 2019 09:37:18 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/categories/biotech/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

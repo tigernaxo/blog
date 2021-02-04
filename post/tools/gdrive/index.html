@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[Tools] 在 linux 中使用 google drive cli - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&amp;quot;設定同意畫面&amp;quot;，填寫必" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://blogger.tigernaxo.com/post/tools/gdrive/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/index.css">
+
+
+
+<meta property="og:title" content="[Tools] 在 linux 中使用 google drive cli" />
+<meta property="og:description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/tools/gdrive/" />
+<meta property="article:published_time" content="2021-01-29T23:46:00+08:00" />
+<meta property="article:modified_time" content="2021-01-29T23:46:00+08:00" />
+<meta itemprop="name" content="[Tools] 在 linux 中使用 google drive cli">
+<meta itemprop="description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必">
+<meta itemprop="datePublished" content="2021-01-29T23:46:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-29T23:46:00+08:00" />
+<meta itemprop="wordCount" content="1629">
+
+
+
+<meta itemprop="keywords" content="linux,google drive," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Tools] 在 linux 中使用 google drive cli"/>
+<meta name="twitter:description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Tools] 在 linux 中使用 google drive cli</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-29 </span>
+        <div class="post-category">
+            <a href="/categories/tools/"> Tools </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#重新編譯-gdrive">重新編譯 gdrive</a>
+      <ul>
+        <li><a href="#取得憑證">取得憑證</a></li>
+        <li><a href="#編譯專案">編譯專案</a></li>
+      </ul>
+    </li>
+    <li><a href="#設定">設定</a>
+      <ul>
+        <li><a href="#設置環境變數">設置環境變數</a></li>
+        <li><a href="#連結google帳戶">連結google帳戶</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#查詢檔案">查詢檔案</a>
+          <ul>
+            <li><a href="#查詢雲端檔案清單">查詢雲端檔案清單</a></li>
+          </ul>
+        </li>
+        <li><a href="#上傳下載">上傳/下載</a>
+          <ul>
+            <li><a href="#下載">下載</a></li>
+            <li><a href="#上傳">上傳</a></li>
+          </ul>
+        </li>
+        <li><a href="#資料夾同步">資料夾同步</a>
+          <ul>
+            <li><a href="#資料夾同步到雲端">資料夾同步到雲端</a></li>
+            <li><a href="#雲端同步到資料夾">雲端同步到資料夾</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="重新編譯-gdrive">重新編譯 gdrive</h1>
+<h2 id="取得憑證">取得憑證</h2>
+<ul>
+<li>首先到<a href="https://console.developers.google.com/apis/dashboard">Google API Console</a>，</li>
+<li>建立專案</li>
+<li>啟動 Google Drive API。</li>
+<li>啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必要的欄位其他依照需求設置就好</li>
+<li>建立一組 OAth2 憑證，會有 Client ID 和 Secret</li>
+</ul>
+<h2 id="編譯專案">編譯專案</h2>
+<ul>
+<li>1.安裝 <a href="https://golang.org/dl/">Golang</a></li>
+<li>2.下載 gdrive 專案
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone git@github.com:prasmussen/gdrive.git
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>3.修改專案下的<code>handlers_drive.go</code>，把下列兩行改成拿到的 Client ID、Secret
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="nx">ClientId</span> <span class="p">=</span> <span class="s">&#34;*************************************.com&#34;</span>
+<span class="kd">const</span> <span class="nx">ClientSecret</span> <span class="p">=</span> <span class="s">&#34;*************&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>4.取得需要的 golang 套件
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">go get github.com/prasmussen/gdrive
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>5.到專案資料夾下編譯，編譯完後就會有得到執行檔
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">go build
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="設定">設定</h1>
+<h2 id="設置環境變數">設置環境變數</h2>
+<p>將編譯好的執行檔上傳Linux，假設放在${HOME}/gdrive-linux-x64：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立${HOME}/bin</span>
+$ mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/bin
+<span class="c1"># 把gdrive-linux-x64放進去重新命名為gdrive</span>
+$ mv <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/gdrive-linux-x64 <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/bin/gdrive
+<span class="c1"># 賦予gdrive執行權限</span>
+$ chmod u+x <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/bin/gdrive
+
+<span class="c1"># 如果PATH裡面找不到${HOME}/bin就新增並重新讀取環境設定</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">PATH</span><span class="si">}</span> <span class="p">|</span> grep -qE <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/bin<span class="o">[</span>^/<span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>&gt; <span class="nb">echo</span> <span class="s2">&#34;PATH=\${HOME}/bin:\${PATH}&#34;</span> &gt;&gt; ~/.bashrc <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>&gt; . ~/.bashrc
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="連結google帳戶">連結google帳戶</h2>
+<p>安裝好Google drive CLI後需要取得雲端硬碟帳戶授權，gdrive預設會在${HOME}/.gdrive底下找授權檔，
+由於目前我們沒有任何授權，所以需要先下簡單的指令觸發token請求，
+取得token之後會出現一個檔案叫做${HOME}/.gdrive/token_v2.json，
+並且在終端機出現雲端硬碟所有檔案及資料夾清單(預設最多出現30筆)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以list命令觸發token請求</span>
+<span class="c1"># 這裡會得到一個網址，貼到瀏覽器的網址列enter，之後選擇你要連結的帳戶，按照步驟授權後貼上授權碼，成功的話就會出現清單。</span>
+$ gdrive list
+Authentication needed
+Go to the following url in your browser:
+https://accounts.google.com/o/oauth2/auth?access_type<span class="o">=</span>offline<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=</span>...
+
+Enter verification code:7/4wDh2A_4vtaFR9JibaVC-l-lv2sV7SSCj0QsWL-J2-mcTGY9xrTi9rU
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="使用">使用</h1>
+<h2 id="查詢檔案">查詢檔案</h2>
+<p>gdrive除了一些特殊資料夾，像是根目錄沒有ID直接叫做root之外，
+對於檔案跟資料夾的操作都基於id，而獲得檔案與資料夾id常用的方式有三種：</p>
+<ul>
+<li>從資料夾網址觀察id：https://drive.google.com/drive/u/1/folders/1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa</li>
+<li>對檔案右鍵後選擇&quot;取得檔案共用連結，貼到文字編輯器觀察id：https://drive.google.com/open?id=1QJUxAzep1s4xxxxxxxUWUxf1H3KBrTNO</li>
+<li>透過gdrive list指令配合搜尋參數(重要！可參閱文件)查詢，就是以下要介紹的方法。</li>
+</ul>
+<h3 id="查詢雲端檔案清單">查詢雲端檔案清單</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 列出雲端硬碟最上層資料夾(root)的內容</span>
+$ ./gdrive-linux-x64 list -q <span class="s2">&#34;&#39;root&#39; in parents&#34;</span>
+Id                                             Name         Type   Size   Created
+1zY5UMnx-xxxxxxfuetg7cyrY5MU-k8w4              tmp          dir           2018-05-29 02:32:33
+1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa              Backup       dir           2018-03-27 05:14:21
+1gFOCwss-xxxxxxKF5td-g-Ovj_z4JoEcqpVHq1t5u4Y   Google 相簿    dir           2017-07-07 14:02:17
+
+<span class="c1"># 列出特定資料夾的內容，1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa是資料夾id</span>
+$ ./gdrive-linux-x64 list -q <span class="s2">&#34;&#39;1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa&#39; in parents&#34;</span>
+Id                                  Name        Type   Size      Created
+1sqZTRRd5ucxxxxxx7l4ApnlLs4kVOsyF   note0001    bin    196.0 B   2018-07-18 06:41:12
+1V-CvduOE9exxxxxxAflObt2wbGbD49zz   note0002    bin    199.0 B   2018-07-18 06:41:11
+1SOq0opXxXQxxxxxxiCy5eY3ivO-KFVLy   back        dir              2018-07-18 06:40:56
+1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D   test.sh     bin    4.6 KB    2018-07-18 06:38:25
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="上傳下載">上傳/下載</h2>
+<h3 id="下載">下載</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下載某個檔案</span>
+$ gdrive download 1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D
+Downloading myTestFile1 -&gt; myTestFile1
+Downloaded 1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D at 402.0 B/s, total 402.0 B
+
+<span class="c1"># 下載整個資料夾</span>
+$ gdrive download -r 1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa
+Downloading myTestFile1  -&gt; myTestFolder /myTestFile1
+Downloading myTestFile2  -&gt; myTestFolder /myTestFile2
+Downloading myTestFile3  -&gt; myTestFolder /myTestFile3
+Downloading myTestFile4  -&gt; myTestFolder /myTestFile4
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="上傳">上傳</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 上傳某個檔案到某個資料夾</span>
+$ gdrive upload -p 1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa myTestFile4
+Uploading myTestFile5
+Uploaded 1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D at 87.8 KB/s, total 151.3 KB
+
+<span class="c1"># 上傳整個資料夾到某個資料夾底下</span>
+$ gdrive upload -r -p 1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa myTestFolder
+Creating directory myTestFolder
+Uploading myTestFolder/myTestFile1
+Uploading myTestFolder/myTestFile2
+Uploading myTestFolder/myTestFile3
+Uploading myTestFolder/myTestFile4
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="資料夾同步">資料夾同步</h2>
+<h3 id="資料夾同步到雲端">資料夾同步到雲端</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立一個空資料夾並上傳雲端，作為雲端同步資料夾</span>
+$ mkdir syncTest
+$ gdrive upload -r syncTest
+
+<span class="c1"># 查詢剛剛上傳的空資料夾ID</span>
+$ gdrive -q <span class="s2">&#34;name = &#39;syncTest&#39;&#34;</span>
+Id                                  Name       Type   Size   Created
+1Uv5MxUXcxxxxxxcjM2nT_3hcuz-SMNnV   syncTest   dir           2019-02-18 09:52:26
+
+<span class="c1"># 把本地資料夾的內容同步到雲端</span>
+$ gdrive sync upload local_folder 1Uv5MxUXcxxxxxxcjM2nT_3hcuz-SMNnV
+Starting sync...
+Collecting <span class="nb">local</span> and remote file information...
+Found <span class="m">7</span> <span class="nb">local</span> files and <span class="m">0</span> remote files
+
+<span class="m">1</span> remote directories are missing
+<span class="o">[</span>0001/0001<span class="o">]</span> Creating directory syncTest/ae006468
+
+<span class="m">6</span> remote files are missing
+<span class="o">[</span>0001/0006<span class="o">]</span> Uploading ae006468/0.error -&gt; syncTest/ae006468/0.error
+...
+Sync finished in 13.435891267s
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="雲端同步到資料夾">雲端同步到資料夾</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立一個空資料夾準備接收雲端資料</span>
+$ mkdir syncTest2
+
+<span class="c1"># 把雲端內容同步到本地資料夾</span>
+$ gdrive sync download 1Uv5MxUXcxxxxxxcjM2nT_3hcuz-SMNnV syncTest2
+Starting sync...
+Collecting file information...
+Found <span class="m">0</span> <span class="nb">local</span> files and <span class="m">7</span> remote files
+
+<span class="m">1</span> <span class="nb">local</span> directories are missing
+<span class="o">[</span>0001/0001<span class="o">]</span> Creating directory syncTest2/ae006468
+
+<span class="m">6</span> <span class="nb">local</span> files are missing
+<span class="o">[</span>0001/0006<span class="o">]</span> Downloading ae006468/result.ok -&gt; syncTest2/ae006468/result.ok
+Sync finished in 7.269982268s
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="reference">Reference</h1>
+<ul>
+<li><a href="http://bioinfotw.blogspot.com/2019/02/google-linux-cligoogle.html">底棲生物的生物資訊筆記 - [Google] 用Linux CLI操作google drive雲端硬碟</a></li>
+<li><a href="https://github.com/prasmussen/gdrive">GitHub - prasmussen/gdrive</a></li>
+<li><a href="https://www.mynotepaper.com/mount-google-drive-using-gdrive-on-linux-server-with-own-oauth-credentials">Mount Google Drive using GDrive on Linux Server with Own OAuth Credentials</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-01-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/google-drive/">google drive</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/javascript/hoisting/">
+            <span class="next-text nav-default">[JavaScritpt] 提升(Hoisting)與暫時性死區(Temporal Dead Zone)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogger.tigernaxo.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
