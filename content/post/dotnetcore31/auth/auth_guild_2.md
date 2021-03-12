@@ -90,15 +90,16 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         CookieAuthenticationDefaults.AuthenticationScheme,
         options => {
             // 自訂 Cookie 名稱
-            options.CookiePrefix = ".CookieName"; 
+            options.Cookie.Name= ".CookieName"; 
             // 設置未驗證進入點，預設是 /Account/Login
-            options.LoginPath = new PathString("/..."); 
+            options.Cookie.LoginPath = new PathString("/..."); 
         });
 ```
 
 # Reference
 - [MSDN - Overview of ASP.NET Core authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
-- [MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-5.0)
+- [MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-3.1)
+- [MSDN - CookieAuthenticationOptions Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions?view=aspnetcore-3.1)
 - [MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0)
 - [MSDN - polycy schemes](https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1)
 - [Authentication handler in ASP.Net Core (JWT and Custom)](https://dotnetcorecentral.com/blog/authentication-handler-in-asp-net-core/)
