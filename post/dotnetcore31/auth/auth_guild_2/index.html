@@ -50,7 +50,7 @@
 <meta itemprop="description" content="驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作">
 <meta itemprop="datePublished" content="2020-11-23T15:46:00+08:00" />
 <meta itemprop="dateModified" content="2020-11-23T15:46:00+08:00" />
-<meta itemprop="wordCount" content="1304">
+<meta itemprop="wordCount" content="1307">
 
 
 
@@ -291,16 +291,17 @@ dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
         <span class="n">CookieAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">,</span>
         <span class="n">options</span> <span class="p">=&gt;</span> <span class="p">{</span>
             <span class="c1">// 自訂 Cookie 名稱
-</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">CookiePrefix</span> <span class="p">=</span> <span class="s">&#34;.CookieName&#34;</span><span class="p">;</span> 
+</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">Cookie</span><span class="p">.</span><span class="n">Name</span><span class="p">=</span> <span class="s">&#34;.CookieName&#34;</span><span class="p">;</span> 
             <span class="c1">// 設置未驗證進入點，預設是 /Account/Login
-</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">LoginPath</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PathString</span><span class="p">(</span><span class="s">&#34;/...&#34;</span><span class="p">);</span> 
+</span><span class="c1"></span>            <span class="n">options</span><span class="p">.</span><span class="n">Cookie</span><span class="p">.</span><span class="n">LoginPath</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PathString</span><span class="p">(</span><span class="s">&#34;/...&#34;</span><span class="p">);</span> 
         <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><h1 id="reference">Reference</h1>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1">MSDN - Overview of ASP.NET Core authentication</a></li>
-<li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-5.0">MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies?view=aspnetcore-3.1">MSDN - Microsoft.AspNetCore.Authentication.Cookies Namespace</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions?view=aspnetcore-3.1">MSDN - CookieAuthenticationOptions Class</a></li>
 <li><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer?view=aspnetcore-5.0">MSDN - Microsoft.AspNetCore.Authentication.JwtBearer Namespace</a></li>
 <li><a href="https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/policyschemes?view=aspnetcore-3.1">MSDN - polycy schemes</a></li>
 <li><a href="https://dotnetcorecentral.com/blog/authentication-handler-in-asp-net-core/">Authentication handler in ASP.Net Core (JWT and Custom)</a></li>
