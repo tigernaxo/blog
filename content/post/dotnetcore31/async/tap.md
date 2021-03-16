@@ -1,9 +1,9 @@
 ---
-title: "[.NET Core] TAP"
+title: "[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers)"
 date: 2021-03-13T00:07:00+08:00
 lastmod: 2021-03-13T00:07:00+08:00
 draft: true
-tags: ["Task", "TAP" ]
+tags: ["Task", "TAP", "non-blocking", "Asynchronous" ]
 categories: [".NET Core"]
 author: "tigernaxo"
 
@@ -14,16 +14,9 @@ autoCollapseToc: true
  TAP (Task-based Asynchronous Pattern)、
  APM (Asynchronous Programming Model) 或
  (EAP) pattern and the Event-based Asynchronous Pattern。
- 其中本篇要介紹的 TAP 是一種簡易使用、語言層級的非同步設計模式。
+而 ASP .NET Core 當中的控制器屬於IO密集的應用程式，當中大量使用的 TAP 是一種簡易使用、語言層級的非同步設計模式
 
-C# 當中基於 TAP 設計的的非同步方法 (TAP method) 有幾個特性：
-- 產生可等待 awaitable 型別 (Task, Task<TResult>, ValueTask, 和 ValueTask<TResult>)。
-- 方法名稱以 Async 結尾。
-
-TAP method 設計原則：
-- 參數順序設計跟同步版本的方法相同。
-- 同步版本中的 ref、out 參數，在非同步版本中應作為參數並放置於 TResult 中回傳。(亦即應避免出現在參數中)
--  可考慮接收 CancellationToken 作為參數。
+# TAP (Task-based Asynchronous Pattern)
 
 any long-running work in the synchronous portion of an asynchronous method could delay the initiation of other asynchronous operations, thereby decreasing the benefits of concurrency.
 
@@ -35,3 +28,4 @@ The async keyword creates a state machine, which is responsible for managing the
 - [MSDN - Asynchronous programming](https://docs.microsoft.com/en-us/dotnet/csharp/async)
 - [MSDN - Task-based asynchronous pattern](https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)
 - [stackoverflow - Task without async/await in controller action method](https://stackoverflow.com/questions/59823334/task-without-async-await-in-controller-action-method)
+- [MSDN - Async/Await - Best Practices in Asynchronous Programming](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming)
