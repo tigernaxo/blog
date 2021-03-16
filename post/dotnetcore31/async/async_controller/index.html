@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers) - 世情如紙</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。 透過 TAP 可設計出非同步(Asynchro" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/async/async_controller/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/peter.css">
+
+
+<meta property="og:title" content="[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers)" />
+<meta property="og:description" content="ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。 透過 TAP 可設計出非同步(Asynchro" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/async/async_controller/" />
+<meta property="article:published_time" content="2021-03-17T03:32:00+08:00" />
+<meta property="article:modified_time" content="2021-03-17T03:32:00+08:00" />
+<meta itemprop="name" content="[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers)">
+<meta itemprop="description" content="ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。 透過 TAP 可設計出非同步(Asynchro">
+<meta itemprop="datePublished" content="2021-03-17T03:32:00+08:00" />
+<meta itemprop="dateModified" content="2021-03-17T03:32:00+08:00" />
+<meta itemprop="wordCount" content="910">
+
+
+
+<meta itemprop="keywords" content="Task,TAP,non-blocking,Asynchronous," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers)"/>
+<meta name="twitter:description" content="ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。 透過 TAP 可設計出非同步(Asynchro"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-17 </span>
+        <div class="post-category">
+            <a href="/categories/.net-core/"> .NET Core </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#非同步方法">非同步方法</a></li>
+    <li><a href="#asyncawait">async、await</a></li>
+    <li><a href="#非同步-action-設計原則">非同步 Action 設計原則：</a>
+      <ul>
+        <li><a href="#總是加上-async-關鍵字">總是加上 async 關鍵字</a></li>
+        <li><a href="#在action中使用非同步方法">在Action中使用非同步方法：</a></li>
+      </ul>
+    </li>
+    <li><a href="#範例">範例</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。
+透過 TAP 可設計出非同步(Asynchronous)/非阻塞(Non-Blocking)的 Web API，大幅提高 Web 應用程式的併發性(Concurrency)。</p>
+<h1 id="非同步方法">非同步方法</h1>
+<p>C# 當中基於 TAP 設計的的非同步方法 (TAP method) 有幾個特性：</p>
+<ul>
+<li>產生可等待 awaitable 型別 (Task, Task<TResult>, ValueTask, 和 ValueTask<TResult>)，其中以 Task、Task<TResult>最常見。</li>
+<li>非同步方法的參數順序通常跟同步版本的方法相同，但方法名稱以 Async 結尾。</li>
+</ul>
+<h1 id="asyncawait">async、await</h1>
+<p>await 運算子用來等待非同步行為完成，
+或等待非同步行為完成後解析回傳值，
+await 運算子只能用在非同步方法中，
+因此 await 運算子的外層方法必須套用 async 修飾，
+否則會出現錯誤。</p>
+<h1 id="非同步-action-設計原則">非同步 Action 設計原則：</h1>
+<h2 id="總是加上-async-關鍵字">總是加上 async 關鍵字</h2>
+<p>async 的方法裡面可以等待非同步方法。
+action 前加上 async 的作用在於建立一個管理回傳任務的狀態機(state machine)，
+當 async 方法擲出例外時會被狀態機捕獲並放到任務中回傳，
+而這也是以 Task 作為回傳值的方法的預期行為。
+如果沒有 async 關鍵字則擲出的例外會被直接傳遞到呼叫者(caller)，
+因此除非確定該 aciton 不會擲出任何例外，否則一律加上 async。</p>
+<h2 id="在action中使用非同步方法">在Action中使用非同步方法：</h2>
+<p>在<strong>非同步方法</strong>中長時間執行<strong>同步方法</strong>會阻塞造成<strong>其他非同步方法</strong>初始化執行而降低併發性。
+且如果 API 回傳型別是 Task 但卻只使用同步函式，
+那該API的行為就只是同步。
+以 Dapper 存取資料庫為例子，用 QueryAsync 代替 Query，
+可以避免在 Query 在等待回應的時候阻塞其他非同步方法的執行。</p>
+<h1 id="範例">範例</h1>
+<p>透過建立一個非同步的 Controller 由前端呼叫，可以獲得非阻塞的結果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="na">[Route(&#34;api/[controller]</span><span class="s">&#34;)]
+</span><span class="s"></span><span class="na">[ApiController]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TaskController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
+<span class="p">{</span>
+<span class="na">    [HttpGet(&#34;Delay&#34;)]</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Delay</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">controllerName</span> <span class="p">=</span> <span class="s">&#34;Delay&#34;</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">startTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;HH:MM:ss.fff&#34;</span><span class="p">);</span>
+        <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">Delay</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">endTime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&#34;HH:MM:ss.fff&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="k">new</span> <span class="p">{</span> <span class="n">controllerName</span><span class="p">,</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">endTime</span> <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在前端以 javscript 程式碼測試可以觀察到非阻塞 api：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">callApi</span><span class="p">(</span><span class="nx">url</span><span class="p">){</span>
+	<span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+	<span class="p">})</span>
+	<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+<span class="nx">callApi</span><span class="p">(</span><span class="s1">&#39;api/Task/Delay&#39;</span><span class="p">)</span>
+<span class="nx">callApi</span><span class="p">(</span><span class="s1">&#39;api/Task/Delay&#39;</span><span class="p">)</span>
+<span class="c1">// {controllerName: &#34;Delay&#34;, startTime: &#34;02:03:46.720&#34;, endTime: &#34;02:03:51.764&#34;}
+</span><span class="c1">//{controllerName: &#34;Delay&#34;, startTime: &#34;02:03:46.720&#34;, endTime: &#34;02:03:51.764&#34;}
+</span></code></pre></td></tr></table>
+</div>
+</div><p>P.S. 測試當下無法在Edge瀏覽器中呼叫同一支 api 獲得非阻塞結果，
+同時呼叫 api 第二次呼叫會被瀏覽器排在第一次呼叫之後執行，
+看起來會像是該 api 在伺服器端發生了阻塞，
+但是 Chrome 卻沒有這個情況，可能是瀏覽器政策不同，
+無論如何後端回傳 Task 的 Controller 行為都是非阻塞的。</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/async">MSDN - Asynchronous programming</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap">MSDN - Task-based asynchronous pattern</a></li>
+<li><a href="https://stackoverflow.com/questions/59823334/task-without-async-await-in-controller-action-method">stackoverflow - Task without async/await in controller action method</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/task/">Task</a>
+          <a href="/tags/tap/">TAP</a>
+          <a href="/tags/non-blocking/">non-blocking</a>
+          <a href="/tags/asynchronous/">Asynchronous</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/tools/gdrive/">
+            <span class="next-text nav-default">[Tools] 在 linux 中使用 google drive cli</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogger.tigernaxo.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

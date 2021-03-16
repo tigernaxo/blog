@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asynchronous on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/tags/asynchronous/</link>
+    <description>Recent content in Asynchronous on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 17 Mar 2021 03:32:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/asynchronous/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[.NET Core] 不阻塞的非同步控制器(Non-Blocking Asynchronous Controllers)</title>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/async/async_controller/</link>
+      <pubDate>Wed, 17 Mar 2021 03:32:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/async/async_controller/</guid>
+      <description>ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。 透過 TAP 可設計出非同步(Asynchro</description>
+    </item>
+    
+  </channel>
+</rss>
