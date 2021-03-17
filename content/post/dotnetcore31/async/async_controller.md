@@ -14,7 +14,9 @@ ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主�
 
 # 非同步方法
 C# 當中基於 TAP 設計的的非同步方法 (TAP method) 有幾個特性：
-- 產生可等待 awaitable 型別 (Task, Task<TResult>, ValueTask, 和 ValueTask<TResult>)，其中以 Task、Task<TResult>最常見。
+- 產生可等待 awaitable 型別
+  (Task, Task\<TResult>, ValueTask, 和 ValueTask\<TResult>)，
+  其中以 Task、Task\<TResult>最常見。
 - 非同步方法的參數順序通常跟同步版本的方法相同，但方法名稱以 Async 結尾。
 
 # async、await
