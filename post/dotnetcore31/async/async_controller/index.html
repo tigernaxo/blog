@@ -50,7 +50,7 @@
 <meta itemprop="description" content="ASP .NET Core 當中的 Web 控制器屬於IO密集的應用程式，當中主要使用的 TAP 是一種簡易使用、語言層級的非同步設計模式。 透過 TAP 可設計出非同步(Asynchro">
 <meta itemprop="datePublished" content="2021-03-17T03:32:00+08:00" />
 <meta itemprop="dateModified" content="2021-03-17T03:32:00+08:00" />
-<meta itemprop="wordCount" content="910">
+<meta itemprop="wordCount" content="940">
 
 
 
@@ -160,7 +160,9 @@
 <h1 id="非同步方法">非同步方法</h1>
 <p>C# 當中基於 TAP 設計的的非同步方法 (TAP method) 有幾個特性：</p>
 <ul>
-<li>產生可等待 awaitable 型別 (Task, Task<TResult>, ValueTask, 和 ValueTask<TResult>)，其中以 Task、Task<TResult>最常見。</li>
+<li>產生可等待 awaitable 型別
+(Task, Task&lt;TResult&gt;, ValueTask, 和 ValueTask&lt;TResult&gt;)，
+其中以 Task、Task&lt;TResult&gt;最常見。</li>
 <li>非同步方法的參數順序通常跟同步版本的方法相同，但方法名稱以 Async 結尾。</li>
 </ul>
 <h1 id="asyncawait">async、await</h1>
