@@ -35,6 +35,15 @@
     </item>
     
     <item>
+      <title>[System] 多層式架構(Multitier Architecture)</title>
+      <link>https://blogger.tigernaxo.com/post/system/n_tier/</link>
+      <pubDate>Sun, 10 Jan 2021 23:21:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/system/n_tier/</guid>
+      <description>多層式架構 Multitier Architecture 或稱 N-Tier Architecture， 是 Client–server architecture 的一種， 多層架構的層可以是 layer 或 tier，這兩者之間主要的差別在於</description>
+    </item>
+    
+    <item>
       <title>[JavaScritpt] 提升(Hoisting)與暫時性死區(Temporal Dead Zone)</title>
       <link>https://blogger.tigernaxo.com/post/javascript/hoisting/</link>
       <pubDate>Sat, 09 Jan 2021 01:31:00 +0800</pubDate>

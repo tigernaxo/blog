@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>N-Tier on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/tags/n-tier/</link>
+    <description>Recent content in N-Tier on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 10 Jan 2021 23:21:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/n-tier/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[System] 多層式架構(Multitier Architecture)</title>
+      <link>https://blogger.tigernaxo.com/post/system/n_tier/</link>
+      <pubDate>Sun, 10 Jan 2021 23:21:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/system/n_tier/</guid>
+      <description>多層式架構 Multitier Architecture 或稱 N-Tier Architecture， 是 Client–server architecture 的一種， 多層架構的層可以是 layer 或 tier，這兩者之間主要的差別在於</description>
+    </item>
+    
+  </channel>
+</rss>
