@@ -1,6 +1,6 @@
 ---
 title: "[System] 多層式架構(Multitier Architecture)"
-date: 2021-01-10T23:21:00+08:00
+date: 2021-05-17T23:20:00+08:00
 lastmod: 2021-05-17T23:20:00+08:00
 draft: false
 tags: ["N-Tier", "Multitier Architecture", "N-Tier Architecture"]
