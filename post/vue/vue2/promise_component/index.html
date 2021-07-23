@@ -50,7 +50,7 @@
 <meta itemprop="name" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)">
 <meta itemprop="description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成"><meta itemprop="datePublished" content="2021-07-24T07:32:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-24T07:32:00+08:00" />
-<meta itemprop="wordCount" content="837">
+<meta itemprop="wordCount" content="841">
 <meta itemprop="keywords" content="Vue,Promise," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)"/>
 <meta name="twitter:description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成"/>
@@ -140,7 +140,11 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目錄</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#程式碼-code">程式碼 (Code)</a></li>
+  </ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
@@ -151,6 +155,7 @@
 <p>應用：Vue router 的 component route guard，在離開表單頁面前跳出使用者確認 dialog</p>
 <p>Application: in Vue-router&rsquo;s component route guard , prompt checkbox before user leaving the page view</p>
 <p><button id="xBtn">Execute Test</button></p>
+<h1 id="程式碼-code">程式碼 (Code)</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
