@@ -25,6 +25,8 @@ Application: in Vue-router's component route guard , prompt checkbox before user
 
 <button id="xBtn">Execute Test</button>
 
+# 程式碼 (Code)
+
 ```html
 <button id="xBtn">Execute Test</button>
 <div id="xApp" class="modal" :style="{display: dialog?'block':'none'}">
