@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_2/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定" />
 <meta property="og:description" content="驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_2/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_2/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-23T15:46:00+08:00" />
 <meta property="article:modified_time" content="2021-03-12T23:08:00+08:00" />
+
 <meta itemprop="name" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定">
-<meta itemprop="description" content="驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作">
-<meta itemprop="datePublished" content="2020-11-23T15:46:00+08:00" />
+<meta itemprop="description" content="驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作"><meta itemprop="datePublished" content="2020-11-23T15:46:00+08:00" />
 <meta itemprop="dateModified" content="2021-03-12T23:08:00+08:00" />
 <meta itemprop="wordCount" content="1307">
-
-
-
-<meta itemprop="keywords" content="Authentication,dotNetCore," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Authentication,dotNetCore," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(二)-驗證設定"/>
 <meta name="twitter:description" content="驗證方案(Authentication Scheme) 驗證方案包含兩個部分： 驗證處理函式(Authentication handler)，可能是 IAuthenticationHandler 或 AuthenticationHandler 的實作"/>
 
@@ -195,22 +191,22 @@ AuthenticationBuilder 設定驗證方案的方式有：</p>
 <p>安裝 scheme 套件取得 Cookie、JWT 的 scheme-specific 擴充方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 3.1.10
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 3.1.10
 dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
 </code></pre></td></tr></table>
 </div>
 </div><p>在 Startup.cs 添加對 scheme 的引用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Authentication.JwtBearer</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Authentication.JwtBearer</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Authentication.Cookies</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
@@ -223,7 +219,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
 若 Authorization Attribute 或 Policy 沒有指定 Scheme，預設會使用 AddAuthentication() 方法中傳入作為參數的 Scheme，同理若是服務容器中提供多種驗證服務，可在 Controller 的授權屬性指定套用的 Scheme 或 Policy：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -260,7 +256,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 若沒有指定 Scheme 作 Authorization ，預設使用 JwtBearerDefaults.AuthenticationScheme
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 若沒有指定 Scheme 作 Authorization ，預設使用 JwtBearerDefaults.AuthenticationScheme
 </span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">)</span>
     <span class="c1">// 讓 AP 可使用 JwtBearerDefaults.AuthenticationScheme 作為驗證方法
 </span><span class="c1"></span>    <span class="p">.</span><span class="n">AddJwtBearer</span><span class="p">(</span>
@@ -395,7 +391,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.Cookies --version 2.2.0
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

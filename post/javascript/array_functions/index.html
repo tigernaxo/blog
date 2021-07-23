@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/javascript/array_functions/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[JavaScript] Array 常用方法" />
 <meta property="og:description" content="紀錄常用的 Array 方法，細節可以到MDN看 陣列操作 尾端彈出 Array.prototype.pop()、推入 Array.prototype.push() arr.pop() arr.push(element1[, &hellip;[, elementN]]) 1 2 3 4 5 const arr=[1, 2, 3, 4] arr.pop() console.log(arr) // [1, 2," />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/javascript/array_functions/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/javascript/array_functions/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-04-29T23:31:18+08:00" />
 <meta property="article:modified_time" content="2020-04-29T23:31:18+08:00" />
+
 <meta itemprop="name" content="[JavaScript] Array 常用方法">
-<meta itemprop="description" content="紀錄常用的 Array 方法，細節可以到MDN看 陣列操作 尾端彈出 Array.prototype.pop()、推入 Array.prototype.push() arr.pop() arr.push(element1[, &hellip;[, elementN]]) 1 2 3 4 5 const arr=[1, 2, 3, 4] arr.pop() console.log(arr) // [1, 2,">
-<meta itemprop="datePublished" content="2020-04-29T23:31:18+08:00" />
+<meta itemprop="description" content="紀錄常用的 Array 方法，細節可以到MDN看 陣列操作 尾端彈出 Array.prototype.pop()、推入 Array.prototype.push() arr.pop() arr.push(element1[, &hellip;[, elementN]]) 1 2 3 4 5 const arr=[1, 2, 3, 4] arr.pop() console.log(arr) // [1, 2,"><meta itemprop="datePublished" content="2020-04-29T23:31:18+08:00" />
 <meta itemprop="dateModified" content="2020-04-29T23:31:18+08:00" />
 <meta itemprop="wordCount" content="3072">
-
-
-
-<meta itemprop="keywords" content="Javascript," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Javascript," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[JavaScript] Array 常用方法"/>
 <meta name="twitter:description" content="紀錄常用的 Array 方法，細節可以到MDN看 陣列操作 尾端彈出 Array.prototype.pop()、推入 Array.prototype.push() arr.pop() arr.push(element1[, &hellip;[, elementN]]) 1 2 3 4 5 const arr=[1, 2, 3, 4] arr.pop() console.log(arr) // [1, 2,"/>
 
@@ -206,14 +202,14 @@ arr.push(element1[, &hellip;[, elementN]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>  <span class="c1">// [1, 2, 3]
 </span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -227,14 +223,14 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="nx">arr</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="c1">// [2, 3, 4]
 </span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -270,14 +266,14 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 <h3 id="範圍移除元素">範圍移除元素</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="c1">// 移除索引位置3的元素，移除範圍為1
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">removed</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">)</span> <span class="c1">// [3]
@@ -287,7 +283,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </div><h3 id="在現有位置添加元素">在現有位置添加元素</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -296,7 +292,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="c1">// 移除索引位置3的元素，移除範圍為0，並且插入3.1, 3.2
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">removed</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">)</span>
 <span class="c1">// 這時候獲得的 removed 為空陣列
@@ -308,7 +304,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </div><h3 id="取代現有元素">取代現有元素</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -316,7 +312,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="c1">// 移除索引為3的元素，移除長度範圍為2
 </span><span class="c1">// 並且插入元素 10, 11, 12
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">removed</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
@@ -330,7 +326,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -339,7 +335,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
 
 <span class="c1">// 將索引3-4之間的區塊(&#34;4&#34;)貼到索引0(取代0)
 </span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span> <span class="c1">// [4, 2, 3, 4, 5]
@@ -359,7 +355,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -378,7 +374,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 全部填滿
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 全部填滿
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">fill</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>               <span class="c1">// [4, 4, 4]
 </span><span class="c1">// 指定位置以後填滿給定的值
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">fill</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>            <span class="c1">// [1, 4, 4]
@@ -403,7 +399,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -412,7 +408,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span> 
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>  <span class="c1">// [3, 2, 1]
@@ -433,7 +429,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -465,7 +461,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 預設是升冪排序
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 預設是升冪排序
 </span><span class="c1"></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">sort</span><span class="p">()</span> <span class="c1">// [1, 2, 3]
 </span><span class="c1">// 針對物件排序
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">objs</span> <span class="o">=</span> <span class="p">[</span>
@@ -536,7 +532,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 <p>如果沒有提供 initialValue，累加時的型別判定不好掌握，時常產生預期之外的結果，因此最好習慣總是提供 initialValue，並且需注意 accumulator、currentValue 作為函示取值時是否為正確的型別。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -549,7 +545,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">maxCallback</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">acc</span><span class="p">,</span> <span class="nx">cur</span> <span class="p">)</span> <span class="p">=&gt;{</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">maxCallback</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">acc</span><span class="p">,</span> <span class="nx">cur</span> <span class="p">)</span> <span class="p">=&gt;{</span>
     <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">acc</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;acc: &#34;</span> <span class="o">+</span> <span class="nx">acc</span> <span class="o">+</span><span class="s2">&#34;, cur: &#34;</span> <span class="o">+</span> <span class="nx">cur</span> <span class="o">+</span> <span class="s2">&#34;, max: &#34;</span> <span class="o">+</span> <span class="nx">max</span><span class="p">)</span>
     <span class="k">return</span> <span class="nx">max</span> 
@@ -569,7 +565,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -578,7 +574,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">maxCallback</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">acc</span><span class="p">,</span> <span class="nx">cur</span> <span class="p">)</span> <span class="p">=&gt;{</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">maxCallback</span> <span class="o">=</span> <span class="p">(</span> <span class="nx">acc</span><span class="p">,</span> <span class="nx">cur</span> <span class="p">)</span> <span class="p">=&gt;{</span>
     <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> 
 <span class="p">}</span>
 <span class="p">[</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">22</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">42</span> <span class="p">}</span> <span class="p">]</span>
@@ -598,7 +594,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 <p>以分隔符號合併陣列中所有的元素成一個字串並回傳，分隔符號預設為’,’。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -606,7 +602,7 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 使用預設的分隔符號 &#39;,&#39;
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 使用預設的分隔符號 &#39;,&#39;
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">join</span><span class="p">()</span> <span class="c1">// &#34;1,2,3,4,5&#34;
 </span><span class="c1">// 不使用分隔符號
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">// &#34;12345&#34;
@@ -621,10 +617,10 @@ arr.unshift(element1[, &hellip;[, elementN]])</p>
 <p>取得該陣列的文字描述，效果跟 arr.join() 一樣。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// &#34;1,2,3,4,5&#34;
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// &#34;1,2,3,4,5&#34;
 </span></code></pre></td></tr></table>
 </div>
 </div><h1 id="取得新陣列">取得新陣列</h1>
@@ -635,11 +631,11 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// [empty × 5]
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// [empty × 5]
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 4, 5]
 </span></code></pre></td></tr></table>
 </div>
@@ -650,7 +646,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 <p>從 array-like/iterable object 如 string、set、map、arguments獲得 shallow-copied 的陣列。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -672,7 +668,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 拆解字串產生 Array
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 拆解字串產生 Array
 </span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="c1">// [ &#34;f&#34;, &#34;o&#34;, &#34;o&#34; ];
 </span><span class="c1"></span>
 <span class="c1">// 將 set 轉為陣列，這裡會自動去掉一個重複的 foo 
@@ -700,10 +696,10 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">].</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">// [2, 3]
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">].</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">// [2, 3]
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="取得元素滿足回呼函式的新陣列-arrayprototypefilter">取得元素滿足回呼函式的新陣列 Array.prototype.filter()</h2>
@@ -712,12 +708,12 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="kr">const</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">e</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
 <span class="nx">newArr</span> <span class="c1">// [0, 2, 4, 6]
 </span></code></pre></td></tr></table>
@@ -728,7 +724,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -738,7 +734,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="kr">const</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="kr">const</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 
@@ -756,12 +752,12 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="kr">const</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="nx">e</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nx">newArr</span> <span class="c1">// [0, 2, 4, 6, 8, 10, 12]
 </span></code></pre></td></tr></table>
@@ -773,7 +769,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 <p>Array.prototype.flat() 會自動清除空元素，並展開指定深度的巢狀陣列，深度預設值為 1。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -783,7 +779,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// arr1 深度為1，所以不指定深度就能攤開
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// arr1 深度為1，所以不指定深度就能攤開
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]];</span>
 <span class="nx">arr1</span><span class="p">.</span><span class="nx">flat</span><span class="p">();</span> <span class="c1">// [1, 2, 3, 4]
 </span><span class="c1"></span>
@@ -802,7 +798,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 <p>arr.flatMap(func) 的效果等於 arr.map(func).flat() 但效能較佳，不過攤開深度只能是1，當 map() 回傳的元素是陣列且需要透過 flate() 攤開呈現最終結果時，可改用 flateMap()，例如從”句子”陣列獲得”單字”陣列：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -813,7 +809,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 假設要從句子陣列獲得單字的一維陣列
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 假設要從句子陣列獲得單字的一維陣列
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;animal cell&#34;</span><span class="p">,</span> <span class="s2">&#34;have&#34;</span><span class="p">,</span> <span class="s2">&#34;mitochondria&#34;</span><span class="p">];</span>
 
 <span class="c1">// 使用 map 處裡會獲得二維陣列，必須再串聯一次 flat()
@@ -923,7 +919,7 @@ let arr2 = Array.of(element0[, element1[, &hellip;[, elementN]]])</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

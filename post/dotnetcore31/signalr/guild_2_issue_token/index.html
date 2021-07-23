@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_2_issue_token/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[SignalR] Websocket 即時聊天程式(二) - 後端 Token 授權" />
 <meta property="og:description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_2_issue_token/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_2_issue_token/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-11-06T21:09:45+08:00" />
 <meta property="article:modified_time" content="2020-11-07T01:35:45+08:00" />
+
 <meta itemprop="name" content="[SignalR] Websocket 即時聊天程式(二) - 後端 Token 授權">
-<meta itemprop="description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-">
-<meta itemprop="datePublished" content="2020-11-06T21:09:45+08:00" />
+<meta itemprop="description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-"><meta itemprop="datePublished" content="2020-11-06T21:09:45+08:00" />
 <meta itemprop="dateModified" content="2020-11-07T01:35:45+08:00" />
 <meta itemprop="wordCount" content="1160">
-
-
-
-<meta itemprop="keywords" content="SignalR,dotNetCore,Authentication,Autherization,Bearor Token," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SignalR,dotNetCore,Authentication,Autherization,Bearor Token," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[SignalR] Websocket 即時聊天程式(二) - 後端 Token 授權"/>
 <meta name="twitter:description" content="SignalR驗證方式 SignalR 的授權可以選擇使用 Cookie 或 Bearer Token： Cookie: 驗證方法與一般網頁別無二致，較容易實作但缺點是只能用於瀏覽器(browser-"/>
 
@@ -174,7 +170,7 @@
 <p>將 JWT 相關的設定寫到 appsetting.json 當中：
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -191,7 +187,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;Logging&#34;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&#34;LogLevel&#34;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&#34;Default&#34;</span><span class="p">:</span> <span class="s2">&#34;Information&#34;</span><span class="p">,</span>
@@ -212,7 +208,7 @@
 <p>建立 Options.cs ，並在當中新增一個 Option 類別以對應 JWT 設定：
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -224,7 +220,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">namespace</span> <span class="nn">SignalR</span>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">namespace</span> <span class="nn">SignalR</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">JWTOption</span>
     <span class="p">{</span>
@@ -233,15 +229,14 @@
         <span class="k">public</span> <span class="kt">string</span> <span class="n">SignKey</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
         <span class="k">public</span> <span class="kt">int</span> <span class="n">Expires</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div></p>
 <h2 id="註冊服務容器">註冊服務容器</h2>
 <p>在 Startup.cs 的 ConfigureServices 將 JWTOption 註冊到 service container 當中，之後可以直接注入 Controller 使用；
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -252,7 +247,7 @@
 </span></span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">void</span> <span class="n">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">();</span>
     <span class="n">services</span><span class="p">.</span><span class="n">AddSignalR</span><span class="p">();</span>
@@ -260,8 +255,7 @@
 <span class="hl">    <span class="c1">// 在 service container 當中註冊 JWT Option
 </span></span><span class="hl"><span class="c1"></span>    <span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;()</span>
 </span><span class="hl">        <span class="p">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="n">JWTOption</span><span class="p">.</span><span class="n">JWT</span><span class="p">));</span>
-</span><span class="p">}</span>
-</code></pre></td></tr></table>
+</span><span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div></p>
 <h1 id="簽發-token">簽發 Token</h1>
@@ -269,17 +263,17 @@
 <p>筆者在 ASP .NET Core 3.1 的 Web API 專案後，無法直接使用 JWT 相關功能，所以必須先安裝套件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet add package System.IdentityModel.Tokens.Jwt --version 6.8.0
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">dotnet add package System.IdentityModel.Tokens.Jwt --version 6.8.0
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="login-controller">Login Controller</h2>
 <p>建立 API 控制器 <code>Controllers/TokenController.cs</code>，並注入 <code>IOptions&lt;JWTOption&gt;</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -369,7 +363,7 @@
 </span><span class="lnt">88
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.IdentityModel.Tokens.Jwt</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
@@ -390,11 +384,11 @@
 </span><span class="s"></span><span class="na">    [ApiController]</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">TokenController</span> <span class="p">:</span> <span class="n">ControllerBase</span>
     <span class="p">{</span>
-        <span class="k">private</span> <span class="n">JWTOption</span> <span class="n">_jwtOpt</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">JWTOption</span> <span class="m">_</span><span class="n">jwtOpt</span><span class="p">;</span>
         <span class="c1">// 等待服務容器注入 IOptions&lt;JWTOption&gt;
 </span><span class="c1"></span>        <span class="k">public</span> <span class="n">TokenController</span><span class="p">(</span><span class="n">IOptions</span><span class="p">&lt;</span><span class="n">JWTOption</span><span class="p">&gt;</span> <span class="n">jwtOpt</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="n">_jwtOpt</span> <span class="p">=</span> <span class="n">jwtOpt</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="m">_</span><span class="n">jwtOpt</span> <span class="p">=</span> <span class="n">jwtOpt</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
         <span class="p">}</span>
 <span class="na">
 </span><span class="na">        [AllowAnonymous]</span>
@@ -405,8 +399,8 @@
 </span><span class="c1"></span>            <span class="kt">var</span> <span class="n">canLogin</span> <span class="p">=</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">userId</span> <span class="p">==</span> <span class="s">&#34;naxo&#34;</span> <span class="p">&amp;&amp;</span> <span class="n">loginModel</span><span class="p">.</span><span class="n">password</span> <span class="p">==</span> <span class="s">&#34;pass&#34;</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">canLogin</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="kt">string</span> <span class="n">issuer</span> <span class="p">=</span> <span class="n">_jwtOpt</span><span class="p">.</span><span class="n">Issuer</span><span class="p">;</span>
-                <span class="kt">string</span> <span class="n">signKey</span> <span class="p">=</span> <span class="n">_jwtOpt</span><span class="p">.</span><span class="n">SignKey</span><span class="p">;</span>
+                <span class="kt">string</span> <span class="n">issuer</span> <span class="p">=</span> <span class="m">_</span><span class="n">jwtOpt</span><span class="p">.</span><span class="n">Issuer</span><span class="p">;</span>
+                <span class="kt">string</span> <span class="n">signKey</span> <span class="p">=</span> <span class="m">_</span><span class="n">jwtOpt</span><span class="p">.</span><span class="n">SignKey</span><span class="p">;</span>
 
                 <span class="c1">// 設定要加入到 JWT Token 中的聲明資訊(Claims)
 </span><span class="c1"></span>                <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;();</span>
@@ -432,7 +426,7 @@
                         <span class="n">issuer</span><span class="p">,</span>  <span class="c1">// Issuer    
 </span><span class="c1"></span>                        <span class="n">issuer</span><span class="p">,</span>  <span class="c1">// Audience    
 </span><span class="c1"></span>                        <span class="n">claims</span><span class="p">,</span>  <span class="c1">// claims
-</span><span class="c1"></span>                        <span class="n">expires</span><span class="p">:</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">AddMinutes</span><span class="p">(</span><span class="n">_jwtOpt</span><span class="p">.</span><span class="n">Expires</span><span class="p">),</span> <span class="c1">// token 生效至過期的分鐘數
+</span><span class="c1"></span>                        <span class="n">expires</span><span class="p">:</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">AddMinutes</span><span class="p">(</span><span class="m">_</span><span class="n">jwtOpt</span><span class="p">.</span><span class="n">Expires</span><span class="p">),</span> <span class="c1">// token 生效至過期的分鐘數
 </span><span class="c1"></span>                        <span class="n">signingCredentials</span><span class="p">:</span> <span class="n">signingCredentials</span>
                         <span class="p">);</span>
                 <span class="c1">// 序列化 JwtSecurityToken
@@ -557,7 +551,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_1_start/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[SignalR] Websocket 即時聊天程式(一) - 建立專案" />
 <meta property="og:description" content="這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_1_start/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/signalr/guild_1_start/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-10-31T02:09:45+08:00" />
 <meta property="article:modified_time" content="2020-11-03T05:46:45+08:00" />
+
 <meta itemprop="name" content="[SignalR] Websocket 即時聊天程式(一) - 建立專案">
-<meta itemprop="description" content="這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更">
-<meta itemprop="datePublished" content="2020-10-31T02:09:45+08:00" />
+<meta itemprop="description" content="這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更"><meta itemprop="datePublished" content="2020-10-31T02:09:45+08:00" />
 <meta itemprop="dateModified" content="2020-11-03T05:46:45+08:00" />
 <meta itemprop="wordCount" content="1709">
-
-
-
-<meta itemprop="keywords" content="SignalR,dotNetCore,Websocket," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SignalR,dotNetCore,Websocket," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[SignalR] Websocket 即時聊天程式(一) - 建立專案"/>
 <meta name="twitter:description" content="這個系列會官方文件為主，保留必要的部分，並視情況修改部份程式、添加說明文字。 建立 SignalR 專案 這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更"/>
 
@@ -173,13 +169,13 @@
 <p>這個範例設定用靜態 html 做前端，這樣之後要做前後端分離也更容易一些，之後會用到 web api 請求登入 Token，所以起始一個 web api 專案：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 建立專案</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 建立專案</span>
 dotnet new webapi -o SignalR
 <span class="c1"># 以 VS Code 打開專案</span>
 code -r signalr
@@ -189,7 +185,7 @@ code -r signalr
 <p>在.NET Core 3.1 當中使用 SignalR 伺服器端不再需要安裝額外的套件，直接將 SignalR 注入服務容器就能使用， SignalR 的 Hub 中文名稱就叫做中樞，在專案中新增資料夾 Hubs 用來專門存放 Hub 實作類別，並在 Hubs 中新增檔案 ChatHub.cs，內容如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -207,7 +203,7 @@ code -r signalr
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.SignalR</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.SignalR</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">SignalR.Hubs</span>
@@ -235,7 +231,7 @@ code -r signalr
 <li><code>endpoints.MapHub&lt;ChatHub&gt;(&quot;/chathub&quot;);</code>:將 ChatHub 中樞綁定到站台的 /chathub 端點。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -293,7 +289,7 @@ code -r signalr
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
@@ -348,8 +344,7 @@ code -r signalr
 </span>            <span class="p">});</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -358,24 +353,24 @@ code -r signalr
 <p>LibMan 程式庫管理員可從獲取前端所需要的相依性，來源包含檔案系統(File System)或<a href="https://cdnjs.com/">CDNJS</a>、<a href="https://www.jsdelivr.com/">jsDelivr</a>、<a href="https://unpkg.com/#/">unpkg</a> 等等<a href="https://en.wikipedia.org/wiki/Content_delivery_network">內容傳遞網路(CDN)</a>，如果前端以其他框架(ex: Angular、React、Vue)開發時就需要用其他方式，這裡先用微軟提供的方便工具安裝需要的套件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="microsoftsignalr">@microsoft/signalr</h2>
 <p>以下指令 LibMan 會從<a href="https://unpkg.com/">unpkg</a>將套件 @microsoft/signalr@latest 安裝到專案下的路徑 wwwroot/js/signalr 當中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">libman install @microsoft/signalr@latest <span class="se">\
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">libman install @microsoft/signalr@latest <span class="se">\
 </span><span class="se"></span>  -p unpkg <span class="se">\
 </span><span class="se"></span>  -d wwwroot/js/signalr <span class="se">\
 </span><span class="se"></span>  --files dist/browser/signalr.js <span class="se">\
@@ -387,7 +382,7 @@ code -r signalr
 <p>新增檔案 wwwRoot\index.html，內容如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -431,7 +426,7 @@ code -r signalr
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="p">/&gt;</span>
@@ -479,7 +474,7 @@ code -r signalr
 <p>新增一個檔案 wwwRoot/js/Chat.js</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -522,7 +517,7 @@ code -r signalr
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
 <span class="c1">// 起始一個 SignalR 連線，連線到 /chathub 端點
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">signalR</span><span class="p">.</span><span class="nx">HubConnectionBuilder</span><span class="p">().</span><span class="nx">withUrl</span><span class="p">(</span><span class="s2">&#34;/chatHub&#34;</span><span class="p">).</span><span class="nx">build</span><span class="p">();</span>
 <span class="c1">// 從 Dom tree 當中取得送出按鈕、使用者名稱輸入、訊息輸入元件
@@ -568,10 +563,10 @@ code -r signalr
 </div><h1 id="測試">測試</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">dotnet watch run -p signalr.csproj
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">dotnet watch run -p signalr.csproj
 </code></pre></td></tr></table>
 </div>
 </div><div class='align-center'>
@@ -585,11 +580,11 @@ code -r signalr
 <p>用以下指令清除、重新生成開發期的 https 憑證(dotnet 版本 3.1.403 實際測試官方給的指令 <code>dotnet dev-certs https --trust</code> 沒有作用，是因為沒有 &ndash;trust 選項可以用)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">dotnet dev-certs https --clean
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">dotnet dev-certs https --clean
 dotnet dev-certs https
 </code></pre></td></tr></table>
 </div>
@@ -686,7 +681,7 @@ dotnet dev-certs https
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

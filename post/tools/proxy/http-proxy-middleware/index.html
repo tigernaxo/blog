@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/tools/proxy/http-proxy-middleware/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[Tools] 10分鐘建造 proxy 克服跨網域資源存取(CORS)問題" />
 <meta property="og:description" content="前後端分離的開發環境以 Ajax 呼叫資源時時會遇到跨網域存取的問題， 一些比較全面的開發環境像是 webpack、vue-cli 等等通常提供內建開發代理" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/tools/proxy/http-proxy-middleware/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/tools/proxy/http-proxy-middleware/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-20T08:45:00+08:00" />
 <meta property="article:modified_time" content="2021-03-20T08:45:00+08:00" />
+
 <meta itemprop="name" content="[Tools] 10分鐘建造 proxy 克服跨網域資源存取(CORS)問題">
-<meta itemprop="description" content="前後端分離的開發環境以 Ajax 呼叫資源時時會遇到跨網域存取的問題， 一些比較全面的開發環境像是 webpack、vue-cli 等等通常提供內建開發代理">
-<meta itemprop="datePublished" content="2021-03-20T08:45:00+08:00" />
+<meta itemprop="description" content="前後端分離的開發環境以 Ajax 呼叫資源時時會遇到跨網域存取的問題， 一些比較全面的開發環境像是 webpack、vue-cli 等等通常提供內建開發代理"><meta itemprop="datePublished" content="2021-03-20T08:45:00+08:00" />
 <meta itemprop="dateModified" content="2021-03-20T08:45:00+08:00" />
 <meta itemprop="wordCount" content="693">
-
-
-
-<meta itemprop="keywords" content="CORS,Cross-Origin Resource Sharing,http-proxy-middleware," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CORS,Cross-Origin Resource Sharing,http-proxy-middleware," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Tools] 10分鐘建造 proxy 克服跨網域資源存取(CORS)問題"/>
 <meta name="twitter:description" content="前後端分離的開發環境以 Ajax 呼叫資源時時會遇到跨網域存取的問題， 一些比較全面的開發環境像是 webpack、vue-cli 等等通常提供內建開發代理"/>
 
@@ -169,37 +165,37 @@
 <p>建立一個資料夾叫做 proxy 存放這個專案吧，手動建立也可以。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir proxy
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir proxy
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="起始專案">起始專案</h2>
 <p>用指令移動到該專案資料夾下，起始專案：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> proxy
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> proxy
 npm init 
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="安裝相依性">安裝相依性</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">npm i express http-proxy-middleware cors
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm i express http-proxy-middleware cors
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="建立-appjs">建立 app.js</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -235,7 +231,7 @@ npm init
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">cors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cors&#39;</span><span class="p">);</span>
 <span class="kr">const</span> <span class="p">{</span> <span class="nx">createProxyMiddleware</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http-proxy-middleware&#39;</span><span class="p">);</span>
 
@@ -274,7 +270,7 @@ npm init
 </div><h2 id="啟動代理伺服器">啟動代理伺服器</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -282,7 +278,7 @@ npm init
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ node app.js
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ node app.js
 <span class="o">[</span>HPM<span class="o">]</span> Proxy created: /  -&gt; https://www.google.com/
 <span class="o">[</span>HPM<span class="o">]</span> Proxy rewrite rule created: <span class="s2">&#34;^/google&#34;</span> ~&gt; <span class="s2">&#34;&#34;</span>
 <span class="o">[</span>HPM<span class="o">]</span> Proxy created: /  -&gt; https://tw.yahoo.com/
@@ -294,14 +290,14 @@ Starting Proxy at localhost:3000
 <p>打開隨意網頁 F12，用 fetch api 透過 proxy 對 google 或 yahoo 發起 get 請求成功獲得資訊，且 Header 裡面會有<code>Access-Control-Allow-Origin: *</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/google/&#39;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/google/&#39;</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
 <span class="c1">// Promise {&lt;pending&gt;}
@@ -311,7 +307,7 @@ Starting Proxy at localhost:3000
 </div><p>如果是直接對 google 發起的 get 請求則會因為跨網域問題不會成功：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -320,7 +316,7 @@ Starting Proxy at localhost:3000
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://www.google.com/&#39;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://www.google.com/&#39;</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
 <span class="c1">// Promise {&lt;pending&gt;}
@@ -417,7 +413,7 @@ Starting Proxy at localhost:3000
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

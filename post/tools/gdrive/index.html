@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/tools/gdrive/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[Tools] 在 linux 中使用 google drive cli" />
 <meta property="og:description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/tools/gdrive/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/tools/gdrive/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-01-29T23:46:00+08:00" />
 <meta property="article:modified_time" content="2021-01-29T23:46:00+08:00" />
+
 <meta itemprop="name" content="[Tools] 在 linux 中使用 google drive cli">
-<meta itemprop="description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必">
-<meta itemprop="datePublished" content="2021-01-29T23:46:00+08:00" />
+<meta itemprop="description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必"><meta itemprop="datePublished" content="2021-01-29T23:46:00+08:00" />
 <meta itemprop="dateModified" content="2021-01-29T23:46:00+08:00" />
 <meta itemprop="wordCount" content="1629">
-
-
-
-<meta itemprop="keywords" content="linux,google drive," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,google drive," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Tools] 在 linux 中使用 google drive cli"/>
 <meta name="twitter:description" content="重新編譯 gdrive 取得憑證 首先到Google API Console， 建立專案 啟動 Google Drive API。 啟用之後選擇左邊的&quot;設定同意畫面&quot;，填寫必"/>
 
@@ -194,21 +190,21 @@
 <li>2.下載 gdrive 專案
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">git clone git@github.com:prasmussen/gdrive.git
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone git@github.com:prasmussen/gdrive.git
 </code></pre></td></tr></table>
 </div>
 </div></li>
 <li>3.修改專案下的<code>handlers_drive.go</code>，把下列兩行改成拿到的 Client ID、Secret
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="nx">ClientId</span> <span class="p">=</span> <span class="s">&#34;*************************************.com&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">const</span> <span class="nx">ClientId</span> <span class="p">=</span> <span class="s">&#34;*************************************.com&#34;</span>
 <span class="kd">const</span> <span class="nx">ClientSecret</span> <span class="p">=</span> <span class="s">&#34;*************&#34;</span>
 </code></pre></td></tr></table>
 </div>
@@ -216,20 +212,20 @@
 <li>4.取得需要的 golang 套件
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">go get github.com/prasmussen/gdrive
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go get github.com/prasmussen/gdrive
 </code></pre></td></tr></table>
 </div>
 </div></li>
 <li>5.到專案資料夾下編譯，編譯完後就會有得到執行檔
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">go build
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go build
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -239,7 +235,7 @@
 <p>將編譯好的執行檔上傳Linux，假設放在${HOME}/gdrive-linux-x64：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -252,7 +248,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立${HOME}/bin</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立${HOME}/bin</span>
 $ mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/bin
 <span class="c1"># 把gdrive-linux-x64放進去重新命名為gdrive</span>
 $ mv <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/gdrive-linux-x64 <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/bin/gdrive
@@ -272,7 +268,7 @@ $ <span class="nb">echo</span> <span class="si">${</span><span class="nv">PATH</
 並且在終端機出現雲端硬碟所有檔案及資料夾清單(預設最多出現30筆)：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -282,7 +278,7 @@ $ <span class="nb">echo</span> <span class="si">${</span><span class="nv">PATH</
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以list命令觸發token請求</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以list命令觸發token請求</span>
 <span class="c1"># 這裡會得到一個網址，貼到瀏覽器的網址列enter，之後選擇你要連結的帳戶，按照步驟授權後貼上授權碼，成功的話就會出現清單。</span>
 $ gdrive list
 Authentication needed
@@ -304,7 +300,7 @@ Enter verification code:7/4wDh2A_4vtaFR9JibaVC-l-lv2sV7SSCj0QsWL-J2-mcTGY9xrTi9r
 <h3 id="查詢雲端檔案清單">查詢雲端檔案清單</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -320,7 +316,7 @@ Enter verification code:7/4wDh2A_4vtaFR9JibaVC-l-lv2sV7SSCj0QsWL-J2-mcTGY9xrTi9r
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 列出雲端硬碟最上層資料夾(root)的內容</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 列出雲端硬碟最上層資料夾(root)的內容</span>
 $ ./gdrive-linux-x64 list -q <span class="s2">&#34;&#39;root&#39; in parents&#34;</span>
 Id                                             Name         Type   Size   Created
 1zY5UMnx-xxxxxxfuetg7cyrY5MU-k8w4              tmp          dir           2018-05-29 02:32:33
@@ -340,7 +336,7 @@ Id                                  Name        Type   Size      Created
 <h3 id="下載">下載</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -353,7 +349,7 @@ Id                                  Name        Type   Size      Created
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下載某個檔案</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下載某個檔案</span>
 $ gdrive download 1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D
 Downloading myTestFile1 -&gt; myTestFile1
 Downloaded 1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D at 402.0 B/s, total 402.0 B
@@ -369,7 +365,7 @@ Downloading myTestFile4  -&gt; myTestFolder /myTestFile4
 </div><h3 id="上傳">上傳</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -383,7 +379,7 @@ Downloading myTestFile4  -&gt; myTestFolder /myTestFile4
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 上傳某個檔案到某個資料夾</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 上傳某個檔案到某個資料夾</span>
 $ gdrive upload -p 1D8kkabcEecxxxxxxNSAy8ho97gTRuyNa myTestFile4
 Uploading myTestFile5
 Uploaded 1tyJcRaO9Dfxxxxxxo6yvndSkr8zpos_D at 87.8 KB/s, total 151.3 KB
@@ -401,7 +397,7 @@ Uploading myTestFolder/myTestFile4
 <h3 id="資料夾同步到雲端">資料夾同步到雲端</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -425,7 +421,7 @@ Uploading myTestFolder/myTestFile4
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立一個空資料夾並上傳雲端，作為雲端同步資料夾</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立一個空資料夾並上傳雲端，作為雲端同步資料夾</span>
 $ mkdir syncTest
 $ gdrive upload -r syncTest
 
@@ -452,7 +448,7 @@ Sync finished in 13.435891267s
 </div><h3 id="雲端同步到資料夾">雲端同步到資料夾</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -469,7 +465,7 @@ Sync finished in 13.435891267s
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立一個空資料夾準備接收雲端資料</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 建立一個空資料夾準備接收雲端資料</span>
 $ mkdir syncTest2
 
 <span class="c1"># 把雲端內容同步到本地資料夾</span>
@@ -579,7 +575,7 @@ Sync finished in 7.269982268s
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

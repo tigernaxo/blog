@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_3/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-Cookie 驗證實例" />
 <meta property="og:description" content="前兩篇介紹了驗證、授權在 .NET Core 當中的基本的概念，本節實作 Cookie 驗證的設定、簽發、登出&hellip; Configuration 在 Startup.ConfigureServices 方法中設置驗證方案， 並且可以在 AddCookie 當中設置" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_3/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_3/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-12-30T23:24:00+08:00" />
 <meta property="article:modified_time" content="2020-12-30T23:24:00+08:00" />
+
 <meta itemprop="name" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-Cookie 驗證實例">
-<meta itemprop="description" content="前兩篇介紹了驗證、授權在 .NET Core 當中的基本的概念，本節實作 Cookie 驗證的設定、簽發、登出&hellip; Configuration 在 Startup.ConfigureServices 方法中設置驗證方案， 並且可以在 AddCookie 當中設置">
-<meta itemprop="datePublished" content="2020-12-30T23:24:00+08:00" />
+<meta itemprop="description" content="前兩篇介紹了驗證、授權在 .NET Core 當中的基本的概念，本節實作 Cookie 驗證的設定、簽發、登出&hellip; Configuration 在 Startup.ConfigureServices 方法中設置驗證方案， 並且可以在 AddCookie 當中設置"><meta itemprop="datePublished" content="2020-12-30T23:24:00+08:00" />
 <meta itemprop="dateModified" content="2020-12-30T23:24:00+08:00" />
 <meta itemprop="wordCount" content="869">
-
-
-
-<meta itemprop="keywords" content="Authentication,dotNetCore,Authorization,Cookie," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Authentication,dotNetCore,Authorization,Cookie," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-Cookie 驗證實例"/>
 <meta name="twitter:description" content="前兩篇介紹了驗證、授權在 .NET Core 當中的基本的概念，本節實作 Cookie 驗證的設定、簽發、登出&hellip; Configuration 在 Startup.ConfigureServices 方法中設置驗證方案， 並且可以在 AddCookie 當中設置"/>
 
@@ -156,13 +152,13 @@
 並且可以在 AddCookie 當中設置 CookieAuthenticationOptions(見前一節)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 設置 cookie 驗證作為應用程式預設的驗證方案
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 設置 cookie 驗證作為應用程式預設的驗證方案
 </span><span class="c1"></span><span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="n">CookieAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">)</span>
 <span class="c1">// 將 cookie 服務添加到服務容器當中
 </span><span class="c1"></span>    <span class="p">.</span><span class="n">AddCookie</span><span class="p">();</span>
@@ -173,7 +169,7 @@
 UseAuthentication 必須在 UseAuthorization 之前，且兩者都必須在 UseEndpoints 之前被呼叫：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -184,7 +180,7 @@ UseAuthentication 必須在 UseAuthorization 之前，且兩者都必須在 UseE
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">app</span><span class="p">.</span><span class="n">UseAuthentication</span><span class="p">();</span> <span class="c1">// 驗證
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="n">app</span><span class="p">.</span><span class="n">UseAuthentication</span><span class="p">();</span> <span class="c1">// 驗證
 </span><span class="c1"></span><span class="n">app</span><span class="p">.</span><span class="n">UseAuthorization</span><span class="p">();</span> <span class="c1">// 授權
 </span><span class="c1"></span>
 <span class="c1">// 端點對應
@@ -201,7 +197,7 @@ UseAuthentication 必須在 UseAuthorization 之前，且兩者都必須在 UseE
 所有 Controller 簽發的 Cookie.SamSite 屬性會被限縮為較嚴格(不比 MinimumSameSitePolicy 寬鬆)的設置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -211,7 +207,7 @@ UseAuthentication 必須在 UseAuthorization 之前，且兩者都必須在 UseE
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="n">app</span><span class="p">.</span><span class="n">UseCookiePolicy</span><span class="p">(</span><span class="k">new</span> <span class="n">CookiePolicyOptions</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="n">app</span><span class="p">.</span><span class="n">UseCookiePolicy</span><span class="p">(</span><span class="k">new</span> <span class="n">CookiePolicyOptions</span> <span class="p">{</span>
     <span class="c1">// 所有 Cookie.SamSite 設置都會被提升為 Strict
 </span><span class="c1"></span>    <span class="n">MinimumSameSitePolicy</span> <span class="p">=</span> <span class="n">SameSiteMode</span><span class="p">.</span><span class="n">Strict</span><span class="p">,</span> 
     <span class="c1">// Cookie.SamSite 設置為 None 的話會被提升為 Lax
@@ -233,7 +229,7 @@ ClaimsIdentity 可以且通常包含很多 Claims(聲明)，
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -261,7 +257,7 @@ ClaimsIdentity 可以且通常包含很多 Claims(聲明)，
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="kt">var</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;</span> 
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="kt">var</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Claim</span><span class="p">&gt;</span> 
  <span class="p">{</span>
     <span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="n">ClaimTypes</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">Email</span><span class="p">),</span>
     <span class="k">new</span> <span class="n">Claim</span><span class="p">(</span><span class="s">&#34;FullName&#34;</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">FullName</span><span class="p">),</span>
@@ -293,11 +289,11 @@ ClaimsIdentity 可以且通常包含很多 Claims(聲明)，
 <p>登出非常簡單：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">await</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">SignOutAsync</span><span class="p">(</span>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">await</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">SignOutAsync</span><span class="p">(</span>
     <span class="n">CookieAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
@@ -400,7 +396,7 @@ ClaimsIdentity 可以且通常包含很多 Claims(聲明)，
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">

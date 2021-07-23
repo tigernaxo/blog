@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
 <link rel="canonical" href="https://blogger.tigernaxo.com/post/javascript/prototype/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.04c2dd1f8404662d28663d4b1adbab2e8ea012335a566044a1296efcd4ad46ef.css" rel="stylesheet">
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/peter.css">
 
@@ -43,19 +43,15 @@
 <meta property="og:title" content="[JavaScript] JavaScript 當中的原型繼承鏈模型" />
 <meta property="og:description" content="基於原型 (Prototype-Based) 的 JavaScript 一般物件導向式(OOP; Object Oriented Programming) 程式語言 (如：java、c&#43;&#43;、c#) 當中的物件是由類別模板 (class) 產生實體物件 (instance)，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/javascript/prototype/" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/javascript/prototype/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-05-20T09:37:18+08:00" />
 <meta property="article:modified_time" content="2020-05-20T09:37:18+08:00" />
+
 <meta itemprop="name" content="[JavaScript] JavaScript 當中的原型繼承鏈模型">
-<meta itemprop="description" content="基於原型 (Prototype-Based) 的 JavaScript 一般物件導向式(OOP; Object Oriented Programming) 程式語言 (如：java、c&#43;&#43;、c#) 當中的物件是由類別模板 (class) 產生實體物件 (instance)，">
-<meta itemprop="datePublished" content="2020-05-20T09:37:18+08:00" />
+<meta itemprop="description" content="基於原型 (Prototype-Based) 的 JavaScript 一般物件導向式(OOP; Object Oriented Programming) 程式語言 (如：java、c&#43;&#43;、c#) 當中的物件是由類別模板 (class) 產生實體物件 (instance)，"><meta itemprop="datePublished" content="2020-05-20T09:37:18+08:00" />
 <meta itemprop="dateModified" content="2020-05-20T09:37:18+08:00" />
 <meta itemprop="wordCount" content="3230">
-
-
-
-<meta itemprop="keywords" content="Javascript," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Javascript," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[JavaScript] JavaScript 當中的原型繼承鏈模型"/>
 <meta name="twitter:description" content="基於原型 (Prototype-Based) 的 JavaScript 一般物件導向式(OOP; Object Oriented Programming) 程式語言 (如：java、c&#43;&#43;、c#) 當中的物件是由類別模板 (class) 產生實體物件 (instance)，"/>
 
@@ -202,7 +198,7 @@
 <p>建立原型的方法就是直接宣告一個函數，JavaScript 會自動把該函數作為構造函數，並自動建立一個隸屬於 Object.prototype 之下的匿名物件，並把宣告的函數指定給該匿名物件的 constructor 屬性。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -211,7 +207,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告一個函數 Foo
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告一個函數 Foo
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">Foo</span> <span class="p">(){}</span>
 
 <span class="c1">// Foo.prototype 在 Foo 被宣告時自動建立
@@ -224,11 +220,11 @@
 <h2 id="透過構造函數">透過構造函數</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 建立一個物件
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 建立一個物件
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">{}</span> <span class="c1">// {}
 </span></code></pre></td></tr></table>
 </div>
@@ -236,7 +232,7 @@
 <p>JavaScript 對變數賦值底層行為：以 Object 構造函數建立物件，然後對物件並賦值（故賦值發生在物件建立之後）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -244,10 +240,10 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 建立一個物件
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 建立一個物件
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">}</span> <span class="c1">// {a: 1}
 </span><span class="c1">// obj 的原型是 Object.prototype
-</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span><span class="c1">// a: 1 是 obj 擁有的屬性
 </span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c1">// true
 </span></code></pre></td></tr></table>
@@ -256,7 +252,7 @@
 <p>物件本身沒有構造函數時，可用 Object.create() 將物件作為原型建立其他物件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -264,12 +260,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 建立一個物件
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 建立一個物件
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">objProto</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="c1">// 以 objProto  為原型建立一個物件
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">objProto</span><span class="p">)</span>
 <span class="c1">// obj 的原型為 objProto
-</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">objProto</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nx">objProto</span> <span class="c1">// true
 </span></code></pre></td></tr></table>
 </div>
 </div><h1 id="取得物件原型">取得物件原型</h1>
@@ -284,7 +280,7 @@
 <p>JavaScript 定義構造函數時自動產生的”物件(有構造函數)”預設原型是 Object，得到 [Object]-[物件(有構造函數)]-[物件(無構造函數)] 的階層關係。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -292,23 +288,23 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Foo 的原型是 Function.prototype
-</span><span class="c1"></span><span class="nx">Foo</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Foo 的原型是 Function.prototype
+</span><span class="c1"></span><span class="nx">Foo</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span><span class="c1">// Function.prototype 再上去的原型是 Object.prototype
-</span><span class="c1"></span><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span><span class="c1">// Object.prototype 位於原型鏈最最頂層，因此 __prototype 屬性是 null
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="c1">// null
+</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="c1">// null
 </span></code></pre></td></tr></table>
 </div>
 </div><p>以直接指派物件給變數的方式建立物件，JavaScirpt 會自動使用構造函數 Object 建立物件，得到 [Object]-[物件(無構造函數)] 的階層關係</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 以賦值直接建立的 obj ，原型就是 Object.prototype
-</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 以賦值直接建立的 obj ，原型就是 Object.prototype
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="objectprototype-原型鏈關係整理">Object.prototype 原型鏈關係整理</h2>
@@ -318,13 +314,13 @@
 <h2 id="判斷物件和物件的關係">判斷物件和物件的關係</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">(){}</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">(){}</span>
 <span class="kd">let</span> <span class="nx">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">()</span>
 <span class="c1">// Foo 建立的物件，會以 Foo.prototype 作為物件原型
 </span><span class="c1"></span><span class="nx">Foo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">bar</span><span class="p">)</span> <span class="c1">// true
@@ -333,13 +329,13 @@
 </div><h2 id="判斷物件和構造函數的關係">判斷物件和構造函數的關係</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">(){}</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">(){}</span>
 <span class="kd">let</span> <span class="nx">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">()</span>
 <span class="c1">// bar 是構造函數 Foo 建立的物件
 </span><span class="c1"></span><span class="nx">bar</span> <span class="k">instanceof</span> <span class="nx">Foo</span> <span class="c1">// true
@@ -356,7 +352,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -377,7 +373,7 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){</span>
     <span class="c1">// 物件建立時：構造函數上以 this 賦值的物件屬性
 </span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="o">=</span><span class="mi">2</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="o">=</span><span class="mi">2</span>
@@ -401,7 +397,7 @@
 </div><p>構造函數產生的物件，原型鍊頂層是 Object.prototype，因此 Object.prototype 定義的所有資源（屬性、方法）都可以直接呼叫：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -414,17 +410,17 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告一個函數 animal
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告一個函數 animal
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">animal</span><span class="p">(){}</span>
 
 <span class="c1">// animal 的物件原型上層是 Object
-</span><span class="c1"></span><span class="nx">animal</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">animal</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span><span class="c1"></span>
 <span class="kd">let</span> <span class="nx">deer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">animal</span><span class="p">()</span>
 <span class="c1">// animal 建立的 deer 可以直接呼叫 Object.prototype 上定義的 toString()
 </span><span class="c1"></span><span class="nx">deer</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="c1">// &#34;[object Object]&#34;
 </span><span class="c1">// deer 呼叫的 toString 實際上就是  Object.prototype.toString
-</span><span class="c1"></span><span class="nx">deer</span><span class="p">.</span><span class="nx">toString</span> <span class="o">===</span> <span class="nx">animal</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">toString</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">deer</span><span class="p">.</span><span class="nx">toString</span> <span class="o">===</span> <span class="nx">animal</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span><span class="p">.</span><span class="nx">toString</span> <span class="c1">// true
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="物件資源共用策略">物件資源共用策略</h2>
@@ -432,7 +428,7 @@
 <p>需要注意的是應避免擴充 Object.prototype 或其他 JavaScript 內建的原型（MDN 上歸類為 monkey patching），除非擴充內建原型的目的是 polyfill（使舊版的 JavaScript 引擎支持新功能）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -456,7 +452,7 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告一個構造函數
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告一個構造函數
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){}</span>
 
 <span class="c1">// 在原型上加入資源(可以是屬性或方法)
@@ -484,7 +480,7 @@
 <p>判斷屬性存在於物件或原型鏈上 Object.prototype.hasOwnProperty()</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -499,7 +495,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">(){}</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Foo</span><span class="p">(){}</span>
 <span class="c1">// 把 hello 註冊在原型上
 </span><span class="c1"></span><span class="nx">Foo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
@@ -518,7 +514,7 @@
 <p>JavsScript 中 函數的 this 指向呼叫函數的物件，因此物件呼叫原型上的函數時，原型上的函數內如果有關鍵字 this ，則會指向物件本身，而非函數所在的原型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -529,7 +525,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">function foo(){}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">function foo(){}
 foo.prototype.name = &#34;prototype&#34;
 foo.prototype.echo = function(){
     console.log(this.name)
@@ -545,25 +541,25 @@ bar.echo() // bar
 <h2 id="延伸原型鏈-objectcreate">延伸原型鏈 Object.create()</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">objProto</span> <span class="o">=</span> <span class="p">{}</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">objProto</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="c1">// 以 objProto 作為原型建立物件 createdObj 
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">createdObj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">objProto</span> <span class="p">)</span>
 <span class="c1">// 確認 createdObj 的原型是 objProto
-</span><span class="c1"></span><span class="nx">createdObj</span> <span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">objProto</span>  <span class="c1">// true
+</span><span class="c1"></span><span class="nx">createdObj</span> <span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nx">objProto</span>  <span class="c1">// true
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="設定物件原型-objectsetprototypeof">設定物件原型 Object.setPrototypeOf()</h2>
 <p>MDN 當中提到 Object.setPrototypeOf () 在各瀏覽器中的實作效能並不好，大量使用時應以 Object.create() 代替。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -580,21 +576,21 @@ bar.echo() // bar
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告兩個物件
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 宣告兩個物件
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;obj1&#34;</span> <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;obj2&#34;</span> <span class="p">}</span>
 
 <span class="c1">// 原型鏈中兩個物件都直接建立於 Object.prototype 之下
-</span><span class="c1"></span><span class="nx">obj1</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">//true
-</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">//true
+</span><span class="c1"></span><span class="nx">obj1</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">//true
+</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">//true
 </span><span class="c1"></span>
 <span class="c1">// 將 obj1 設定為 obj2 的原型
 </span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">obj2</span><span class="p">,</span> <span class="nx">obj1</span><span class="p">)</span>
-<span class="nx">obj2</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">obj1</span> <span class="c1">// true
+<span class="nx">obj2</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nx">obj1</span> <span class="c1">// true
 </span><span class="c1">// 此時 Object.prototype 不再是 obj2 的上層原型
-</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// false
+</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// false
 </span><span class="c1">// 這時候要透過 obj2 取得 Object.prototype 就需要再上溯一層
-</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span></code></pre></td></tr></table>
 </div>
 </div><h1 id="es6-物件語法糖-class">ES6 物件語法糖 class</h1>
@@ -602,7 +598,7 @@ bar.echo() // bar
 <h2 id="class-extends-constructor-super">class, extends, constructor, super</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -636,7 +632,7 @@ bar.echo() // bar
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">lastName</span><span class="p">;</span>
@@ -645,7 +641,7 @@ bar.echo() // bar
 <span class="c1">// Person 實際上是建構函數的名稱 
 </span><span class="c1"></span><span class="k">typeof</span> <span class="nx">Person</span> <span class="c1">// &#34;function&#34;
 </span><span class="c1">// Person 所指涉的原型，上層是 Object.prototype
-</span><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span><span class="c1"></span>
 <span class="kr">class</span> <span class="nx">Peter</span> <span class="kr">extends</span> <span class="nx">Person</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">lastName</span><span class="p">)</span> <span class="p">{</span>
@@ -663,18 +659,18 @@ bar.echo() // bar
 <span class="p">}</span>
 
 <span class="c1">// Peter 是另一個建構函數，所屬的物件以 Person.prototype 作為原型
-</span><span class="c1"></span><span class="nx">Peter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">Peter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span><span class="c1"></span>
 <span class="c1">// peter 接在 Peter.prototype 下
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">peter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Peter</span><span class="p">();</span>
-<span class="nx">square</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Square</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+<span class="nx">square</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span> <span class="o">===</span> <span class="nx">Square</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id="static">static</h2>
 <p>Static 語法把資源綁定到構造函數而非原型本身，因 static 資源此需透過構造函數名稱取得，語法糖把函數名稱視為類別名稱，就好比物件導向語言中的靜態資源需要透過類別名稱取得一般。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -693,7 +689,7 @@ bar.echo() // bar
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
     <span class="kr">static</span> <span class="nx">isMonkey</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">}</span>
@@ -701,8 +697,8 @@ bar.echo() // bar
 
 <span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">()</span>
 <span class="c1">// 靜態資源 isMonkey 在構造函數上，而非物件原型上
-</span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;isMonkey&#39;</span><span class="p">)</span> <span class="c1">// false
-</span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;isMonkey&#39;</span><span class="p">)</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;isMonkey&#39;</span><span class="p">)</span> <span class="c1">// false
+</span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="mi">__</span><span class="nx">proto__</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;isMonkey&#39;</span><span class="p">)</span> <span class="c1">// true
 </span><span class="c1"></span>
 <span class="c1">// 無法透過物件直接取用靜態資源
 </span><span class="c1"></span><span class="nx">p</span><span class="p">.</span><span class="nx">isMonkey</span><span class="p">()</span> 
@@ -802,7 +798,7 @@ bar.echo() // bar
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 <script type="application/javascript">
