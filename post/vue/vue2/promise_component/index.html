@@ -50,7 +50,7 @@
 <meta itemprop="name" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)">
 <meta itemprop="description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成"><meta itemprop="datePublished" content="2021-07-24T07:32:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-24T07:32:00+08:00" />
-<meta itemprop="wordCount" content="841">
+<meta itemprop="wordCount" content="837">
 <meta itemprop="keywords" content="Vue,Promise," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)"/>
 <meta name="twitter:description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成"/>
@@ -164,7 +164,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;xBtn&#34;</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;xBtn&#34;</span><span class="p">&gt;</span>Execute Test<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;xApp&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;modal&#34;</span> <span class="na">:style</span><span class="o">=</span><span class="s">&#34;{display: dialog?&#39;block&#39;:&#39;none&#39;}&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;modal-content&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;close&#34;</span><span class="p">&gt;</span>Test Modal<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
@@ -352,8 +352,8 @@
 </style>
 <div id="xApp" class="modal" :style="{display: dialog?'block':'none'}">
   <div class="modal-content">
-    <span class="close">測試 Modal</span>
-    <p>按鈕的值會包在 promise 中回傳</p>
+    <span class="close">Test Modal</span>
+    <p>The value selected will resolve by promise.</p>
     <button @click="choose(1)">1</button>
     <button @click="choose(2)">2</button>
   </div>
