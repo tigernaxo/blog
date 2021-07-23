@@ -9,14 +9,63 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/system/n_tier/</loc>
-    <lastmod>2021-05-17T23:20:00+08:00</lastmod>
+    <loc>https://blogger.tigernaxo.com/post/vue/vue2/promise_component/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blogger.tigernaxo.com/categories/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/promise/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/vue/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/categories/vue2/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/</loc>
+    <lastmod>2021-07-24T07:32:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/system/n_tier/</loc>
     <lastmod>2021-05-17T23:20:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -44,28 +93,7 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/</loc>
-    <lastmod>2021-05-17T23:20:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://blogger.tigernaxo.com/categories/system/</loc>
-    <lastmod>2021-05-17T23:20:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/</loc>
-    <lastmod>2021-05-17T23:20:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/</loc>
     <lastmod>2021-05-17T23:20:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
