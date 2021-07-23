@@ -26,7 +26,7 @@ Application: in Vue-router's component route guard , prompt checkbox before user
 <button id="xBtn">Execute Test</button>
 
 ```html
-<button id="xBtn">Test</button>
+<button id="xBtn">Execute Test</button>
 <div id="xApp" class="modal" :style="{display: dialog?'block':'none'}">
   <div class="modal-content">
     <span class="close">Test Modal</span>
@@ -141,8 +141,8 @@ document.getElementById('xBtn')
 
 <div id="xApp" class="modal" :style="{display: dialog?'block':'none'}">
   <div class="modal-content">
-    <span class="close">測試 Modal</span>
-    <p>按鈕的值會包在 promise 中回傳</p>
+    <span class="close">Test Modal</span>
+    <p>The value selected will resolve by promise.</p>
     <button @click="choose(1)">1</button>
     <button @click="choose(2)">2</button>
   </div>
