@@ -1,5 +1,5 @@
 ---
-title: "[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)"
+title: "[Vue] An Example of Dialog component that returns Promise"
 date: 2021-07-24T07:32:00+08:00
 lastmod: 2021-07-24T07:32:00+08:00
 draft: false
@@ -11,21 +11,15 @@ autoCollapseToc: true
 #contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
-用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。
-
 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value.
 
-原理：利用 watcher 和 Promise 達成效果。參考 [vue vm-watch api](https://vuejs.org/v2/api/#vm-watch)
-
 Principle: Use watcher and Promise to achieve the effect. reference [vue vm-watch api](https://vuejs.org/v2/api/#vm-watch)
-
-應用：Vue router 的 component route guard，在離開表單頁面前跳出使用者確認 dialog
 
 Application: in Vue-router's component route guard , prompt checkbox before user leaving the page view
 
 <button id="xBtn">Execute Test</button>
 
-# 程式碼 (Code)
+# Code
 
 ```html
 <button id="xBtn">Execute Test</button>
@@ -49,7 +43,6 @@ let dialog = new Vue({
   data:() => data,
   methods: {
    getConfirm() {
-     // 先清空 result (避免兩次選中一樣的值無法觸發 watcher)
      // if the result value not change will failing to trigger the watcher, so set result to null first
      this.result = null 
      // open dialog
@@ -57,25 +50,20 @@ let dialog = new Vue({
      return new Promise((resolve, reject) => {
        try {
          const watcher = this.$watch(
-           // 設置監視的對象為 result
            // configure watcher to watch result
            () => this.result ,
-           // 一旦 result 的值有改變，就 resolve promise，並啟動下一輪 watcher 
            // once result value change, resolve promist then start watcher again
            (newVal) => resolve(newVal) && watcher()
          )
        } catch (error) {
-         // 如果出錯就 reject promise
          // reject promise when error occur
          reject(error)
        }
      })
    },
    choose(value) {
-     // 為 result 設置值觸發 watcher 解開 promise
      // set result value to trigger watcher to resolve promise
      this.result = value 
-     // 關閉 dialog
      // close dialog
      this.dialog = false
    }
