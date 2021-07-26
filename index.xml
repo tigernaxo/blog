@@ -17,11 +17,20 @@
     </item>
     
     <item>
-      <title>[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)</title>
+      <title>[Vue] An Example of Dialog component that returns Promise</title>
       <link>https://blogger.tigernaxo.com/post/vue/vue2/promise_component/</link>
       <pubDate>Sat, 24 Jul 2021 07:32:00 +0800</pubDate>
       
       <guid>https://blogger.tigernaxo.com/post/vue/vue2/promise_component/</guid>
+      <description>用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 原理：利用 watcher 和 Promise 達成效果。參考 vue vm-watch api 應用：Vue router 的 component route guar</description>
+    </item>
+    
+    <item>
+      <title>[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)</title>
+      <link>https://blogger.tigernaxo.com/post/vue/vue2/promise_component_en/</link>
+      <pubDate>Sat, 24 Jul 2021 07:32:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/vue/vue2/promise_component_en/</guid>
       <description>用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成</description>
     </item>
     
