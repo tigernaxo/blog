@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise) - 世情如紙</title>
+  <title>[Vue] An Example of Dialog component that returns Promise - 世情如紙</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="tigernaxo" /><meta name="description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="tigernaxo" /><meta name="description" content="Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. Principle: Use watcher and Promise to achieve the effect. reference vue vm-watch api Application: in Vue-router&amp;rsquo;s component route guard , prompt checkbox before user leaving the page view Execute Test Code 1 2 3 4 5 6 7 8 9 &amp;lt;button id=&amp;#34;xBtn&amp;#34;&amp;gt;Execute Test&amp;lt;/button&amp;gt; &amp;lt;div id=&amp;#34;xApp&amp;#34; class=&amp;#34;modal&amp;#34; :style=&amp;#34;{display: dialog?&amp;#39;block&amp;#39;:&amp;#39;none&amp;#39;}&amp;#34;&amp;gt;" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,20 +40,20 @@
 <link rel="stylesheet" href="/css/peter.css">
 
 
-<meta property="og:title" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)" />
-<meta property="og:description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成" />
+<meta property="og:title" content="[Vue] An Example of Dialog component that returns Promise" />
+<meta property="og:description" content="Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. Principle: Use watcher and Promise to achieve the effect. reference vue vm-watch api Application: in Vue-router&rsquo;s component route guard , prompt checkbox before user leaving the page view Execute Test Code 1 2 3 4 5 6 7 8 9 &lt;button id=&#34;xBtn&#34;&gt;Execute Test&lt;/button&gt; &lt;div id=&#34;xApp&#34; class=&#34;modal&#34; :style=&#34;{display: dialog?&#39;block&#39;:&#39;none&#39;}&#34;&gt;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blogger.tigernaxo.com/post/vue/vue2/promise_component_en/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-07-24T07:32:00+08:00" />
 <meta property="article:modified_time" content="2021-07-24T07:32:00+08:00" />
 
-<meta itemprop="name" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)">
-<meta itemprop="description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成"><meta itemprop="datePublished" content="2021-07-24T07:32:00+08:00" />
+<meta itemprop="name" content="[Vue] An Example of Dialog component that returns Promise">
+<meta itemprop="description" content="Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. Principle: Use watcher and Promise to achieve the effect. reference vue vm-watch api Application: in Vue-router&rsquo;s component route guard , prompt checkbox before user leaving the page view Execute Test Code 1 2 3 4 5 6 7 8 9 &lt;button id=&#34;xBtn&#34;&gt;Execute Test&lt;/button&gt; &lt;div id=&#34;xApp&#34; class=&#34;modal&#34; :style=&#34;{display: dialog?&#39;block&#39;:&#39;none&#39;}&#34;&gt;"><meta itemprop="datePublished" content="2021-07-24T07:32:00+08:00" />
 <meta itemprop="dateModified" content="2021-07-24T07:32:00+08:00" />
-<meta itemprop="wordCount" content="841">
+<meta itemprop="wordCount" content="662">
 <meta itemprop="keywords" content="Vue,Promise," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)"/>
-<meta name="twitter:description" content="用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. 原理：利用 watcher 和 Promise 達成"/>
+<meta name="twitter:title" content="[Vue] An Example of Dialog component that returns Promise"/>
+<meta name="twitter:description" content="Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. Principle: Use watcher and Promise to achieve the effect. reference vue vm-watch api Application: in Vue-router&rsquo;s component route guard , prompt checkbox before user leaving the page view Execute Test Code 1 2 3 4 5 6 7 8 9 &lt;button id=&#34;xBtn&#34;&gt;Execute Test&lt;/button&gt; &lt;div id=&#34;xApp&#34; class=&#34;modal&#34; :style=&#34;{display: dialog?&#39;block&#39;:&#39;none&#39;}&#34;&gt;"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +126,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)</h1>
+      <h1 class="post-title">[Vue] An Example of Dialog component that returns Promise</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2021-07-24 </span>
@@ -142,20 +142,17 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#程式碼-code">程式碼 (Code)</a></li>
+    <li><a href="#code">Code</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。</p>
-<p>Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value.</p>
-<p>原理：利用 watcher 和 Promise 達成效果。參考 <a href="https://vuejs.org/v2/api/#vm-watch">vue vm-watch api</a></p>
+      <p>Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value.</p>
 <p>Principle: Use watcher and Promise to achieve the effect. reference <a href="https://vuejs.org/v2/api/#vm-watch">vue vm-watch api</a></p>
-<p>應用：Vue router 的 component route guard，在離開表單頁面前跳出使用者確認 dialog</p>
 <p>Application: in Vue-router&rsquo;s component route guard , prompt checkbox before user leaving the page view</p>
 <p><button id="xBtn">Execute Test</button></p>
-<h1 id="程式碼-code">程式碼 (Code)</h1>
+<h1 id="code">Code</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -222,12 +219,6 @@
 </span><span class="lnt">38
 </span><span class="lnt">39
 </span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -239,34 +230,28 @@
   <span class="nx">data</span><span class="o">:</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">data</span><span class="p">,</span>
   <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
    <span class="nx">getConfirm</span><span class="p">()</span> <span class="p">{</span>
-     <span class="c1">// 先清空 result (避免兩次選中一樣的值無法觸發 watcher)
-</span><span class="c1"></span>     <span class="c1">// if the result value not change will failing to trigger the watcher, so set result to null first
+     <span class="c1">// if the result value not change will failing to trigger the watcher, so set result to null first
 </span><span class="c1"></span>     <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="kc">null</span> 
      <span class="c1">// open dialog
 </span><span class="c1"></span>     <span class="k">this</span><span class="p">.</span><span class="nx">dialog</span> <span class="o">=</span> <span class="kc">true</span> 
      <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
        <span class="k">try</span> <span class="p">{</span>
          <span class="kr">const</span> <span class="nx">watcher</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$watch</span><span class="p">(</span>
-           <span class="c1">// 設置監視的對象為 result
-</span><span class="c1"></span>           <span class="c1">// configure watcher to watch result
+           <span class="c1">// configure watcher to watch result
 </span><span class="c1"></span>           <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="p">,</span>
-           <span class="c1">// 一旦 result 的值有改變，就 resolve promise，並啟動下一輪 watcher 
-</span><span class="c1"></span>           <span class="c1">// once result value change, resolve promist then start watcher again
+           <span class="c1">// once result value change, resolve promist then start watcher again
 </span><span class="c1"></span>           <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">watcher</span><span class="p">()</span>
          <span class="p">)</span>
        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-         <span class="c1">// 如果出錯就 reject promise
-</span><span class="c1"></span>         <span class="c1">// reject promise when error occur
+         <span class="c1">// reject promise when error occur
 </span><span class="c1"></span>         <span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
        <span class="p">}</span>
      <span class="p">})</span>
    <span class="p">},</span>
    <span class="nx">choose</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-     <span class="c1">// 為 result 設置值觸發 watcher 解開 promise
-</span><span class="c1"></span>     <span class="c1">// set result value to trigger watcher to resolve promise
+     <span class="c1">// set result value to trigger watcher to resolve promise
 </span><span class="c1"></span>     <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">value</span> 
-     <span class="c1">// 關閉 dialog
-</span><span class="c1"></span>     <span class="c1">// close dialog
+     <span class="c1">// close dialog
 </span><span class="c1"></span>     <span class="k">this</span><span class="p">.</span><span class="nx">dialog</span> <span class="o">=</span> <span class="kc">false</span>
    <span class="p">}</span>
   <span class="p">}</span>
