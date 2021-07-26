@@ -1,5 +1,5 @@
 ---
-title: "[Vue] 回傳 Promise 的 Dialog 元件範例(An Example of Dialog component that returns Promise)"
+title: "[Vue] An Example of Dialog component that returns Promise"
 date: 2021-07-24T07:32:00+08:00
 lastmod: 2021-07-24T07:32:00+08:00
 draft: false
