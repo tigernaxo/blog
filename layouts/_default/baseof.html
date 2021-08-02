@@ -11,6 +11,8 @@
       {{ if .IsPage }}{{ .Title }} - {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
     {{- end -}}
   </title>
+  <!-- google adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3218529224055685" crossorigin="anonymous"></script>
   {{ partial "head.html" . }}
 </head>
 <body>
@@ -30,6 +32,9 @@
      data-ad-format="fluid"
      data-ad-client="ca-pub-3218529224055685"
      data-ad-slot="6458976577"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
         <div id="content" class="content">
           {{ block "content" . }}{{ end }}
         </div>
@@ -39,6 +44,9 @@
      data-ad-format="fluid"
      data-ad-client="ca-pub-3218529224055685"
      data-ad-slot="9801139998"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
         {{ partial "comments.html" . }}
       </div>
     </main>
