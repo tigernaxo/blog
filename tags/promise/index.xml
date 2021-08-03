@@ -8,21 +8,12 @@
     <language>zh-tw</language>
     <lastBuildDate>Sat, 24 Jul 2021 07:32:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/promise/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Vue] An Example of Dialog component that returns Promise</title>
-      <link>https://blogger.tigernaxo.com/post/vue/vue2/promise_component_en/</link>
-      <pubDate>Sat, 24 Jul 2021 07:32:00 +0800</pubDate>
-      
-      <guid>https://blogger.tigernaxo.com/post/vue/vue2/promise_component_en/</guid>
-      <description>Usage: call getConfirm() with the outter vue component, due to getConfirm return a Promise, you can perform operations such as await value. Principle: Use watcher and Promise to achieve the effect. reference vue vm-watch api Application: in Vue-router&amp;rsquo;s component route guard , prompt checkbox before user leaving the page view Execute Test Code 1 2 3 4 5 6 7 8 9 &amp;lt;button id=&amp;#34;xBtn&amp;#34;&amp;gt;Execute Test&amp;lt;/button&amp;gt; &amp;lt;div id=&amp;#34;xApp&amp;#34; class=&amp;#34;modal&amp;#34; :style=&amp;#34;{display: dialog?&amp;#39;block&amp;#39;:&amp;#39;none&amp;#39;}&amp;#34;&amp;gt;</description>
-    </item>
-    
-    <item>
-      <title>[Vue] 回傳 Promise 的Dialog 元件範例</title>
+      <title>[Vue] 設計一個可回傳 Promise 的 Dialog 元件方法</title>
       <link>https://blogger.tigernaxo.com/post/vue/vue2/promise_component/</link>
       <pubDate>Sat, 24 Jul 2021 07:32:00 +0800</pubDate>
       
       <guid>https://blogger.tigernaxo.com/post/vue/vue2/promise_component/</guid>
-      <description>用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。 原理：利用 watcher 和 Promise 達成效果。參考 vue vm-watch api 應用：Vue router 的 component route guar</description>
+      <description>有用過 sweetalert2 的話，應該會喜歡可以同步等待對話框回傳值的方式， 這裡做一個 Vue2 元件，呼叫該元件的方法會彈出對話框等待使用者輸入，並且回傳 Promise</description>
     </item>
     
   </channel>
