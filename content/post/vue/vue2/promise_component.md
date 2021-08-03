@@ -1,7 +1,7 @@
 ---
-title: "[Vue] 回傳 Promise 的Dialog 元件範例"
+title: "[Vue] 設計一個可回傳 Promise 的 Dialog 元件方法"
 date: 2021-07-24T07:32:00+08:00
-lastmod: 2021-07-24T07:32:00+08:00
+lastmod: 2021-08-03T17:23:00+08:00
 draft: false
 tags: ["Vue", "Promise"]
 categories: ["Vue2"]
@@ -10,12 +10,19 @@ author: "tigernaxo"
 autoCollapseToc: true
 #contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+有用過 [sweetalert2](https://sweetalert2.github.io/) 的話，應該會喜歡可以同步等待對話框回傳值的方式，
+這裡做一個 Vue2 元件，呼叫該元件的方法會彈出對話框等待使用者輸入，並且回傳 Promise，
+如此一來就能夠在同一個函式當中處理使用者輸入值。
 
-用法：以外部的元件呼叫視窗元件 getConfirm() 方法，因為 getConfirm 為 Promise 所以可以進行 await 取值等等操作 。
+Dialog 元件設計原理:
+  1. 元件方法 GetConfirm() 顯示 Dialog 元件並回傳一個 Promise，。
+  2. 設置[watcher](https://vuejs.org/v2/api/#vm-watch)讓元件取得使用者輸入後 resolve promise 
 
-原理：利用 watcher 和 Promise 達成效果。參考 [vue vm-watch api](https://vuejs.org/v2/api/#vm-watch)
+得利於上述元件的設計，實際上的效益是將複雜度封裝到子元件裡面(watcher移動到元件內)，
+如此不需在上層元件撰寫使用者輸入取值的監視邏輯，
+讓我們得以在上層元件直接 await GetConfirm 同步取得值進行操作。
 
-應用：Vue router 的 component route guard，在離開表單頁面前跳出使用者確認 dialog
+這個概念的用途非常廣，例如 Vue router 的 component route guard，在離開表單頁面前跳出使用者確認的 Dialog。
 
 <button id="xBtn">執行測試</button>
 
