@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>[.NET Core] .NET Core 中對 JsonElement 的操作 - 世情如紙</title>
+  <title>[.NET Core] JsonDocument 與 DataTable 的互相轉換 - 世情如紙</title>
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3218529224055685" crossorigin="anonymous"></script>
   <meta name="renderer" content="webkit" />
@@ -18,7 +18,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="tigernaxo" /><meta name="description" content=".NET Core 中對 JsonElement 的操作不像以往 Newtonsoft.Json 一樣直覺， 需要自己建立一個方便的讀寫方法，原理是寫到另一個 JsonDocument， 如果要移除某個屬性也是一樣的道" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="tigernaxo" /><meta name="description" content="在 LINQ 當道的時代雖然 DataTable 比較少用了，但還是難免會碰到， 下面紀錄如何在.NET Core 裡面把 DataTable 的資料轉成 JsonElement， 1 2 3 4 5 6 7 8 9 10 11 12" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -28,7 +28,7 @@
 <meta name="generator" content="Hugo 0.86.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/json/json_manipulate/" />
+<link rel="canonical" href="https://blogger.tigernaxo.com/post/dotnetcore31/json/json_datatable/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,20 +42,20 @@
 <link rel="stylesheet" href="/css/peter.css">
 
 
-<meta property="og:title" content="[.NET Core] .NET Core 中對 JsonElement 的操作" />
-<meta property="og:description" content=".NET Core 中對 JsonElement 的操作不像以往 Newtonsoft.Json 一樣直覺， 需要自己建立一個方便的讀寫方法，原理是寫到另一個 JsonDocument， 如果要移除某個屬性也是一樣的道" />
+<meta property="og:title" content="[.NET Core] JsonDocument 與 DataTable 的互相轉換" />
+<meta property="og:description" content="在 LINQ 當道的時代雖然 DataTable 比較少用了，但還是難免會碰到， 下面紀錄如何在.NET Core 裡面把 DataTable 的資料轉成 JsonElement， 1 2 3 4 5 6 7 8 9 10 11 12" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/json/json_manipulate/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-08-06T14:37:00+08:00" />
-<meta property="article:modified_time" content="2021-08-06T14:37:00+08:00" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/dotnetcore31/json/json_datatable/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-08-06T14:56:00+08:00" />
+<meta property="article:modified_time" content="2021-08-06T14:56:00+08:00" />
 
-<meta itemprop="name" content="[.NET Core] .NET Core 中對 JsonElement 的操作">
-<meta itemprop="description" content=".NET Core 中對 JsonElement 的操作不像以往 Newtonsoft.Json 一樣直覺， 需要自己建立一個方便的讀寫方法，原理是寫到另一個 JsonDocument， 如果要移除某個屬性也是一樣的道"><meta itemprop="datePublished" content="2021-08-06T14:37:00+08:00" />
-<meta itemprop="dateModified" content="2021-08-06T14:37:00+08:00" />
-<meta itemprop="wordCount" content="292">
-<meta itemprop="keywords" content="dotNetCore,JsonDocument,Json," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[.NET Core] .NET Core 中對 JsonElement 的操作"/>
-<meta name="twitter:description" content=".NET Core 中對 JsonElement 的操作不像以往 Newtonsoft.Json 一樣直覺， 需要自己建立一個方便的讀寫方法，原理是寫到另一個 JsonDocument， 如果要移除某個屬性也是一樣的道"/>
+<meta itemprop="name" content="[.NET Core] JsonDocument 與 DataTable 的互相轉換">
+<meta itemprop="description" content="在 LINQ 當道的時代雖然 DataTable 比較少用了，但還是難免會碰到， 下面紀錄如何在.NET Core 裡面把 DataTable 的資料轉成 JsonElement， 1 2 3 4 5 6 7 8 9 10 11 12"><meta itemprop="datePublished" content="2021-08-06T14:56:00+08:00" />
+<meta itemprop="dateModified" content="2021-08-06T14:56:00+08:00" />
+<meta itemprop="wordCount" content="267">
+<meta itemprop="keywords" content="JsonDocument,DataTable,dotNetCore," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[.NET Core] JsonDocument 與 DataTable 的互相轉換"/>
+<meta name="twitter:description" content="在 LINQ 當道的時代雖然 DataTable 比較少用了，但還是難免會碰到， 下面紀錄如何在.NET Core 裡面把 DataTable 的資料轉成 JsonElement， 1 2 3 4 5 6 7 8 9 10 11 12"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -131,7 +131,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">[.NET Core] .NET Core 中對 JsonElement 的操作</h1>
+      <h1 class="post-title">[.NET Core] JsonDocument 與 DataTable 的互相轉換</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2021-08-06 </span>
@@ -149,10 +149,8 @@
   </div>
 </div>
     <div class="post-content">
-      <p>.NET Core 中對 JsonElement 的操作不像以往 Newtonsoft.Json 一樣直覺，
-需要自己建立一個方便的讀寫方法，原理是寫到另一個 JsonDocument，
-如果要移除某個屬性也是一樣的道理，變成從從屬性名稱判斷是不是要寫到新的 JsonDocument，
-下面是添加一個屬性的範例。</p>
+      <p>在 LINQ 當道的時代雖然 DataTable 比較少用了，但還是難免會碰到，
+下面紀錄如何在.NET Core 裡面把 DataTable 的資料轉成 JsonElement，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -180,52 +178,52 @@
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">JsonExt</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Add</span><span class="p">(</span><span class="k">ref</span> <span class="k">this</span> <span class="n">JsonElement</span> <span class="n">source</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">string</span> <span class="k">value</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">ms</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
-		<span class="p">{</span>
-			<span class="k">using</span> <span class="p">(</span><span class="n">Utf8JsonWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Utf8JsonWriter</span><span class="p">(</span><span class="n">ms</span><span class="p">))</span>
-			<span class="p">{</span>
-				<span class="k">using</span> <span class="p">(</span><span class="n">JsonDocument</span> <span class="n">json</span> <span class="p">=</span> <span class="n">JsonDocument</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">))</span>
-				<span class="p">{</span>
-					<span class="n">writer</span><span class="p">.</span><span class="n">WriteStartObject</span><span class="p">();</span> <span class="c1">// 開始
-</span><span class="c1"></span>					<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">el</span> <span class="k">in</span> <span class="n">source</span><span class="p">.</span><span class="n">EnumerateObject</span><span class="p">())</span>
-						<span class="n">el</span><span class="p">.</span><span class="n">WriteTo</span><span class="p">(</span><span class="n">writer</span><span class="p">);</span>
-					<span class="c1">// 寫入新屬性
-</span><span class="c1"></span>					<span class="n">writer</span><span class="p">.</span><span class="n">WritePropertyName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-					<span class="n">writer</span><span class="p">.</span><span class="n">WriteStringValue</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
-					<span class="n">writer</span><span class="p">.</span><span class="n">WriteEndObject</span><span class="p">();</span> <span class="c1">// 結束
-</span><span class="c1"></span>				<span class="p">}</span>
-			<span class="p">}</span>
-			<span class="kt">var</span> <span class="n">resultStr</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">ms</span><span class="p">.</span><span class="n">ToArray</span><span class="p">());</span>
-			<span class="kt">var</span> <span class="n">resultEl</span> <span class="p">=</span> <span class="n">JsonDocument</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">resultStr</span><span class="p">).</span><span class="n">RootElement</span><span class="p">;</span>
-			<span class="n">source</span> <span class="p">=</span> <span class="n">resultEl</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="n">JsonElement</span> <span class="n">jsonFromDataTable</span><span class="p">(</span><span class="n">DataTable</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">stream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">writer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Utf8JsonWriter</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// 起始一個裝 JElement 的陣列
+</span><span class="c1"></span>            <span class="n">writer</span><span class="p">.</span><span class="n">WriteStartArray</span><span class="p">();</span> 
+            <span class="k">foreach</span> <span class="p">(</span><span class="n">DataRow</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 開始寫入每個 Row 各自對應的 JElement 寫入程序
+</span><span class="c1"></span>                <span class="n">writer</span><span class="p">.</span><span class="n">WriteStartObject</span><span class="p">();</span> 
+                <span class="k">foreach</span> <span class="p">(</span><span class="n">DataColumn</span> <span class="n">column</span> <span class="k">in</span> <span class="n">row</span><span class="p">.</span><span class="n">Table</span><span class="p">.</span><span class="n">Columns</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 先寫入屬性名稱
+</span><span class="c1"></span>                    <span class="n">writer</span><span class="p">.</span><span class="n">WritePropertyName</span><span class="p">(</span><span class="n">column</span><span class="p">.</span><span class="n">ColumnName</span><span class="p">);</span>
+                    <span class="c1">// 判斷欄位值是否為 DBNull 來寫入值或 Null
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">column</span><span class="p">.</span><span class="n">ColumnName</span><span class="p">]</span> <span class="p">==</span> <span class="n">DBNull</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
+                        <span class="n">writer</span><span class="p">.</span><span class="n">WriteNullValue</span><span class="p">();</span>
+                    <span class="k">else</span>
+                        <span class="n">JsonSerializer</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="n">column</span><span class="p">]);</span>
+                <span class="p">}</span>
+                <span class="c1">// 結束一列資料對應的 JElement 寫入程序
+</span><span class="c1"></span>                <span class="n">writer</span><span class="p">.</span><span class="n">WriteEndObject</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="c1">// 結束整個陣列的寫入
+</span><span class="c1"></span>            <span class="n">writer</span><span class="p">.</span><span class="n">WriteEndArray</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="c1">// 最後 Stream 讀取的資料會寫成 JsonDocument 的 RootElement
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">JsonDocument</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span> <span class="n">stream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">()</span> <span class="p">).</span><span class="n">RootElement</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>通常我們會解析從其他 api 來的 json 字串，然後再進行一些操作：</p>
+</div><p>使用方式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">// 解析一個 json string ()，拿到 JsonDocument
-</span><span class="c1"></span><span class="kt">var</span> <span class="n">jo</span> <span class="p">=</span> <span class="n">JsonDocument</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">)</span> 
-<span class="c1">// 從 RootElement 屬性拿到解析出的 JsonElement 
-</span><span class="c1"></span><span class="n">JsonElement</span> <span class="n">je</span> <span class="p">=</span> <span class="n">jo</span><span class="p">.</span><span class="n">RootElement</span><span class="p">;</span>
-<span class="c1">// 對 JsonElement 添加一對 key-value &#34;hello&#34;:&#34;word&#34;
-</span><span class="c1"></span><span class="n">je</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">,</span><span class="s">&#34;word&#34;</span><span class="p">);</span> 
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="n">DataTable</span> <span class="n">dt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataTable</span><span class="p">();</span>
+<span class="c1">// 下略對 dt 一連串操作
+</span><span class="c1">// 直接把 DataTable 轉換成 JsonElement
+</span><span class="c1"></span><span class="n">JsonElement</span> <span class="n">je</span> <span class="p">=</span> <span class="n">jsonFromDataTable</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -248,18 +246,14 @@
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/dotnetcore/">dotNetCore</a>
           <a href="/tags/jsondocument/">JsonDocument</a>
-          <a href="/tags/json/">Json</a>
+          <a href="/tags/datatable/">DataTable</a>
+          <a href="/tags/dotnetcore/">dotNetCore</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/dotnetcore31/json/json_datatable/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">[.NET Core] JsonDocument 與 DataTable 的互相轉換</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/vue/vue2/promise_component/">
-            <span class="next-text nav-default">[Vue] 設計一個可回傳 Promise 的 Dialog 元件方法</span>
+        
+        <a class="next" href="/post/dotnetcore31/json/json_manipulate/">
+            <span class="next-text nav-default">[.NET Core] .NET Core 中對 JsonElement 的操作</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
