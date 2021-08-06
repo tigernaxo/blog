@@ -2,12 +2,12 @@
 title: "[.NET Core] JsonDocument 與 DataTable 的互相轉換"
 date: 2021-08-06T14:56:00+08:00
 lastmod: 2021-08-06T14:56:00+08:00
-draft: true
-tags: ["Host", "dotNetCore"]
+draft: false
+tags: ["JsonDocument", "DataTable", "dotNetCore"]
 categories: ["NET Core 3.1"]
 author: "tigernaxo"
 
-autoCollapseToc: true
+autoCollapseToc: false
 ---
 在 LINQ 當道的時代雖然 DataTable 比較少用了，但還是難免會碰到，
 下面紀錄如何在.NET Core 裡面把 DataTable 的資料轉成 JsonElement， 

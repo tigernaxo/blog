@@ -44,8 +44,8 @@ public static class JsonExt
 ```c#
 // 解析一個 json string ()，拿到 JsonDocument
 var jo = JsonDocument.Parse("{}") 
-// 從 RootElement 屬性拿到解析出的 JElement 
-JElement je = jo.RootElement;
-// 對 JElement 添加一對 key-value "hello":"word"
+// 從 RootElement 屬性拿到解析出的 JsonElement 
+JsonElement je = jo.RootElement;
+// 對 JsonElement 添加一對 key-value "hello":"word"
 je.Add("hello","word"); 
 ```
