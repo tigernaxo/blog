@@ -6,7 +6,16 @@
     <description>Recent content in NET Core 3.1 on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 30 Dec 2020 23:24:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/categories/net-core-3.1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Aug 2021 14:37:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/categories/net-core-3.1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[.NET Core] .NET Core 中對 JsonElement 的操作</title>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/json/json_manipulate/</link>
+      <pubDate>Fri, 06 Aug 2021 14:37:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/json/json_manipulate/</guid>
+      <description>.NET Core 中對 JsonElement 的操作不像以往 Newtonsoft.Json 一樣直覺， 需要自己建立一個方便的讀寫方法，原理是寫到另一個 JsonDocument， 如果要移除某個屬性也是一樣的道</description>
+    </item>
+    
     <item>
       <title>[.NET Core] ASP .NET Core 3.1 驗證與授權(三)-Cookie 驗證實例</title>
       <link>https://blogger.tigernaxo.com/post/dotnetcore31/auth/auth_guild_3/</link>
