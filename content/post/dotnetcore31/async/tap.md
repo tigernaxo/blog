@@ -4,7 +4,7 @@ date: 2021-03-13T00:07:00+08:00
 lastmod: 2021-03-13T00:07:00+08:00
 draft: true
 tags: ["Task", "TAP", "non-blocking", "Asynchronous" ]
-categories: [".NET Core"]
+categories: ["NET Core 3.1"]
 author: "tigernaxo"
 
 autoCollapseToc: true
