@@ -9,14 +9,77 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/dotnetcore31/json/json_datatable/</loc>
-    <lastmod>2021-08-06T14:56:00+08:00</lastmod>
+    <loc>https://blogger.tigernaxo.com/tags/.net-core-3.1/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/dotnetcore31/deploy/linux_nginx/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blogger.tigernaxo.com/categories/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/linux/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/categories/net-core-3.1/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/nginx/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/ubuntu/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/</loc>
+    <lastmod>2021-08-11T16:48:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/dotnetcore31/json/json_datatable/</loc>
     <lastmod>2021-08-06T14:56:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -38,34 +101,6 @@
   
   <url>
     <loc>https://blogger.tigernaxo.com/tags/jsondocument/</loc>
-    <lastmod>2021-08-06T14:56:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/categories/net-core-3.1/</loc>
-    <lastmod>2021-08-06T14:56:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/post/</loc>
-    <lastmod>2021-08-06T14:56:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/</loc>
-    <lastmod>2021-08-06T14:56:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/</loc>
     <lastmod>2021-08-06T14:56:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -184,13 +219,6 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/categories/.net-core/</loc>
-    <lastmod>2021-03-17T03:32:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://blogger.tigernaxo.com/post/dotnetcore31/async/async_controller/</loc>
     <lastmod>2021-03-17T03:32:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -234,13 +262,6 @@
   
   <url>
     <loc>https://blogger.tigernaxo.com/tags/google-drive/</loc>
-    <lastmod>2021-01-29T23:46:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/linux/</loc>
     <lastmod>2021-01-29T23:46:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -360,13 +381,6 @@
   
   <url>
     <loc>https://blogger.tigernaxo.com/post/tools/vim/plugin_ycm/</loc>
-    <lastmod>2020-11-18T23:14:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/ubuntu/</loc>
     <lastmod>2020-11-18T23:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
