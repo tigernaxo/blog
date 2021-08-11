@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 11 Aug 2021 16:48:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[.NET Core] 在 Ubuntu 20.04 上佈屬 .NET Core 3.1 (使用 Nginx 反向代理)</title>
-      <link>https://blogger.tigernaxo.com/post/dotnetcore31/deploy/linux_nginx/</link>
+      <link>https://blogger.tigernaxo.com/post/dotnetcore31/deploy/ubuntu2004_nginx/</link>
       <pubDate>Wed, 11 Aug 2021 16:48:00 +0800</pubDate>
       
-      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/deploy/linux_nginx/</guid>
+      <guid>https://blogger.tigernaxo.com/post/dotnetcore31/deploy/ubuntu2004_nginx/</guid>
       <description>設置 Ubuntu 安裝 .NET Core Runtime 1 2 3 4 5 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb sudo dpkg -i packages-microsoft-prod.deb sudo apt update sudo apt install apt-transport-https sudo apt install dotnet-runtime-3.1 安裝 Nginx 新增套件來源，新增檔案 /etc/apt/sources.list.d/nginx.list 1 2 3 #/etc/apt/sources.list.d/nginx.list. deb https://nginx.org/packages/ubuntu/ focal nginx deb-src https://nginx.org/packages/ubuntu/ focal nginx 安裝 1 2 sudo apt update sudo apt install nginx -y 啟</description>
     </item>
     
