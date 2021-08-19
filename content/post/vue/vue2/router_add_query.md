@@ -20,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
   })
 })
 ```
-結果卻跳出 `Maximum call stack size exceeded` 的錯誤，判斷程式出現無窮迴圈，：
+結果卻跳出 `Maximum call stack size exceeded` 的錯誤，判斷程式出現無窮迴圈：
 ```
 runtime.js?96cf:285 Uncaught (in promise) RangeError: Maximum call stack size exceeded
 ```
