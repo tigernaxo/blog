@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[Vue] Vue Router 使用 Navigation Guard 加入查詢參數 - 世情如紙</title>
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3218529224055685" crossorigin="anonymous"></script>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="tigernaxo" /><meta name="description" content="工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&amp;gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.86.0 with theme even" />
+
+
+<link rel="canonical" href="https://blogger.tigernaxo.com/post/vue/vue2/router_add_query/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.7396874585fdfc06299136a30095f9cf3555527c842521c6641c0166e66e369d.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/peter.css">
+
+
+<meta property="og:title" content="[Vue] Vue Router 使用 Navigation Guard 加入查詢參數" />
+<meta property="og:description" content="工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogger.tigernaxo.com/post/vue/vue2/router_add_query/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-08-19T17:20:00+08:00" />
+<meta property="article:modified_time" content="2021-08-19T17:20:00+08:00" />
+
+<meta itemprop="name" content="[Vue] Vue Router 使用 Navigation Guard 加入查詢參數">
+<meta itemprop="description" content="工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程"><meta itemprop="datePublished" content="2021-08-19T17:20:00+08:00" />
+<meta itemprop="dateModified" content="2021-08-19T17:20:00+08:00" />
+<meta itemprop="wordCount" content="622">
+<meta itemprop="keywords" content="Vue,Vue Router,Navigation Guard," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Vue] Vue Router 使用 Navigation Guard 加入查詢參數"/>
+<meta name="twitter:description" content="工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Naxo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Naxo</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3218529224055685"
+     data-ad-slot="6458976577"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Vue] Vue Router 使用 Navigation Guard 加入查詢參數</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-08-19 </span>
+        <div class="post-category">
+            <a href="/categories/vue2/"> Vue2 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目錄</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#程式碼">程式碼：</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>工作上需要把每一個路由都加上同一個 query string
+第一直覺就是直接寫成這樣：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">router</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">next</span><span class="p">({</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">,</span> 
+    <span class="nx">query</span><span class="o">:</span> <span class="p">{...</span><span class="nx">to</span><span class="p">.</span><span class="nx">queryl</span> <span class="p">,</span><span class="nx">token</span><span class="o">:</span> <span class="nx">tokenStr</span><span class="p">}</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>結果卻跳出 <code>Maximum call stack size exceeded</code> 的錯誤，判斷程式出現無窮迴圈，：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">runtime.js?96cf:285 Uncaught (in promise) RangeError: Maximum call stack size exceeded
+</code></pre></td></tr></table>
+</div>
+</div><p>第一個反應是傻眼貓咪，為什麼 <code>next()</code> 不傳入參數的時候不會出現無窮迴圈，但塞進參數就會，
+難道說 <code>next()</code> 在傳入參數與不傳入參數的行為並不相同！！
+因此去翻閱官網對 <code>next()</code> 的說明：</p>
+<blockquote>
+<p>next: Function: <strong>this function must be called to resolve the hook.</strong> The action depends on the arguments provided to next:</p>
+<p><strong>next(): move on to the next hook in the pipeline.</strong> If no hooks are left, the navigation is confirmed.</p>
+<p>&hellip; 中略</p>
+<p><strong>next('/') or next({ path: &lsquo;/&rsquo; })</strong>: <strong>redirect</strong> to a different location. <strong>The current navigation will be aborted and a new one will be started.</strong> You can pass any location object to next, which allows you to specify options like replace: true, name: &lsquo;home&rsquo; and any option used in router-link&rsquo;s to prop or router.push</p>
+<p>&hellip;下略</p>
+</blockquote>
+<ul>
+<li><code>next()</code> 不帶參數：會直接解開(resolve) Hook 使 navigation 往下繼續，
+因此總共只會進入 Navigation Guard 1次；</li>
+<li><code>next('/')</code> 或 <code>next({...})</code>，會放棄該次 navigation 進行重新導向(redirect)，
+而不是用參數繼續同一個 navigation，因此會再次進入 Navigation Guard。</li>
+</ul>
+<p><strong>=&gt;重要：<code>next('/')</code> 或 <code>next({...})</code> 不會解開 beforeEach hook！！
+重新導向後不帶參數的 next() 才繼續解開下一次的 beforeEach</strong>，
+因此如果再次進入 Navigation Guard 後又呼叫同一個帶設定參數的 <code>next({...})</code> 就會造成無窮迴圈了。</p>
+<p>解決方法：
+在給予參數的時候寫入判斷，如果參數沒有就加上參數重新 navigation；
+如果有參數就呼叫 <code>next()</code> 解開 hook 完成該次 navigation，
+因為加上參數重新導向後就可以呼叫 <code>next()</code>，所以不會出現無窮迴圈：</p>
+<h1 id="程式碼">程式碼：</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">router</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">to</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">next</span><span class="p">({</span> <span class="nx">path</span><span class="o">:</span> <span class="nx">to</span><span class="p">.</span><span class="nx">path</span><span class="p">,</span> <span class="nx">query</span><span class="o">:</span> <span class="p">{</span> <span class="nx">key</span><span class="o">:</span> <span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">token</span> <span class="p">}</span> <span class="p">})</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">next</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="reference">Reference</h1>
+<p><a href="https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards">Vue-Router navigation-guards</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">tigernaxo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-08-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vue/">Vue</a>
+          <a href="/tags/vue-router/">Vue Router</a>
+          <a href="/tags/navigation-guard/">Navigation Guard</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/dotnetcore31/deploy/ubuntu2004_nginx/">
+            <span class="next-text nav-default">[.NET Core] 在 Ubuntu 20.04 上佈屬 .NET Core 3.1 (使用 Nginx 反向代理)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3218529224055685"
+     data-ad-slot="9801139998"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:tigernaxo.co.cc@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/%E8%AD%BD%E6%99%9F-%E9%99%B3-41464a132/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/tigernaxo" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogger.tigernaxo.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由靜態頁面產生器 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>tigernaxo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-169120579-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3218529224055685"
+     data-ad-slot="8466725642"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+</body>
+</html>

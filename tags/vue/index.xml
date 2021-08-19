@@ -6,7 +6,16 @@
     <description>Recent content in Vue on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 24 Jul 2021 07:32:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Aug 2021 17:20:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Vue] Vue Router 使用 Navigation Guard 加入查詢參數</title>
+      <link>https://blogger.tigernaxo.com/post/vue/vue2/router_add_query/</link>
+      <pubDate>Thu, 19 Aug 2021 17:20:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/vue/vue2/router_add_query/</guid>
+      <description>工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&amp;gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程</description>
+    </item>
+    
     <item>
       <title>[Vue] 設計一個可回傳 Promise 的 Dialog 元件方法</title>
       <link>https://blogger.tigernaxo.com/post/vue/vue2/promise_component/</link>
