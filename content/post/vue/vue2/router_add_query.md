@@ -39,13 +39,13 @@ runtime.js?96cf:285 Uncaught (in promise) RangeError: Maximum call stack size ex
 
 
  - `next()` 不帶參數：會直接解開(resolve) Hook 使 navigation 往下繼續，
-因此總共只會進入 Route Guard 1次；
+因此總共只會進入 Navigation Guard 1次；
  - `next('/')` 或 `next({...})`，會放棄該次 navigation 進行重新導向(redirect)，
-而不是用參數繼續同一個 navigation，因此會再次進入 Route Guard。
+而不是用參數繼續同一個 navigation，因此會再次進入 Navigation Guard。
 
 **=>重要：`next('/')` 或 `next({...})` 不會解開 beforeEach hook！！
 重新導向後不帶參數的 next() 才繼續解開下一次的 beforeEach**，
-因此如果再次進入 Route Guard 後又呼叫同一個帶設定參數的 `next({...})` 就會造成無窮迴圈了。
+因此如果再次進入 Navigation Guard 後又呼叫同一個帶設定參數的 `next({...})` 就會造成無窮迴圈了。
 
 解決方法：
 在給予參數的時候寫入判斷，如果參數沒有就加上參數重新 navigation；
