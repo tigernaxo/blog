@@ -52,7 +52,7 @@
 <meta itemprop="name" content="[Vue] Vue Router 使用 Navigation Guard 加入查詢參數">
 <meta itemprop="description" content="工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程"><meta itemprop="datePublished" content="2021-08-19T17:20:00+08:00" />
 <meta itemprop="dateModified" content="2021-08-19T17:20:00+08:00" />
-<meta itemprop="wordCount" content="622">
+<meta itemprop="wordCount" content="621">
 <meta itemprop="keywords" content="Vue,Vue Router,Navigation Guard," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Vue] Vue Router 使用 Navigation Guard 加入查詢參數"/>
 <meta name="twitter:description" content="工作上需要把每一個路由都加上同一個 query string 第一直覺就是直接寫成這樣： 1 2 3 4 5 6 router.beforeEach(async (to, from, next) =&gt; { next({ path: path, query: {...to.queryl ,token: tokenStr} }) }) 結果卻跳出 Maximum call stack size exceeded 的錯誤，判斷程"/>
@@ -174,7 +174,7 @@
 <span class="p">})</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>結果卻跳出 <code>Maximum call stack size exceeded</code> 的錯誤，判斷程式出現無窮迴圈，：</p>
+</div><p>結果卻跳出 <code>Maximum call stack size exceeded</code> 的錯誤，判斷程式出現無窮迴圈：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
