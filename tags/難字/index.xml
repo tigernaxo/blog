@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>難字 on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/tags/%E9%9B%A3%E5%AD%97/</link>
+    <description>Recent content in 難字 on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 24 Aug 2021 10:07:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/%E9%9B%A3%E5%AD%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[WebTech] 把電腦的難字造字檔用 FontForge 轉為字型放到網頁上使用</title>
+      <link>https://blogger.tigernaxo.com/post/webtech/eudc/</link>
+      <pubDate>Tue, 24 Aug 2021 10:07:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/webtech/eudc/</guid>
+      <description>Web 在顯示姓名的時候常會遇到中文難字無法顯示， 此時開發者在本機端如果有安裝造字檔 EUDC.TTE 就可以轉為 woff、woff2、ttf 讓網頁正確顯示難字。 過</description>
+    </item>
+    
+  </channel>
+</rss>
