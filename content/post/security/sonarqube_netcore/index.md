@@ -138,20 +138,93 @@ sonar.path.temp=/var/sonarqube/temp
 ```bash
 bin/linux-x86-64/sonar.sh start
 ```
-
-打開 http://localhost:9000 (用虛擬機的話需要接到127.0.0.1的連接埠打開)，
-一開始會看到 SonarQube is starting，
+#### 第一次登入SonarQube
+因為我是用連接埠轉送到虛擬機的9000，所以我打開的網址是 `http://127.0.0.1:8090`，
+如果在本地機器上執行就是打開 `http://localhost:9000`，
+開啟後一開始會看到 SonarQube is starting，
 需要等待一下下就會出現登入畫面，
 用 admin/admin 登入後會馬上要求重設密碼。
+
+#### 設置開機啟動服務
+新增一個 service 檔案 `/etc/systemd/system/sonarqube.service`
+```
+[Unit]
+Description=SonarQube Server
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /pkg/sonarqube-9.0.1.46107/bin/linux-x86-64/sonar.sh start
+ExecStop=/bin/bash /pkg/sonarqube-9.0.1.46107/bin/linux-x86-64/sonar.sh stop
+ExecReload=/bin/bash /pkg/sonarqube-9.0.1.46107/bin/linux-x86-64/sonar.sh restart
+Restart=always
+LimitNOFILE=131072
+LimitNPROC=8192
+
+[Install]
+WantedBy=multi-user.target
+```
 設置開機啟動
+```
+sudo systemctl enable sonarqube.service
+```
 ## 安裝 Scanner
-尚未整合到 CI/CD 之前可以先在 locale 端掃描，因為我的 .NET Core 開發環境是 Visual Studio 2019，所以因此這裡的 Scanner 安裝於 Windows 10 上。
+還沒有將 SonarQube 整合進 CI/CD 流程的需求之前，
+可以採取的方式是開發進行到一個階段在程式開發機掃描程式碼，
+再將結果上傳到 SonarQube Server，
+因為我的 .NET Core 開發環境是 Visual Studio 2019，
+所以 Scanner 安裝於 Windows 10 上。
+
+> P.S.因為這裡的情境是在開發機上做分析，
+因此前提假設機器上已經安裝相應的 dotnet sdk，
+我是裝 3.1。
+
+#### 安裝 dotnet sonarscanner
+```
+dotnet tool install --global dotnet-sonarscanner
+```
 #### 安裝 JRE 11
-到 Java 網站上抓 JRE 11安裝，這裡一樣要確認新增到 PATH 變數上，我是新增 JAVA_HOME 變數。
+到 Java 網站上抓 JRE 11安裝，這裡一樣要確認系統環境變數新增，
+新增 `JAVA_HOME` 系統變數，值為 `C:\Program Files\Java\jdk-11.0.12`
 ## 進行分析
-## 產生報表?
-用 API 抓取資料 (不詳述)
-## 版本控制?
+從 SonarQube Web 介面新增一個專案，分析方式選擇 Locally：
+![選擇分析方式](./choose_analysis.jpg)
+
+建立一個分析專案，上面是專案名稱，
+下面填入跟其他專案不重複的 project key (這裡我還是用專案名稱)。
+![建立Project](./create_project.png)
+
+設置一組 Token 提供 local 端分析完畢後可以上傳報告：
+![設置 Token](./provide_token.png)
+
+專案分析設置，設置 `.NET`、`.NET Core`，
+![專案設置](./project_setting.png)
+
+設置玩畢下面會自動出現程式碼，
+第一個區塊是要求先安裝剛剛安裝過的工具 dotnet-sonarqube 所以不需要理會，
+第二個區塊共有三行程式碼，
+把它複製起來貼到檔案 `sonarqube.bat`，然後把檔案放在要分析的專案資料夾底下。
+```bat
+dotnet sonarscanner begin /k:"EVT-api" /d:sonar.host.url="http://localhost:6080"  /d:sonar.login="05759efdbea31b9abe4e5cba171841d88f2dc689"
+dotnet build
+dotnet sonarscanner end /d:sonar.login="05759efdbea31b9abe4e5cba171841d88f2dc689"
+```
+
+最後打開小黑窗，切換到專案所在的工作目錄，執行這個 bat 檔案，
+接個 scanner 就會對程式碼進行分析、將結果上傳 SonarQube Server。
+```bat
+sonarqube.bat
+```
+執行開始到完成大概長這樣：
+![掃描開始](./scanner_start.png)
+![掃描完成](./scanner_finish.png)
+## 檢視結果
+點選專案會呈現總覽頁面，就可以知道問題出在哪然後點選在意的看。
+![project overview](./project_overview.png)
+如果需要客製化的報表，
+可以使用 API 抓取資料再將資料用自己的方式呈現，
+在此暫不詳述。
+## 版本控制
+再進行一次分析，會把新的程式碼有那些問題列出來，舊的程式碼有那些問題未改善
 ## 不需要執行的事項
  - Adding the JDBC Driver: 因為是使用 Postgresql，用內建的就好。
 # Referecne
