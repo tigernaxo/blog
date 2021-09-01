@@ -24,8 +24,8 @@ Scanner 除了能夠在 locale 端使用，還能直接整合到 CI/CD Server �
 這裡還是紀錄如何在虛擬機器上實際安裝 SonarQube，
 以後在實際機器上安裝就可以作為參考，
 
-## 準備 Linux Server
-### 硬體
+# 準備 Linux Server
+## 硬體
 個人使用或小規模的團隊在一台機器上安裝就足夠使用了，
 如果需要架設提供大量服務的伺服器，官網也提供 Cluster 的安裝方式方便做 Loading Balance。
 
@@ -35,8 +35,7 @@ Scanner 除了能夠在 locale 端使用，還能直接整合到 CI/CD Server �
  - RAM 至少要 2G；free RAM 至少要 1G (所以用 Windows server 就要準備大很多喔)。
  - 上傳報告需要一定的空間，因次對硬碟的空間與效能有一定的要求，不夠的話容易太慢。
  - server side 不支援 32-bit 作業系統；但 Scanner 可以支援 32-bit systems。
-### 環境設置
-#### 安裝 OpenJDK 11
+## 安裝 OpenJDK 11
 ```bash
 sudo apt update
 sudo apt upgrade
@@ -45,7 +44,7 @@ sudo apt install openjdk-11-jdk
 java --version
 ```
 然後在 `.bashrc` 裡面把 Java 添加到 PATH 變數上。
-#### 安裝 PostgreSQL 13
+## 安裝 PostgreSQL 13
 ```bash
 #添加 apt-key
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -82,7 +81,7 @@ host all all 0.0.0.0/0 md5
 # 或是只將特定的 IP 加為白名單
 host all all 10.10.10.0/24 md5
 ```
-#### 調整 Linux 限制
+## 調整 Linux 限制
 SonarQube 對於 Linux 作為 Server 有下面的要求：
  - vm.max_map_count >= 524288
  - fs.file-max >= 131072
@@ -111,8 +110,8 @@ sonarqube   -   nofile   131072
 sonarqube   -   nproc    8192
 ```
 
-### 安裝 SonarQube Server 9.0.1
-接著下載 Server 端程式
+## 安裝 SonarQube Server 9.0.1
+### 下載 Server 端程式
 先從[這裡](https://www.sonarqube.org/downloads/)找到下載連結，
 我下載的是 Community 最新版本。
 ```bash
@@ -121,6 +120,7 @@ wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.0.1.461
 # 解壓縮
 unzip sonarqube-9.0.1.46107.zip
 ```
+### 設置
 修改檔案 `$SONARQUBE-HOME/conf/sonar.properties`，
 設定 PostgreSQL 資料庫的連線，
 使用者名稱為 sonarqube，密碼 mypass， 使用的資料庫 sonarqube
@@ -134,18 +134,19 @@ sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
 sonar.path.data=/var/sonarqube/data
 sonar.path.temp=/var/sonarqube/temp
 ```
+### 設定密碼
 嘗試啟動 SonarQuebe Server
 ```bash
 bin/linux-x86-64/sonar.sh start
 ```
-#### 第一次登入SonarQube
+
 因為我是用連接埠轉送到虛擬機的9000，所以我打開的網址是 `http://127.0.0.1:8090`，
 如果在本地機器上執行就是打開 `http://localhost:9000`，
 開啟後一開始會看到 SonarQube is starting，
 需要等待一下下就會出現登入畫面，
 用 admin/admin 登入後會馬上要求重設密碼。
 
-#### 設置開機啟動服務
+### 設置開機啟動
 新增一個 service 檔案 `/etc/systemd/system/sonarqube.service`
 ```
 [Unit]
@@ -167,7 +168,7 @@ WantedBy=multi-user.target
 ```
 sudo systemctl enable sonarqube.service
 ```
-## 安裝 Scanner
+# 安裝 Scanner
 還沒有將 SonarQube 整合進 CI/CD 流程的需求之前，
 可以採取的方式是開發進行到一個階段在程式開發機掃描程式碼，
 再將結果上傳到 SonarQube Server，
