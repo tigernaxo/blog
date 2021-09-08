@@ -1,5 +1,5 @@
 ---
-title: "[.NET Core] 在 Ubuntu 20.04 上佈屬 .NET Core 3.1 (使用 Nginx 反向代理)"
+title: "[.NET Core] 在 Ubuntu 20.04 上部署 .NET Core 3.1 (使用 Nginx 反向代理)"
 date: 2021-08-11T16:48:00+08:00
 lastmod: 2021-08-11T16:48:00+08:00
 draft: false
