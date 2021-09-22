@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SonarQube on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/tags/sonarqube/</link>
+    <description>Recent content in SonarQube on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 22 Sep 2021 11:11:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/sonarqube/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Security] 利用免費開源資安檢測軟體 SonarQube 檢測 .NET Core 程式碼</title>
+      <link>https://blogger.tigernaxo.com/post/security/sonarqube_netcore/</link>
+      <pubDate>Wed, 22 Sep 2021 11:11:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/security/sonarqube_netcore/</guid>
+      <description>弱點掃描時常使用 owasp top 10 作為報告， 然而 owasp 軟體一年要價不菲，委外掃一次也是非常貴， 使用免費的 SonarQube 將弱點掃描整合到 CI/CD 階段， 要交付前再花錢委外掃一次似</description>
+    </item>
+    
+  </channel>
+</rss>
