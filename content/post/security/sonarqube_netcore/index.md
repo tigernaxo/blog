@@ -1,8 +1,8 @@
 ---
 title: "[Security] 利用免費開源資安檢測軟體 SonarQube 檢測 .NET Core 程式碼"
-date: 2021-08-24T10:07:00+08:00
-lastmod: 2021-08-24T10:07:00+08:00
-draft: true
+date: 2021-09-22T11:11:00+08:00
+lastmod: 2021-09-22T11:11:00+08:00
+draft: false
 tags: ["SonarQube", ".Net Core"]
 categories: ["Security"]
 author: "tigernaxo"
@@ -231,4 +231,3 @@ sonarqube.bat
 # Referecne
 - [SonarQube](https://www.sonarqube.org/)
 - [SonarQube GitHub](https://github.com/SonarSource/sonarqube)
-todo: 檢查 java 變數設置
