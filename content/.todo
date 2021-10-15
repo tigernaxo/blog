@@ -1,8 +1,8 @@
 - [] Firebase
-- [] Indexed DB
+- [] 前端儲存技術 LocalStorage/SessionStorage/Indexed DB
 - [] JWT
 - [] Hugo
-- [] Git: stash worktrree
+- [] Git: stash worktree
 - [] ASP UserIdentity
   - https://dotblogs.com.tw/jesperlai/2018/03/20/170705
 - [] windows AD 
@@ -12,5 +12,10 @@
 - [] Owaspt top 10
 - [] 單元測試、整合測試
 - [] CI/CD 
+- [] docker basic
+- [] DevOps
 - [] google drive
 - [] 遷移底棲生物的文章
+- [] chrome 到 c# code (dev tool => postman)
+- [] ssl autocert python https://blog.hellojcc.tw/setup-https-with-letsencrypt-on-nginx/
+- [] 進攻式編程（Offensive programming ）、防禦式程式設計（ defensive programming）
