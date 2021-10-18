@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/categories/devops/</link>
+    <description>Recent content in DevOps on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Mon, 18 Oct 2021 14:04:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DevOps] CI/CD-01 安裝 Jenkins</title>
+      <link>https://blogger.tigernaxo.com/post/devops/pipeline/01_install_jenkins/</link>
+      <pubDate>Mon, 18 Oct 2021 14:04:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/devops/pipeline/01_install_jenkins/</guid>
+      <description>環境 硬體部分官方提到: RAM &amp;gt; 256NB，最好 2GB，空間留至少 10GB 放置 Docker 映像檔。 環境部分需要安裝 Java (8 或 11) 和 Docker 安裝 Docker 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</description>
+    </item>
+    
+  </channel>
+</rss>

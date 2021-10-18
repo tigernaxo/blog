@@ -6,7 +6,34 @@
     <description>Recent content in Tags on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 22 Sep 2021 11:11:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Oct 2021 14:04:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker</title>
+      <link>https://blogger.tigernaxo.com/tags/docker/</link>
+      <pubDate>Mon, 18 Oct 2021 14:04:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>https://blogger.tigernaxo.com/tags/jenkins/</link>
+      <pubDate>Mon, 18 Oct 2021 14:04:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://blogger.tigernaxo.com/tags/ubuntu/</link>
+      <pubDate>Mon, 18 Oct 2021 14:04:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>.Net Core</title>
       <link>https://blogger.tigernaxo.com/tags/.net-core/</link>
@@ -103,15 +130,6 @@
       <pubDate>Wed, 11 Aug 2021 16:48:00 +0800</pubDate>
       
       <guid>https://blogger.tigernaxo.com/tags/nginx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu</title>
-      <link>https://blogger.tigernaxo.com/tags/ubuntu/</link>
-      <pubDate>Wed, 11 Aug 2021 16:48:00 +0800</pubDate>
-      
-      <guid>https://blogger.tigernaxo.com/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -445,6 +463,15 @@
       <pubDate>Wed, 23 Jan 2019 09:37:18 +0800</pubDate>
       
       <guid>https://blogger.tigernaxo.com/tags/%E5%8F%B0%E7%81%A3%E6%9D%89/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI/CD</title>
+      <link>https://blogger.tigernaxo.com/tags/ci/cd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/tags/ci/cd/</guid>
       <description></description>
     </item>
     
