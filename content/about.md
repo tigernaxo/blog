@@ -27,6 +27,7 @@ weight: 50
 
 - 2021-至今 光田綜合醫院 程式設計師
   - 急性腦中風整合系統 (Vue、Vuetify、.NET Core 3.1)
+  - 健保VPN網頁自動爬蟲 (NodeJs、Typescript、Playwright)
 
 - 2019-2021 展輝科技 Web工程師
   
