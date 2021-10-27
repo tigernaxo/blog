@@ -128,6 +128,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/dotnetcore31/deploy/ubuntu2004_nginx/">[.NET Core] 在 Ubuntu 20.04 上部署 .NET Core 3.1 (使用 Nginx 反向代理)</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-08-11 </span>
+      <div class="post-category">
+          <a href="/categories/net-core-3.1/"> NET Core 3.1 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      設置 Ubuntu 安裝 .NET Core Runtime 1 2 3 4 5 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb sudo dpkg -i packages-microsoft-prod.deb sudo apt update sudo apt install apt-transport-https sudo apt install dotnet-runtime-3.1 安裝 Nginx 新增套件來源，新增檔案 /etc/apt/sources.list.d/nginx.list 1 2 3 #/etc/apt/sources.list.d/nginx.list. deb https://nginx.org/packages/ubuntu/ focal nginx deb-src https://nginx.org/packages/ubuntu/ focal nginx 安裝 1 2 sudo apt update sudo apt install nginx -y 啟
+    </div>
+    <div class="read-more">
+      <a href="/post/dotnetcore31/deploy/ubuntu2004_nginx/" class="read-more-link">閱讀更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/dotnetcore31/json/json_datatable/">[.NET Core] JsonDocument 與 DataTable 的互相轉換</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2021-08-06 </span>
@@ -206,27 +227,6 @@
     </div>
     <div class="read-more">
       <a href="/post/system/n_tier/" class="read-more-link">閱讀更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/tools/proxy/http-proxy-middleware/">[Tools] 10分鐘建造 proxy 克服跨網域資源存取(CORS)問題</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2021-03-20 </span>
-      <div class="post-category">
-          <a href="/categories/tools/"> Tools </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      前後端分離的開發環境以 Ajax 呼叫資源時時會遇到跨網域存取的問題， 一些比較全面的開發環境像是 webpack、vue-cli 等等通常提供內建開發代理
-    </div>
-    <div class="read-more">
-      <a href="/post/tools/proxy/http-proxy-middleware/" class="read-more-link">閱讀更多</a>
     </div>
   </div>
 </article>

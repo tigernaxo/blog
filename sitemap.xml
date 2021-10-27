@@ -9,14 +9,70 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/devops/pipeline/01_install_jenkins/</loc>
-    <lastmod>2021-10-18T14:04:00+08:00</lastmod>
+    <loc>https://blogger.tigernaxo.com/post/javascript/diy/router/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://blogger.tigernaxo.com/categories/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/categories/javascript/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/router/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/typescript/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/tags/vite/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/</loc>
+    <lastmod>2021-10-27T14:03:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://blogger.tigernaxo.com/post/devops/pipeline/01_install_jenkins/</loc>
     <lastmod>2021-10-18T14:04:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -44,28 +100,7 @@
   </url>
   
   <url>
-    <loc>https://blogger.tigernaxo.com/post/</loc>
-    <lastmod>2021-10-18T14:04:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/tags/</loc>
-    <lastmod>2021-10-18T14:04:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://blogger.tigernaxo.com/tags/ubuntu/</loc>
-    <lastmod>2021-10-18T14:04:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/</loc>
     <lastmod>2021-10-18T14:04:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -395,13 +430,6 @@
   
   <url>
     <loc>https://blogger.tigernaxo.com/tags/hoisting/</loc>
-    <lastmod>2021-01-09T01:31:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://blogger.tigernaxo.com/categories/javascript/</loc>
     <lastmod>2021-01-09T01:31:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

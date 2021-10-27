@@ -6,7 +6,16 @@
     <description>Recent content in JavaScript on 世情如紙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 09 Jan 2021 01:31:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Oct 2021 14:03:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[JavaScritpt] 用 Typescript 建後簡易前端 Router</title>
+      <link>https://blogger.tigernaxo.com/post/javascript/diy/router/</link>
+      <pubDate>Wed, 27 Oct 2021 14:03:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/javascript/diy/router/</guid>
+      <description>簡單的單頁應用(SPA)不使用框架、太過笨重的工具，自己打造一個 Router 不會太麻煩： 一個根頁面以容納分頁面 route 對應表 起始一個使用 vallina-ts 的 vite 專案並安裝套件</description>
+    </item>
+    
     <item>
       <title>[JavaScritpt] 提升(Hoisting)與暫時性死區(Temporal Dead Zone)</title>
       <link>https://blogger.tigernaxo.com/post/javascript/hoisting/</link>

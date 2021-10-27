@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vite on 世情如紙</title>
+    <link>https://blogger.tigernaxo.com/tags/vite/</link>
+    <description>Recent content in Vite on 世情如紙</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 27 Oct 2021 14:03:00 +0800</lastBuildDate><atom:link href="https://blogger.tigernaxo.com/tags/vite/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[JavaScritpt] 用 Typescript 建後簡易前端 Router</title>
+      <link>https://blogger.tigernaxo.com/post/javascript/diy/router/</link>
+      <pubDate>Wed, 27 Oct 2021 14:03:00 +0800</pubDate>
+      
+      <guid>https://blogger.tigernaxo.com/post/javascript/diy/router/</guid>
+      <description>簡單的單頁應用(SPA)不使用框架、太過笨重的工具，自己打造一個 Router 不會太麻煩： 一個根頁面以容納分頁面 route 對應表 起始一個使用 vallina-ts 的 vite 專案並安裝套件</description>
+    </item>
+    
+  </channel>
+</rss>
