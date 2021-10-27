@@ -22,7 +22,7 @@
       <pubDate>Wed, 27 Oct 2021 14:03:00 +0800</pubDate>
       
       <guid>https://blogger.tigernaxo.com/post/javascript/diy/router/</guid>
-      <description>簡單的單頁應用(SPA)不使用框架、太過笨重的工具，自己打造一個 Router 不會太麻煩： 一個根頁面以容納分頁面 route 對應表 起始一個使用 vallina-ts 的 vite 專案並安裝套件</description>
+      <description>起始一個使用 vallina-ts 的 vite 專案並安裝套件，並使用 bootstrap 做簡單的 css 套用： 1 2 3 4 5 6 npm init vite@latest route-test #依序選擇 vallina-&amp;gt;vallina-ts cd route-test npm i # 安裝套件 npm i bootstrap # 安裝 bootstrap 在 index.html 新增元素 app 1 2</description>
     </item>
     
     <item>
