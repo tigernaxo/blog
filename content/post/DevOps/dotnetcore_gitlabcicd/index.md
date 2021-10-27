@@ -28,7 +28,11 @@ NAT 網路是 virtualbox 在建立新的 VM 時默認的設置，因此不需要
 我們需要在機器添加使用 Host-Only Adaptor 網路的網卡：
 ![添加網路介面卡](./add_host_only_adaptor.png)
 
-外部添加完網路卡之後，必須要進入 VM 新建一個網卡 enp0s8，修改VM上的檔案 `/etc/netplan/00-installer-config.yaml`，具體來說長這樣：
+外部添加完網路卡之後，必須要進入 VM 新建一個網卡去使用他，
+修改VM上的檔案 `/etc/netplan/00-installer-config.yaml`，
+可以看到接在預設 NAT 網路上的網卡名稱叫做 `enp0s3`，
+目前要新設定一張 `enp0s8` 給 host-only 網路使用並指定靜態 IP，
+檔案最後長這樣：
 ```yaml
 network:
   ethernets:
