@@ -9,10 +9,6 @@ author: "tigernaxo"
 
 autoCollapseToc: true
 ---
-簡單的單頁應用(SPA)不使用框架、太過笨重的工具，自己打造一個 Router 不會太麻煩：
-一個根頁面以容納分頁面
-route 對應表
-
 起始一個使用 vallina-ts 的 vite 專案並安裝套件，並使用 bootstrap 做簡單的 css 套用：
 ```bash
 npm init vite@latest route-test
