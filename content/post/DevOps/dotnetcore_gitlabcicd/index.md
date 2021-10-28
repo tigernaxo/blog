@@ -22,11 +22,11 @@ autoCollapseToc: true
 首先你必須要安裝 virtualbox，然後安裝一部 Ubuntu 20.04 VM。  
 這部 VM 需要以下兩項網路，其中 Host-Only 網路需要額外設定：
  1. NAT 網路：拿來上網(要安裝套件)，virtualbox 在建立新的 VM 時已默認設置。
- 2. Host-Only 網路：讓 Host 得以透過 IP 和 VM 進行通訊，需手動添加 Host-Only Adaptor 網卡(下圖)。
+ 2. Host-Only 網路：讓 Host 得以透過 IP 和 VM 進行通訊，需**關閉虛擬機器**手動添加 Host-Only Adaptor 網卡(下圖)。
 
 ![添加網路介面卡](./add_host_only_adaptor.png)
 
-外部添加完網路卡之後，必須要進入 Ubuntu 新建一個網卡，
+外部添加完網路卡之後，打開 VM 進入 Ubuntu 新建網卡，
 修改VM上的檔案 `/etc/netplan/00-installer-config.yaml`，
 可以看到接在預設 NAT 網路上的網卡名稱叫做 `enp0s3`，
 目前要新設定一張 `enp0s8` 給 host-only 網路使用並指定靜態 IP，
@@ -37,14 +37,18 @@ network:
     enp0s3:
       dhcp4: true
     enp0s8:
-      addresses: [192.168.56.100/24]  # 指定靜態IP、網段遮罩
+      addresses: [192.168.56.100/24]  # 靜態IP、遮罩
       routes:
-      dhcp4: no # 關閉 dhcp 自動取得 IP
-      dhcp6: no # 關閉 dhcp 自動取得 IP
       - to: 192.168.56.1/24
         via: 192.168.56.1
         metric: 100
+      #gateway4: 192.168.56.1  # IPV4 Getway ip
+      #nameservers:
+      #addresses: [8.8.8.8,8.8.4.4] # DNS server ip，若有多個就以逗號分隔
+      dhcp4: no # 關閉 dhcp 自動取得 IP
+      dhcp6: no # 關閉 dhcp 自動取得 IP
   version: 2
+
 ```
 測試設定
 ```bash
@@ -116,20 +120,16 @@ echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   
-# 安裝 Docker Engine
+# 安裝 Docker Engine、Docker Compose
 sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
 # 用 test image 測試 docker 安裝是否成功
 sudo docker run hello-world
 ```
-由於 docker 只有 root 或 docker 群組能夠使用(/var/run/docker.sock 的權限)，故需要把當前使用者加到 docker 群組。
+由於 docker 只有 root 或 docker 群組能夠使用(/var/run/docker.sock 的權限)，故需要把當前使用者加到 docker 群組，然後**重新登入**才會生效。
 ```bash
 sudo usermod -aG docker ${USER}
-```
-安裝 docker-compose
-```bash
-sudo apt-get install -y docker-compose
 ```
 
 # 安裝 Gitlab
@@ -217,7 +217,53 @@ services:
 #      - '50000:50000'
 #    volumes:
 #      - '/data/jenkins:/var/jenkins_home'
-https://jonny-huang.github.io/docker/docker_03/
+#https://jonny-huang.github.io/docker/docker_03/
+```
+NGINX 設定 HTTPS 網頁加密連線，建立自行簽署的 SSL 憑證
+設置 default.conf
+```
+# 全部導向到 https
+server {
+    listen  80 default_server;
+    server_name  _;
+    return 301   https://$host$request_uri;
+}
+
+server {
+    listen       443 ssl default_server;
+    listen  [::]:443 ssl default_server;
+    server_name  _;
+
+    access_log  /var/log/nginx/host.access.log  main;
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+}
+```
+設置 gitlab.conf
+```
+# 全部導向到 https
+server {
+    listen  80 default_server;
+    server_name  gitlag.example.com;
+    return 301   https://$host$request_uri;
+}
+
+server {
+    listen       443 ssl default_server;
+    listen  [::]:443 ssl default_server;
+    server_name  gitlab.example.com;
+
+    location / {
+        proxy_pass         https://gitlab
+    }
+}
+```
+重啟 nginx
+```bash
+# 用 dokcer ps 取得 nginx 的 container id，假設是 86d6c85573a4
+docker restart 86d6c85573a4
 ```
 ## 處理ssh埠號 
 自動導向 host git user 的 ssh 到 gitlab ssh port
@@ -243,3 +289,9 @@ https://ithelp.ithome.com.tw/articles/10219427
 https://docs.gitlab.com/ee/install/docker.html
 
 https://titangene.github.io/article/networking-in-docker-compose.html
+
+在 container 內設置反向代理
+https://stackoverflow.com/questions/45717835/docker-proxy-pass-to-another-container-nginx-host-not-found-in-upstream
+處理 gitlab 的 502 bad gateway error
+https://forum.gitlab.com/t/bad-gateway-behind-reverse-proxy/47054
+https://forum.gitlab.com/t/gitlab-using-docker-compose-behind-a-nginx-reverse-proxy/26148/3  <=
