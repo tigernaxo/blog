@@ -1,5 +1,5 @@
 ---
-title: "[DevOps] 初學開發維運03-Docker 安裝"
+title: "[DevOps] 初學開發運維03-Docker 安裝"
 date: 2021-09-22T11:11:00+08:00
 lastmod: 2021-09-22T11:11:00+08:00
 draft: true
