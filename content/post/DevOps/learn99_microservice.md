@@ -1,5 +1,5 @@
 ---
-title: "[DevOps] 初學開發運維-02容器"
+title: "[DevOps] 初學開發運維-0? 微服務框架"
 date: 2021-10-15T11:11:00+08:00
 lastmod: 2021-10-15T11:11:00+08:00
 draft: true
@@ -10,27 +10,6 @@ author: "tigernaxo"
 autoCollapseToc: false
 ---
 
-# 容器管理平台
-目前最主流的容器軟體是 Docker，容器管理平台是 K8S(Kubernetes)
-
-當負載增加就需要擴充硬體資源來因應，
-把應用程式部屬到兩台以上的
-微服務 + Kubernets 
-
-# 回到 DevOps
-傳統流程大約是這樣子的： (todo 修改)
-程式開發：由程式設計師開發程式。
-測試：開發到一個階段由開發者或測試人員測試、撰寫測試報告。
-系統部屬上線：寫腳本建立程式環境、部屬程式。
-運維：軟體環境調校和軟體維護作業。
-
-DevOps是什麼？
-傳統的產品開發、測試、運維各自作業，
-每次程式開發上線的工作流程大同小異(測試、部屬...)且必須人工作業，
-
-DevOps 透過微服務架構整合 Development(開發)、Operation(運維)，
-建立自動部屬、自動測試之類的自動化流程，
-可大幅縮短開發交付到部屬上線的流程，藉此更精準快速回應市場需求並大幅減少人力成本，
 且因為微服務開發框架從根本解決架構管理的複雜問題，
 透過自動化流程將運維工程師從瑣碎日常事務當中解放出來，
 ，讓開發人員可以更專注於應用開發、其他更有價值的工作、學習新技術。
@@ -52,3 +31,5 @@ DevOps 透過微服務架構整合 Development(開發)、Operation(運維)，
 - [medium - 從單體到微服務](https://yunchenli.medium.com/%E5%BE%9E%E5%96%AE%E9%AB%94%E5%88%B0%E5%BE%AE%E6%9C%8D%E5%8B%99-12e206805089)
 - [Microservices vs Monolithic Architecture](https://www.mulesoft.com/resources/api/microservices-vs-monolithic)
 - [wiki - Multitier architecture](https://en.wikipedia.org/wiki/Multitier_architecture#Three-tier_architecture)
+- [wiki - Service-level objective](https://en.wikipedia.org/wiki/Service-level_objective)
+- [2017 iT 邦幫忙鐵人賽 - Container 容器三十問](https://ithelp.ithome.com.tw/users/20060041/ironman/1164)
